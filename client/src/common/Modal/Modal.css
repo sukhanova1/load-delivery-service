@@ -1,0 +1,22 @@
+.modal{
+  position: absolute;
+  top: auto;
+  right: 0rem;
+  width: 22rem;
+  height: 10rem;
+  padding: 1rem;
+  border: 1px solid var(--light-grey);
+  box-shadow: 1px 10px 16px var(--box-shadow);
+  background-color: var(--background);
+}
+
+.modal__content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.modal__text{
+  text-align: center;
+}

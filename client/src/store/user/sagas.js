@@ -1,0 +1,61 @@
+import { call, put, takeEvery } from 'redux-saga/effects';
+
+import { loginSuccess } from './actionCreator';
+import { setModalError, setModalSuccess } from '../app/actionCreator';
+import {
+	FORGOT_PASS_REQUEST,
+	LOGIN_REQUEST,
+	REGISTER_REQUEST,
+} from './actionTypes';
+import {
+	forgotPassRequest,
+	loginRequest,
+	registerRequest,
+} from '../../utils/services';
+
+function* login(action) {
+	try {
+		const { status, data } = yield call(loginRequest, action.payload);
+		if (status === 200) {
+			yield put(loginSuccess(data.jwt_token));
+			yield put(setModalError(''));
+			localStorage.setItem('token', data.jwt_token);
+		}
+	} catch (e) {
+		const { message } = e.response.data;
+		yield put(setModalError(message));
+	}
+}
+
+function* register(action) {
+	try {
+		const { status, data } = yield call(registerRequest, action.payload);
+		if (status === 200) {
+			yield put(setModalSuccess(data.message));
+			yield put(setModalError(''));
+		}
+	} catch (e) {
+		const { message } = e.response.data;
+		if (message.startsWith('E11000 duplicate key')) {
+			yield put(setModalError('User already exists'));
+		}
+	}
+}
+
+function* forgotPass(action) {
+	try {
+		const { status } = yield call(forgotPassRequest, action.payload);
+		if (status === 200) {
+			yield put(setModalSuccess('New password has been sent to your email'));
+		}
+	} catch (e) {
+		const { message } = e.response.data;
+		yield put(setModalError(message));
+	}
+}
+
+export function* userWatcher() {
+	yield takeEvery(LOGIN_REQUEST, login);
+	yield takeEvery(REGISTER_REQUEST, register);
+	yield takeEvery(FORGOT_PASS_REQUEST, forgotPass);
+}

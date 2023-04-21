@@ -1,0 +1,58 @@
+.profile {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
+.profile__content {
+  text-align: center;
+}
+
+.profile__role {
+  font-family: var(--font-secondaty);
+  margin: 1rem 0 0.2rem 0;
+}
+
+.profile__date{
+  font-family: var(--font-secondaty);
+  font-style: italic;
+}
+
+.profile__btn{
+  padding: 1rem 4rem;
+  border: 1px solid transparent;
+  background-color: var(--background);
+  color: var(--yellow);
+}
+
+.profile__btn:hover {
+  border: 1px solid var(--light-yellow);
+  background-color: var(--light-yellow);
+  color: var(--background);
+}
+
+.profile__btn-delete {
+  border: 1px solid var(--red);
+  background-color: var(--red);
+  color: var(--background);
+}
+
+.profile__btn-delete:hover {
+  border: 1px solid transparent;
+  background-color: var(--background);
+  color: var(--red);
+}
+
+.profile__btn-logout {
+  background-color: var(--background);
+  border: 1px solid var(--secondary-blue);
+  color: var(--secondary-blue);
+}
+
+.profile__btn-logout:hover {
+  border: 1px solid var(--btn-dark-blue);
+  background-color: var(--btn-dark-blue);
+  color: var(--background);
+}

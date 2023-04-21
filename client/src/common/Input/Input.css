@@ -1,0 +1,18 @@
+.input{
+  width: 80%;
+  padding: 1rem;  
+  border: 1px solid #e2e8fd;
+  background-color: var(--background);
+  border-radius: 5px;
+  color: var(--text-dark-blue);
+  font-size: 1.1rem;
+}
+
+.input:focus {
+  border-color: var(--text-dark-blue);
+  background-color: var(--light-grey);
+}
+
+.input_radio{
+  margin-right: 1.3rem;
+}

@@ -1,0 +1,29 @@
+.form__content {
+  padding: 3rem 5rem;
+  background-color: var(--background);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+.form__link{
+  color: var(--text-dark-blue);
+}
+
+.form__link:hover{
+  color: var(--secondary-blue);
+}
+
+.form__btn {
+  padding: 1rem 7rem;  
+  border: 1px solid var(--btn-dark-blue);
+  background-color: var(--btn-dark-blue);
+  color: var(--background);
+}
+
+.form__btn:hover {
+  background-color: var(--background);
+  border: 1px solid var(--secondary-blue);
+  color: var(--secondary-blue);
+}

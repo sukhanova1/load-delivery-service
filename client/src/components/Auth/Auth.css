@@ -1,0 +1,23 @@
+.form{
+  padding: 3rem;
+}
+
+.form__container {
+  width: 45vw;
+  margin: 0 auto;
+  border: 1px solid var(--background);
+  border-radius: 7px;
+  box-shadow: 1px 10px 16px var(--box-shadow);
+}
+
+.form__header {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.form__title {
+  font-size: 2rem;
+  letter-spacing: 2.5px;
+}

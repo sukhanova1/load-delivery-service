@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/main.css">
+    <title>Delivery Service</title>
+  </head>
+  <body>
+      <div class="main">
+        <div class="main__content">
+          <h1 class="main__heading">Delivery On Your Address</h1>
+          <h2 class="main__second-heading">Anytime, anywhere, just click and wait</h2>
+          <p class="main__text">
+            Get all your packages deliver safely at your place, with our care
+            and friendly service
+          </p>
+          <a href="#form-section" class="main__btn">Let's get Started</a>
+        </div>
+        <div class="main__photo">
+          <img src="./img/main_pic.webp" alt="delivery picture" />
+        </div>
+      </div>
+      <div class="form" id="form-section">
+        <div class="form__container">
+          <div class="form__header">
+            <img src="./img/logo.jpg" alt="company logo" width="250px">
+            <h2 class="form__title">Delivery Service</h2>
+          </div>
+          <form action="#" class="form__content hidden" id="sign-up-form">  <!-- SIGN UP--> 
+            <input type="email" name= "email" class="form__input" placeholder="Enter your email">
+            <p class="form__text">Choose your role:</p>
+            <div class="form__radio-box">
+              <label for="driver" class="form__text">
+                <input type="radio" id="driver" name="role" value="DRIVER" checked/> DRIVER </label>
+              <label for="shipper" class="form__text">
+                <input type="radio" id="shipper" name="role" value="SHIPPER"/> SHIPPER </label>
+            </div>
+            <input type="password" class="form__input second-pass-input" placeholder="Enter your password">
+            <input type="password" name="password" class="form__input" placeholder="Confirm your password">
+            <p class="form__input-err-message hidden">Incorrect password</p>
+            <button type="submit" class="form__btn">Sign up</button>
+            <p class="form__text">Already have an account?
+              <a href="" class="form__link log-in-link" id="log-in-link">Sign in</a>
+            </p>
+          </form>
+          <form action="#" class="form__content" id="log-in-form">   <!-- LOG IN --> 
+            <input type="email" name="email" class="form__input" placeholder="Enter your email">
+            <input type="password" name="password" class="form__input" placeholder="Enter your password">
+            <p class="form__input-err-message hidden">Incorrect password</p>
+            <p class="form__text">
+              <a href="" class="form__link" id="forgot-pass-link">Forgot your password?</a>
+            </p>
+            <button type="submit" class="form__btn">Log in</button>
+            <p class="form__text">Don't have an account?
+              <a href="" class="form__link" id="create-acc-link">Create account</a>
+            </p>
+          </form>
+          <form action="#" class="form__content hidden" id="forgot-pass-form">   <!-- FORGOT PASSWORD --> 
+            <p class="form__text">New password will be sent to your email address</p>
+            <input type="email" class="form__input" name="email" placeholder="Enter your email">
+            <p class="form__input-err-message hidden">Incorrect email</p>
+            <button type="submit" class="form__btn">Send</button>
+          </form>
+          <div class="form__content hidden" id="success-form">
+            <div class="form__success-message">
+              <img src="./img/check-mark.png" alt="check mark" width="50px">
+              <p class="form__text">Profile created successfully.</p>
+            </div>
+            <p class="form__text">
+              <a href="" class="form__link log-in-link" >Click here</a> to log in.
+            </p>
+          </div> 
+          <div class="form__content hidden" id="reset-form">
+            <div class="form__success-message">
+              <img src="./img/check-mark.png" alt="check mark" width="50px">
+              <p class="form__text">Password reset successfully.</p>
+            </div>
+            <p class="form__text">New password was sent to your email address. </p>
+            <p class="form__text">
+              <a href="" class="form__link log-in-link">Click here</a> to log in.
+            </p>
+          </div> 
+        </div>
+      </div>
+    <a href="./homeShipper.html"></a>
+    <script src="./js/main.js"></script>
+  </body>
+</html>
