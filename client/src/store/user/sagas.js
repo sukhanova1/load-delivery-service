@@ -1,10 +1,11 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 
-import { loginSuccess } from './actionCreator';
+import { loginSuccess, logoutSuccess } from './actionCreator';
 import { setModalError, setModalSuccess } from '../app/actionCreator';
 import {
 	FORGOT_PASS_REQUEST,
 	LOGIN_REQUEST,
+	LOGOUT_REQUEST,
 	REGISTER_REQUEST,
 } from './actionTypes';
 import {
@@ -19,7 +20,7 @@ function* login(action) {
 		if (status === 200) {
 			yield put(loginSuccess(data.jwt_token));
 			yield put(setModalError(''));
-			localStorage.setItem('token', data.jwt_token);
+			yield localStorage.setItem('token', data.jwt_token);
 		}
 	} catch (e) {
 		const { message } = e.response.data;
@@ -54,8 +55,14 @@ function* forgotPass(action) {
 	}
 }
 
+function* logout(action) {
+	yield localStorage.removeItem('token');
+	yield put(logoutSuccess());
+}
+
 export function* userWatcher() {
 	yield takeEvery(LOGIN_REQUEST, login);
 	yield takeEvery(REGISTER_REQUEST, register);
 	yield takeEvery(FORGOT_PASS_REQUEST, forgotPass);
+	yield takeEvery(LOGOUT_REQUEST, logout);
 }

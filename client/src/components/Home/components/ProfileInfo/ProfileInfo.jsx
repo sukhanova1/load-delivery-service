@@ -1,6 +1,8 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
 import Button from '../../../../common/Button/Button';
+import { logoutRequest } from '../../../../store/user/actionCreator';
 import {
 	BUTTON_LOGOUT_TEXT,
 	BUTTON_TEXT_CHANGE_PASS,
@@ -13,6 +15,8 @@ import {
 import './ProfileInfo.css';
 
 const ProfileInfo = () => {
+	const dispatch = useDispatch();
+
 	const handleChangePassword = () => {
 		console.log('password changed');
 	};
@@ -21,9 +25,7 @@ const ProfileInfo = () => {
 		console.log('Acc deleted');
 	};
 
-	const handleLogout = () => {
-		console.log('logged out');
-	};
+	const handleLogout = () => dispatch(logoutRequest());
 
 	return (
 		<div className='profile'>

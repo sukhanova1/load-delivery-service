@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS } from './actionTypes';
+import { LOGIN_SUCCESS, LOGOUT_SUCCESS } from './actionTypes';
 
 const initState = {
 	isAuth: false,
@@ -13,6 +13,8 @@ export default function user(state = initState, action) {
 	switch (action.type) {
 		case LOGIN_SUCCESS:
 			return { ...state, isAuth: true, token: action.payload };
+		case LOGOUT_SUCCESS:
+			return initState;
 		default:
 			return state;
 	}

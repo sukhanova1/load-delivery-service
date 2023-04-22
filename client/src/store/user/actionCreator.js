@@ -2,6 +2,8 @@ import {
 	FORGOT_PASS_REQUEST,
 	LOGIN_REQUEST,
 	LOGIN_SUCCESS,
+	LOGOUT_REQUEST,
+	LOGOUT_SUCCESS,
 	REGISTER_REQUEST,
 } from './actionTypes';
 
@@ -23,4 +25,12 @@ export const register = (payload) => ({
 export const forgotPass = (payload) => ({
 	type: FORGOT_PASS_REQUEST,
 	payload,
+});
+
+export const logoutRequest = () => ({
+	type: LOGOUT_REQUEST,
+});
+
+export const logoutSuccess = () => ({
+	type: LOGOUT_SUCCESS,
 });
