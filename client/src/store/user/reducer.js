@@ -1,4 +1,8 @@
-import { LOGIN_SUCCESS, LOGOUT_SUCCESS } from './actionTypes';
+import {
+	GET_USER_INFO_SUCCESS,
+	LOGIN_SUCCESS,
+	LOGOUT_SUCCESS,
+} from './actionTypes';
 
 const initState = {
 	isAuth: false,
@@ -15,6 +19,16 @@ export default function user(state = initState, action) {
 			return { ...state, isAuth: true, token: action.payload };
 		case LOGOUT_SUCCESS:
 			return initState;
+		case GET_USER_INFO_SUCCESS:
+			return {
+				...state,
+				isAuth: true,
+				name: action.payload.name,
+				email: action.payload.email,
+				token: action.payload.token,
+				role: action.payload.role,
+				created_date: action.payload.created_date,
+			};
 		default:
 			return state;
 	}

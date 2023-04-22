@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Button from '../../../../common/Button/Button';
 import { logoutRequest } from '../../../../store/user/actionCreator';
@@ -13,8 +13,12 @@ import {
 } from '../../../../utils/constants';
 
 import './ProfileInfo.css';
+import { selectUserInfo } from '../../../../store/user/selectors';
+import { transformCreatedDate } from '../../../../helpers/transformCreatedDate';
 
 const ProfileInfo = () => {
+	const userInfo = useSelector(selectUserInfo);
+
 	const dispatch = useDispatch();
 
 	const handleChangePassword = () => {
@@ -36,10 +40,12 @@ const ProfileInfo = () => {
 				width='200px'
 			/>
 			<div className='profile__content'>
-				<h3>{'User name'}</h3>
+				<h3>{userInfo.name}</h3>
 				<p>{'asd12345@gmail.com'}</p>
-				<h4 className='profile__role'>Role: {'DRIVER'}</h4>
-				<p className='profile__date'>Since {'22/03/2022'}</p>
+				<h4 className='profile__role'>Role: {userInfo.role}</h4>
+				<p className='profile__date'>
+					Since {transformCreatedDate(userInfo.created_date)}
+				</p>
 			</div>
 			<Button
 				className='profile__btn'

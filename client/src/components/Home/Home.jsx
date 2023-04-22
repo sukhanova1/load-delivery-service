@@ -4,8 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import SideBar from './components/SideBar/SideBar';
 import Header from './components/Header/Header';
-import { logoutRequest } from '../../store/user/actionCreator';
-import { selectUserisAuth } from '../../store/user/selectors';
+import {
+	getUserInfoRequest,
+	logoutRequest,
+} from '../../store/user/actionCreator';
+import { selectUserToken, selectUserisAuth } from '../../store/user/selectors';
 import { LOGIN_ROUTE } from '../../utils/constants';
 
 import './Home.css';
@@ -27,6 +30,10 @@ const Home = () => {
 			navigate(LOGIN_ROUTE);
 		}
 	}, [isAuth]);
+
+	useEffect(() => {
+		dispatch(getUserInfoRequest(localStorage.getItem('token')));
+	}, [dispatch]);
 
 	return (
 		<>

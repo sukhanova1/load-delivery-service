@@ -1,15 +1,21 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 
-import { loginSuccess, logoutSuccess } from './actionCreator';
+import {
+	getUserInfoSuccess,
+	loginSuccess,
+	logoutSuccess,
+} from './actionCreator';
 import { setModalError, setModalSuccess } from '../app/actionCreator';
 import {
 	FORGOT_PASS_REQUEST,
+	GET_USER_INFO_REQUEST,
 	LOGIN_REQUEST,
 	LOGOUT_REQUEST,
 	REGISTER_REQUEST,
 } from './actionTypes';
 import {
 	forgotPassRequest,
+	getUserInfoRequest,
 	loginRequest,
 	registerRequest,
 } from '../../utils/services';
@@ -60,9 +66,20 @@ function* logout(action) {
 	yield put(logoutSuccess());
 }
 
+function* getUserInfo(action) {
+	try {
+		const { status, data } = yield call(getUserInfoRequest, action.payload);
+		if (status === 200) {
+			console.log(data);
+			yield put(getUserInfoSuccess(data.user));
+		}
+	} catch (e) {}
+}
+
 export function* userWatcher() {
 	yield takeEvery(LOGIN_REQUEST, login);
 	yield takeEvery(REGISTER_REQUEST, register);
 	yield takeEvery(FORGOT_PASS_REQUEST, forgotPass);
 	yield takeEvery(LOGOUT_REQUEST, logout);
+	yield takeEvery(GET_USER_INFO_REQUEST, getUserInfo);
 }
