@@ -7,6 +7,7 @@ import user from './user/reducer';
 import trucks from './trucks/reducer';
 import loads from './loads/reducer';
 import rootUserSaga from './user/sagas';
+import rootTruckSaga from './trucks/sagas';
 
 const reducers = combineReducers({
 	app,
@@ -30,6 +31,7 @@ const store = configureStore({});
 
 function* rootSaga() {
 	yield spawn(rootUserSaga);
+	yield spawn(rootTruckSaga);
 }
 
 sagaMiddleware.run(rootSaga);

@@ -70,7 +70,6 @@ function* getUserInfo(action) {
 	try {
 		const { status, data } = yield call(getUserInfoRequest, action.payload);
 		if (status === 200) {
-			console.log(data);
 			yield put(getUserInfoSuccess(data.user));
 		}
 	} catch (e) {}

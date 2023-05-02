@@ -23,3 +23,10 @@ export const getUserInfoRequest = async (token) => {
 	const result = await axios.get(BASE_URL + '/users/me', { headers });
 	return result;
 };
+
+//trucks
+export const getTrucksRequest = async (token) => {
+	const headers = { Authorization: `Bearer ${token}` };
+	const result = await axios.get(BASE_URL + '/trucks', { headers });
+	return result;
+};
