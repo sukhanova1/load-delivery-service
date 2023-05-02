@@ -1,12 +1,12 @@
 import { combineReducers, createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import { all } from 'redux-saga/effects';
+import { spawn } from 'redux-saga/effects';
 
 import app from './app/reduser';
 import user from './user/reducer';
 import trucks from './trucks/reducer';
 import loads from './loads/reducer';
-import { userWatcher } from './user/sagas';
+import rootUserSaga from './user/sagas';
 
 const reducers = combineReducers({
 	app,
@@ -29,9 +29,9 @@ const configureStore = (preloadedState) =>
 const store = configureStore({});
 
 function* rootSaga() {
-	// yield all(combineWatchers(userWatcher));
+	yield spawn(rootUserSaga);
 }
 
-sagaMiddleware.run(userWatcher);
+sagaMiddleware.run(rootSaga);
 
 export default store;

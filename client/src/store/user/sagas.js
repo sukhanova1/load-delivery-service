@@ -1,4 +1,4 @@
-import { call, put, takeEvery } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 
 import {
 	getUserInfoSuccess,
@@ -77,9 +77,13 @@ function* getUserInfo(action) {
 }
 
 export function* userWatcher() {
-	yield takeEvery(LOGIN_REQUEST, login);
-	yield takeEvery(REGISTER_REQUEST, register);
-	yield takeEvery(FORGOT_PASS_REQUEST, forgotPass);
-	yield takeEvery(LOGOUT_REQUEST, logout);
-	yield takeEvery(GET_USER_INFO_REQUEST, getUserInfo);
+	yield takeLatest(LOGIN_REQUEST, login);
+	yield takeLatest(REGISTER_REQUEST, register);
+	yield takeLatest(FORGOT_PASS_REQUEST, forgotPass);
+	yield takeLatest(LOGOUT_REQUEST, logout);
+	yield takeLatest(GET_USER_INFO_REQUEST, getUserInfo);
+}
+
+export default function* rootUserSaga() {
+	yield userWatcher();
 }
