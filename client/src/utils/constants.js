@@ -38,6 +38,13 @@ export const INPUT_RADIO_NAME = 'role';
 export const DRIVER_ROLE = 'DRIVER';
 export const SHIPPER_ROLE = 'SHIPPER';
 
+//select
+export const SELECT_ID_ADD_TRUCK = 'add-truck-select';
+export const SELECT_ID_EDIT_TRUCK = 'edit-truck-select';
+export const SPRINTER_TYPE = 'SPRINTER';
+export const SMALL_STRAIGHT_TYPE = 'SMALL STRAIGHT';
+export const LARGE_STRAIGHT_TYPE = 'LARGE STRAIGHT';
+
 //buttons
 export const BUTTON_TYPE_SUBMIT = 'submit';
 export const BUTTON_TYPE_BUTTON = 'button';
@@ -46,7 +53,12 @@ export const BUTTON_TEXT_SIGNUP = 'Sign up';
 export const BUTTON_TEXT_SEND = 'Send';
 export const BUTTON_TEXT_DELETE_ACC = 'Delete Account';
 export const BUTTON_TEXT_CHANGE_PASS = 'Change password';
-export const BUTTON_LOGOUT_TEXT = 'Logout';
+export const BUTTON_TEXT_LOGOUT = 'Logout';
+export const BUTTON_TEXT_ADD = 'Add';
+export const BUTTON_TEXT_EDIT = 'Edit';
+export const BUTTON_TEXT_DELETE = 'Delete';
+export const BUTTON_TEXT_ASSIGN = 'Assign';
+export const BUTTON_TEXT_OK = 'OK';
 
 export const TITLE_PROFILE = 'Profile';
 export const TITLE_TRUCKS = 'My Trucks';
