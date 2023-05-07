@@ -1,0 +1,127 @@
+.trucks {
+  padding: 2rem 2.5rem;
+  display: grid;
+  gap: 3rem;
+}
+
+.trucks__header {
+  padding-left: 3rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.trucks__form-box {
+  display: grid;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.trucks__form-btn{
+  margin-left: 2rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 1px solid var(--background);
+  background-color: var(--background);
+  color: var(--text-dark-blue);
+}
+
+.trucks__form-btn:hover{
+  color: var(--secondary-blue);
+}
+
+.trucks__header-box {
+  display: grid;
+  gap: 0.8rem;
+  text-align: center;
+}
+
+.trucks__header-table {
+  box-shadow: 1px 10px 16px var(--box-shadow);
+}
+
+.trucks__header-td{
+  padding: 0.1rem 0.3rem;
+  text-align: center;
+  font-size: 0.9rem;
+  background-color: white;
+}
+
+.trucks__table {
+  width: 100%;
+}
+
+.trucks__table-row {
+  display:grid;
+  grid-template-columns: 2.5fr 1.5fr 1fr 1.5fr 1.5fr;
+  gap: 3px;
+}
+
+.trucks__table-header {
+  margin-bottom: 0.4rem;
+  font-size: 0.8rem;
+  letter-spacing: 1.5px;
+  background-color: var(--background);
+  color: var(--third-blue);
+  opacity: 0.4;
+}
+
+.trucks__table-data {
+  padding: 0.7rem 1rem;
+  display: grid;
+  align-items: center;
+  gap: 0.8rem;
+  text-align: center;
+  font-size: 1rem;
+  background-color: white;
+}
+
+.trucks__table-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.trucks__table-text {
+  font-size: 0.8rem;
+}
+
+.trucks__table-btns {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.trucks__table-btn {
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  background-color: var(--background);
+}
+
+.trucks__btn-edit:hover {
+  color: var(--secondary-blue);
+}
+
+.trucks__btn-delete {
+  color: var(--red);
+}
+
+.trucks__btn-delete:hover {
+  border: 1px solid var(--red);
+  background-color: var(--red);
+  color: var(--background);
+}
+
+.trucks__btn-assign {
+  margin-left: 2.5rem;
+  color: var(--yellow);
+}
+
+.trucks__btn-assign:hover {
+  color: var(--light-yellow);
+}
+
+.trucks__btn-ok {
+  margin-left: 1rem;
+  
+}
