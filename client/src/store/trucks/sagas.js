@@ -1,9 +1,9 @@
-import { call, put, takeEvery } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 
-import { GET_TRUCKS_REQUEST } from './actionType';
-import { getTrucksRequest } from '../../utils/services';
+import { ADD_TRUCK_REQUEST, GET_TRUCKS_REQUEST } from './actionType';
+import { addTruckRequest, getTrucksRequest } from '../../utils/services';
 import { getAllTrucksSucess } from './actionCreator';
-import { setModalError } from '../app/actionCreator';
+import { setModalError, setModalSuccess } from '../app/actionCreator';
 
 function* getAllTrucks(action) {
 	try {
@@ -16,8 +16,22 @@ function* getAllTrucks(action) {
 	}
 }
 
+function* addTruck(action) {
+	try {
+		const { status, data } = yield call(addTruckRequest, action.payload);
+		console.log(status);
+		console.log(data);
+		if (status === 200) {
+			yield put(setModalSuccess(data.message));
+		}
+	} catch (e) {
+		yield put(setModalError(e.message));
+	}
+}
+
 export function* truckWatcher() {
-	yield takeEvery(GET_TRUCKS_REQUEST, getAllTrucks);
+	yield takeLatest(GET_TRUCKS_REQUEST, getAllTrucks);
+	yield takeLatest(ADD_TRUCK_REQUEST, addTruck);
 }
 
 export default function* rootTruckSaga() {

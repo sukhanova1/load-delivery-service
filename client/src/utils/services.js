@@ -30,3 +30,9 @@ export const getTrucksRequest = async (token) => {
 	const result = await axios.get(BASE_URL + '/trucks', { headers });
 	return result;
 };
+
+export const addTruckRequest = async ({ token, type }) => {
+	const headers = { Authorization: `Bearer ${token}` };
+	const result = await axios.post(BASE_URL + '/trucks', { type }, { headers });
+	return result;
+};

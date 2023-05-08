@@ -2,7 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Button from '../../../../common/Button/Button';
-import { getAllTrucksRequest } from '../../../../store/trucks/actionCreator';
+import Modal from '../../../../common/Modal/Modal';
+import {
+	addTruckRequest,
+	getAllTrucksRequest,
+} from '../../../../store/trucks/actionCreator';
+import {
+	selectModalSuccess,
+	selectModalError,
+} from '../../../../store/app/selectors';
 import {
 	BUTTON_TEXT_ADD,
 	BUTTON_TEXT_ASSIGN,
@@ -25,13 +33,17 @@ const selectOptions = [SPRINTER_TYPE, SMALL_STRAIGHT_TYPE, LARGE_STRAIGHT_TYPE];
 
 const Trucks = () => {
 	const [isEditing, setIsEditing] = useState(false);
-	const [truckType, setTruckType] = useState('');
+	const [truckType, setTruckType] = useState(SPRINTER_TYPE);
+
+	const modalSucess = useSelector(selectModalSuccess);
+	const modalError = useSelector(selectModalError);
 
 	const dispatch = useDispatch();
 
 	const handleAddTruck = (e) => {
 		e.preventDefault();
-		console.log('sucesssfully added');
+		const payload = { type: truckType, token: localStorage.getItem('token') };
+		dispatch(addTruckRequest(payload));
 	};
 
 	const startEditTruck = () => {
@@ -58,6 +70,8 @@ const Trucks = () => {
 	return (
 		<div className='trucks'>
 			<div className='trucks__header'>
+				{modalSucess && <Modal type='success' text={modalSucess} />}
+				{modalError && <Modal type='error' text={modalError} />}
 				<form onSubmit={handleAddTruck} className='trucks__form-box'>
 					<p>Choose truck type:</p>
 					<div>
