@@ -36,3 +36,13 @@ export const addTruckRequest = async ({ token, type }) => {
 	const result = await axios.post(BASE_URL + '/trucks', { type }, { headers });
 	return result;
 };
+
+export const editTruckRequest = async ({ token, type, id }) => {
+	const headers = { Authorization: `Bearer ${token}` };
+	const result = await axios.put(
+		BASE_URL + `/trucks/${id}`,
+		{ type },
+		{ headers }
+	);
+	return result;
+};

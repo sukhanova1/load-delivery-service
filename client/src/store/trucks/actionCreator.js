@@ -1,6 +1,6 @@
 import {
 	ADD_TRUCK_REQUEST,
-	ADD_TRUCK_SUCCESS,
+	EDIT_TRUCK_REQUEST,
 	GET_TRUCKS_REQUEST,
 	GET_TRUCKS_SUCCESS,
 } from './actionType';
@@ -20,7 +20,7 @@ export const addTruckRequest = (payload) => ({
 	payload,
 });
 
-export const addTruckSuccess = (payload) => ({
-	type: ADD_TRUCK_SUCCESS,
+export const editTruckRequest = (payload) => ({
+	type: EDIT_TRUCK_REQUEST,
 	payload,
 });

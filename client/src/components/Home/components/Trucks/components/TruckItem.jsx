@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import Button from '../../../../../common/Button/Button';
 import Select from '../../../../../common/Select/Select';
 import { transformCreatedDate } from '../../../../../helpers/transformCreatedDate';
+import {
+	editTruckRequest,
+	getAllTrucksRequest,
+} from '../../../../../store/trucks/actionCreator';
 import {
 	BUTTON_TYPE_BUTTON,
 	BUTTON_TYPE_SUBMIT,
@@ -25,14 +30,23 @@ import {
 
 import './TruckItem.css';
 
-const TruckItem = ({ truck, setTruckType }) => {
+const TruckItem = ({ truck, truckType, setTruckType }) => {
 	const [isEditing, setIsEditing] = useState(false);
+
+	const dispatch = useDispatch();
 
 	const startEditTruck = () => setIsEditing(!isEditing);
 
-	const handleEditTruck = () => {
+	const handleEditTruck = (e) => {
+		e.preventDefault();
+		const payload = {
+			type: truckType,
+			token: localStorage.getItem('token'),
+			id: truck._id,
+		};
+		dispatch(editTruckRequest(payload));
+		dispatch(getAllTrucksRequest(localStorage.getItem('token')));
 		setIsEditing(!isEditing);
-		console.log('sucesssfully edited');
 	};
 
 	const handleDeleteTruck = () => {
@@ -82,7 +96,7 @@ const TruckItem = ({ truck, setTruckType }) => {
 					/>
 				</div>
 				{isEditing && (
-					<div>
+					<form onSubmit={handleEditTruck}>
 						<Select
 							id={SELECT_ID_EDIT_TRUCK}
 							options={SELECT_TRUCK_OPTIONS}
@@ -92,9 +106,8 @@ const TruckItem = ({ truck, setTruckType }) => {
 							className='trucks__table-btn trucks__btn-ok'
 							type={BUTTON_TYPE_SUBMIT}
 							text={BUTTON_TEXT_OK}
-							onClick={handleEditTruck}
 						/>
-					</div>
+					</form>
 				)}
 			</td>
 			<td className='trucks__table-data'>
