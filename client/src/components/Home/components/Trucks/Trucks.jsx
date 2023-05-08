@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import Button from '../../../../common/Button/Button';
 import Modal from '../../../../common/Modal/Modal';
+import Select from '../../../../common/Select/Select';
+import TruckItem from './components/TruckItem';
 import {
 	addTruckRequest,
 	getAllTrucksRequest,
@@ -11,32 +13,23 @@ import {
 	selectModalSuccess,
 	selectModalError,
 } from '../../../../store/app/selectors';
+import { selectTrucksArray } from '../../../../store/trucks/selectors';
 import {
 	BUTTON_TEXT_ADD,
-	BUTTON_TEXT_ASSIGN,
-	BUTTON_TEXT_DELETE,
-	BUTTON_TEXT_EDIT,
-	BUTTON_TEXT_OK,
-	BUTTON_TYPE_BUTTON,
 	BUTTON_TYPE_SUBMIT,
-	LARGE_STRAIGHT_TYPE,
 	MODAL_TYPE_ERROR,
 	MODAL_TYPE_SUCCESS,
 	SELECT_ID_ADD_TRUCK,
-	SELECT_ID_EDIT_TRUCK,
-	SMALL_STRAIGHT_TYPE,
 	SPRINTER_TYPE,
+	SELECT_TRUCK_OPTIONS,
 } from '../../../../utils/constants';
 
 import './Trucks.css';
-import Select from '../../../../common/Select/Select';
-
-const selectOptions = [SPRINTER_TYPE, SMALL_STRAIGHT_TYPE, LARGE_STRAIGHT_TYPE];
 
 const Trucks = () => {
-	const [isEditing, setIsEditing] = useState(false);
 	const [truckType, setTruckType] = useState(SPRINTER_TYPE);
 
+	const trucks = useSelector(selectTrucksArray);
 	const modalSucess = useSelector(selectModalSuccess);
 	const modalError = useSelector(selectModalError);
 
@@ -46,23 +39,6 @@ const Trucks = () => {
 		e.preventDefault();
 		const payload = { type: truckType, token: localStorage.getItem('token') };
 		dispatch(addTruckRequest(payload));
-	};
-
-	const startEditTruck = () => {
-		setIsEditing(!isEditing);
-	};
-
-	const handleEditTruck = () => {
-		setIsEditing(!isEditing);
-		console.log('sucesssfully edited');
-	};
-
-	const handleDeleteTruck = () => {
-		console.log('sucesssfully deleted');
-	};
-
-	const handleAssignTruck = () => {
-		console.log('sucesssfully assigned');
 	};
 
 	useEffect(() => {
@@ -79,7 +55,7 @@ const Trucks = () => {
 					<div>
 						<Select
 							id={SELECT_ID_ADD_TRUCK}
-							options={selectOptions}
+							options={SELECT_TRUCK_OPTIONS}
 							setTruckType={setTruckType}
 						/>
 						<Button
@@ -139,60 +115,14 @@ const Trucks = () => {
 						</tr>
 					</thead>
 					<tbody>
-						<tr className='trucks__table-row'>
-							<td className='trucks__table-data'>
-								<div className='trucks__table-content'>
-									<img
-										src='/assets/icons/sprinter-icon.png'
-										alt='truck icon'
-										width='50px'
-									/>
-									<div>
-										SPRINTER
-										<p className='trucks__table-text'>Id: 345d455d54e5</p>
-									</div>
-								</div>
-								<div className='trucks__table-btns'>
-									<Button
-										className='trucks__table-btn trucks__btn-edit'
-										type={BUTTON_TYPE_BUTTON}
-										text={BUTTON_TEXT_EDIT}
-										onClick={startEditTruck}
-									/>
-									<Button
-										className='trucks__table-btn trucks__btn-delete'
-										type={BUTTON_TYPE_BUTTON}
-										text={BUTTON_TEXT_DELETE}
-										onClick={handleDeleteTruck}
-									/>
-									<Button
-										className='trucks__table-btn trucks__btn-assign'
-										type={BUTTON_TYPE_BUTTON}
-										text={BUTTON_TEXT_ASSIGN}
-										onClick={handleAssignTruck}
-									/>
-								</div>
-								{isEditing && (
-									<div>
-										<Select
-											id={SELECT_ID_EDIT_TRUCK}
-											options={selectOptions}
-											setTruckType={setTruckType}
-										/>
-										<Button
-											className='trucks__table-btn trucks__btn-ok'
-											type={BUTTON_TYPE_SUBMIT}
-											text={BUTTON_TEXT_OK}
-											onClick={handleEditTruck}
-										/>
-									</div>
-								)}
-							</td>
-							<td className='trucks__table-data'>August 6, 2020</td>
-							<td className='trucks__table-data'>In Service</td>
-							<td className='trucks__table-data'>355465d67cf6</td>
-							<td className='trucks__table-data'>35454s45544d</td>
-						</tr>
+						{trucks &&
+							trucks.map((truck) => (
+								<TruckItem
+									truck={truck}
+									setTruckType={setTruckType}
+									key={truck._id}
+								/>
+							))}
 					</tbody>
 				</table>
 			</div>
