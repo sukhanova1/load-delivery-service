@@ -11,6 +11,8 @@ import {
 	CHECK_MARK_SRC,
 	ERROR_ICON_ALT_VALUE,
 	ERROR_ICON_SRC,
+	MODAL_TYPE_ERROR,
+	MODAL_TYPE_SUCCESS,
 } from '../../utils/constants';
 
 import './Modal.css';
@@ -32,10 +34,10 @@ const Modal = ({ type, text }) => {
 	return (
 		<div className='modal'>
 			<div className='modal__content'>
-				{type === 'success' && (
+				{type === MODAL_TYPE_SUCCESS && (
 					<img src={CHECK_MARK_SRC} alt={CHECK_MARK_ALT_VALUE} width='60px' />
 				)}
-				{type === 'error' && (
+				{type === MODAL_TYPE_ERROR && (
 					<img src={ERROR_ICON_SRC} alt={ERROR_ICON_ALT_VALUE} width='45px' />
 				)}
 				<p className='modal__text'>{text}</p>

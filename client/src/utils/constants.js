@@ -70,5 +70,5 @@ export const TITLE_LOGOUT = 'Logout';
 export const BASE_URL = 'http://localhost:8080/api';
 
 // modal types
-export const MODAL_TYPE_REGISTER = 'register';
-export const MODAL_TYPE_FORGOT_PASS = 'forgot_password';
+export const MODAL_TYPE_ERROR = 'error';
+export const MODAL_TYPE_SUCCESS = 'success';

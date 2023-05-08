@@ -20,6 +20,8 @@ import {
 	BUTTON_TYPE_BUTTON,
 	BUTTON_TYPE_SUBMIT,
 	LARGE_STRAIGHT_TYPE,
+	MODAL_TYPE_ERROR,
+	MODAL_TYPE_SUCCESS,
 	SELECT_ID_ADD_TRUCK,
 	SELECT_ID_EDIT_TRUCK,
 	SMALL_STRAIGHT_TYPE,
@@ -70,8 +72,8 @@ const Trucks = () => {
 	return (
 		<div className='trucks'>
 			<div className='trucks__header'>
-				{modalSucess && <Modal type='success' text={modalSucess} />}
-				{modalError && <Modal type='error' text={modalError} />}
+				{modalSucess && <Modal type={MODAL_TYPE_SUCCESS} text={modalSucess} />}
+				{modalError && <Modal type={MODAL_TYPE_ERROR} text={modalError} />}
 				<form onSubmit={handleAddTruck} className='trucks__form-box'>
 					<p>Choose truck type:</p>
 					<div>
