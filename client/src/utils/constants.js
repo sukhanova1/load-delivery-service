@@ -24,6 +24,8 @@ export const LOGOUT_SRC = '/assets/icons/logout-icon.png';
 export const LOGOUT_ALT_VALUE = 'logout icon';
 export const CHECK_MARK_SRC = '/assets/check-mark.png';
 export const CHECK_MARK_ALT_VALUE = 'check mark icon';
+export const ERROR_ICON_SRC = '/assets/icons/error-icon.png';
+export const ERROR_ICON_ALT_VALUE = 'error icon';
 //inputs
 export const INPUT_NAME = 'name';
 export const INPUT_NAME_PLACEHOLDER = 'Enter your name';
