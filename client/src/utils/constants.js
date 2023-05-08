@@ -48,6 +48,7 @@ export const SELECT_ID_EDIT_TRUCK = 'edit-truck-select';
 export const SPRINTER_TYPE = 'SPRINTER';
 export const SMALL_STRAIGHT_TYPE = 'SMALL STRAIGHT';
 export const LARGE_STRAIGHT_TYPE = 'LARGE STRAIGHT';
+export const SELECT_DEFAULT_VALUE = 'TRUCK TYPE';
 export const SELECT_TRUCK_OPTIONS = [
 	SPRINTER_TYPE,
 	SMALL_STRAIGHT_TYPE,
