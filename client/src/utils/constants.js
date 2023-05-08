@@ -26,6 +26,9 @@ export const CHECK_MARK_SRC = '/assets/check-mark.png';
 export const CHECK_MARK_ALT_VALUE = 'check mark icon';
 export const ERROR_ICON_SRC = '/assets/icons/error-icon.png';
 export const ERROR_ICON_ALT_VALUE = 'error icon';
+export const SPRINTER_SRC = '/assets/icons/sprinter-icon.png';
+export const SMALL_STRAIGHT_SRC = '/assets/icons/small-straight-icon.png';
+export const LARGE_STRAIGHT_SRC = '/assets/icons/large-straight-icon.png';
 //inputs
 export const INPUT_NAME = 'name';
 export const INPUT_NAME_PLACEHOLDER = 'Enter your name';
@@ -39,14 +42,17 @@ export const INPUT_RADIO = 'radio';
 export const INPUT_RADIO_NAME = 'role';
 export const DRIVER_ROLE = 'DRIVER';
 export const SHIPPER_ROLE = 'SHIPPER';
-
 //select
 export const SELECT_ID_ADD_TRUCK = 'add-truck-select';
 export const SELECT_ID_EDIT_TRUCK = 'edit-truck-select';
 export const SPRINTER_TYPE = 'SPRINTER';
 export const SMALL_STRAIGHT_TYPE = 'SMALL STRAIGHT';
 export const LARGE_STRAIGHT_TYPE = 'LARGE STRAIGHT';
-
+export const SELECT_TRUCK_OPTIONS = [
+	SPRINTER_TYPE,
+	SMALL_STRAIGHT_TYPE,
+	LARGE_STRAIGHT_TYPE,
+];
 //buttons
 export const BUTTON_TYPE_SUBMIT = 'submit';
 export const BUTTON_TYPE_BUTTON = 'button';
@@ -72,3 +78,6 @@ export const BASE_URL = 'http://localhost:8080/api';
 // modal types
 export const MODAL_TYPE_ERROR = 'error';
 export const MODAL_TYPE_SUCCESS = 'success';
+
+export const TRUCK_STATUS_IS = 'IS';
+export const TRUCK_STATUS_OL = 'OL';
