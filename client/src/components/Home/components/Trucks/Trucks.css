@@ -42,6 +42,7 @@
 .trucks__header-td{
   padding: 0.1rem 0.3rem;
   text-align: center;
+  letter-spacing: 0.7px;
   font-size: 0.9rem;
   background-color: white;
 }
@@ -52,25 +53,26 @@
 
 .trucks__table-row {
   display:grid;
-  grid-template-columns: 2fr 0.8fr 0.8fr 1.5fr 1.5fr; 
+  grid-template-columns: 1.9fr 1fr 0.9fr 2fr; 
   gap: 3px;
 }
 
 .trucks__table-header {
-  font-size: 0.8rem;
-  letter-spacing: 1.5px;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
   background-color: var(--background);
   color: var(--third-blue);
   opacity: 0.4;
 }
 
 .trucks__table-data {
-  padding: 1rem 0.7rem;
-  margin-top: 0.4rem;
+  padding: 1rem 1.2rem;
+  margin-bottom: 0.2rem;
   display: grid;
   align-items: center;
   gap: 0.8rem;
   text-align: center;
-  font-size: 0.9rem;
+  border-radius: 10px;
   background-color: white;
 }

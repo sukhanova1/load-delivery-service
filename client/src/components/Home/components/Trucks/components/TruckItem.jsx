@@ -11,8 +11,6 @@ import {
 import {
 	BUTTON_TYPE_BUTTON,
 	BUTTON_TYPE_SUBMIT,
-	BUTTON_TEXT_EDIT,
-	BUTTON_TEXT_DELETE,
 	BUTTON_TEXT_ASSIGN,
 	SELECT_ID_EDIT_TRUCK,
 	BUTTON_TEXT_OK,
@@ -26,6 +24,12 @@ import {
 	LARGE_STRAIGHT_SRC,
 	TRUCK_STATUS_IS,
 	TRUCK_STATUS_OL,
+	EDIT_ICON_SRC,
+	EDIT_ICON_ALT_VALUE,
+	DELETE_ICON_SRC,
+	DELETE_ICON_ALT_VALUE,
+	DOUBLE_TICK_SRC,
+	DOUBLE_TICK_ALT_VALUE,
 } from '../../../../../utils/constants';
 
 import './TruckItem.css';
@@ -75,26 +79,6 @@ const TruckItem = ({ truck, truckType, setTruckType }) => {
 						<p className='trucks__table-text'>Id: {truck._id}</p>
 					</div>
 				</div>
-				<div className='trucks__table-btns'>
-					<Button
-						className='trucks__table-btn trucks__btn-edit'
-						type={BUTTON_TYPE_BUTTON}
-						text={BUTTON_TEXT_EDIT}
-						onClick={startEditTruck}
-					/>
-					<Button
-						className='trucks__table-btn trucks__btn-delete'
-						type={BUTTON_TYPE_BUTTON}
-						text={BUTTON_TEXT_DELETE}
-						onClick={handleDeleteTruck}
-					/>
-					<Button
-						className='trucks__table-btn trucks__btn-assign'
-						type={BUTTON_TYPE_BUTTON}
-						text={BUTTON_TEXT_ASSIGN}
-						onClick={handleAssignTruck}
-					/>
-				</div>
 				{isEditing && (
 					<form onSubmit={handleEditTruck}>
 						<Select
@@ -117,10 +101,47 @@ const TruckItem = ({ truck, truckType, setTruckType }) => {
 				{truck.status === TRUCK_STATUS_IS && 'In Service'}
 				{truck.status === TRUCK_STATUS_OL && 'On Load'}
 			</td>
-			<td className='trucks__table-data'>{truck.created_by}</td>
 			<td className='trucks__table-data'>
-				{!truck.assigned_to && 'Not assigned'}
-				{truck.assigned_to && truck.assigned_to}
+				{truck.assigned_to ? (
+					<div className='trucks__table-content'>
+						<img
+							src={DOUBLE_TICK_SRC}
+							alt={DOUBLE_TICK_ALT_VALUE}
+							width='30px'
+						/>
+						{truck.assigned_to}
+					</div>
+				) : (
+					<p>Not assigned</p>
+				)}
+				<div className='trucks__table-btns'>
+					<Button
+						className='trucks__table-btn trucks__btn-edit'
+						type={BUTTON_TYPE_BUTTON}
+						text={
+							<img src={EDIT_ICON_SRC} alt={EDIT_ICON_ALT_VALUE} width='25px' />
+						}
+						onClick={startEditTruck}
+					/>
+					<Button
+						className='trucks__table-btn trucks__btn-delete'
+						type={BUTTON_TYPE_BUTTON}
+						text={
+							<img
+								src={DELETE_ICON_SRC}
+								alt={DELETE_ICON_ALT_VALUE}
+								width='25px'
+							/>
+						}
+						onClick={handleDeleteTruck}
+					/>
+					<Button
+						className='trucks__table-btn trucks__btn-assign'
+						type={BUTTON_TYPE_BUTTON}
+						text={BUTTON_TEXT_ASSIGN}
+						onClick={handleAssignTruck}
+					/>
+				</div>
 			</td>
 		</tr>
 	);

@@ -10,8 +10,10 @@
 }
 
 .trucks__table-btns {
+  margin-top: 1.4rem;
   display: flex;
-  gap: 1.5rem;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .trucks__table-btn {
@@ -36,12 +38,13 @@
 }
 
 .trucks__btn-assign {
-  margin-left: 2.5rem;
   color: var(--yellow);
 }
 
 .trucks__btn-assign:hover {
-  color: var(--light-yellow);
+  border: 1px solid var(--light-yellow);
+  background-color: var(--light-yellow);
+  color: var(--background);
 }
 
 .trucks__btn-ok {

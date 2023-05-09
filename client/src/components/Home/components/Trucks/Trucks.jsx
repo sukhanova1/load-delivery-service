@@ -39,6 +39,7 @@ const Trucks = () => {
 		e.preventDefault();
 		const payload = { type: truckType, token: localStorage.getItem('token') };
 		dispatch(addTruckRequest(payload));
+		dispatch(getAllTrucksRequest(localStorage.getItem('token')));
 	};
 
 	useEffect(() => {
@@ -110,7 +111,6 @@ const Trucks = () => {
 							<th>Truck Type</th>
 							<th>Creation Date</th>
 							<th>Status</th>
-							<th>Created by</th>
 							<th>Assigned to</th>
 						</tr>
 					</thead>
@@ -119,6 +119,7 @@ const Trucks = () => {
 							trucks.map((truck) => (
 								<TruckItem
 									truck={truck}
+									truckType={truckType}
 									setTruckType={setTruckType}
 									key={truck._id}
 								/>

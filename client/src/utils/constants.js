@@ -29,6 +29,12 @@ export const ERROR_ICON_ALT_VALUE = 'error icon';
 export const SPRINTER_SRC = '/assets/icons/sprinter-icon.png';
 export const SMALL_STRAIGHT_SRC = '/assets/icons/small-straight-icon.png';
 export const LARGE_STRAIGHT_SRC = '/assets/icons/large-straight-icon.png';
+export const DOUBLE_TICK_SRC = '/assets/icons/double-tick-icon.png';
+export const DOUBLE_TICK_ALT_VALUE = 'double tick icon';
+export const EDIT_ICON_SRC = '/assets/icons/edit-icon.png';
+export const EDIT_ICON_ALT_VALUE = 'edit icon';
+export const DELETE_ICON_SRC = '/assets/icons/delete-icon.png';
+export const DELETE_ICON_ALT_VALUE = 'delete icon';
 //inputs
 export const INPUT_NAME = 'name';
 export const INPUT_NAME_PLACEHOLDER = 'Enter your name';
@@ -64,8 +70,6 @@ export const BUTTON_TEXT_DELETE_ACC = 'Delete Account';
 export const BUTTON_TEXT_CHANGE_PASS = 'Change password';
 export const BUTTON_TEXT_LOGOUT = 'Logout';
 export const BUTTON_TEXT_ADD = 'Add';
-export const BUTTON_TEXT_EDIT = 'Edit';
-export const BUTTON_TEXT_DELETE = 'Delete';
 export const BUTTON_TEXT_ASSIGN = 'Assign';
 export const BUTTON_TEXT_OK = 'OK';
 
