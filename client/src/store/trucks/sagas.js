@@ -17,6 +17,7 @@ import {
 import {
 	assignTruckSucess,
 	deleteTruckSucess,
+	editTruckSucess,
 	getAllTrucksSucess,
 } from './actionCreator';
 import { setModalError, setModalSuccess } from '../app/actionCreator';
@@ -45,9 +46,9 @@ function* addTruck(action) {
 
 function* editTruck(action) {
 	try {
-		const { status, data } = yield call(editTruckRequest, action.payload);
+		const { status } = yield call(editTruckRequest, action.payload);
 		if (status === 200) {
-			yield put(setModalSuccess(data.message));
+			yield put(editTruckSucess(action.payload));
 		}
 	} catch (e) {
 		yield put(setModalError(e.message));

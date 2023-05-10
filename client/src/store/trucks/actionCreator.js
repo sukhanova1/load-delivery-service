@@ -5,6 +5,7 @@ import {
 	DELETE_TRUCK_REQUEST,
 	DELETE_TRUCK_SUCCESS,
 	EDIT_TRUCK_REQUEST,
+	EDIT_TRUCK_SUCCESS,
 	GET_TRUCKS_REQUEST,
 	GET_TRUCKS_SUCCESS,
 } from './actionType';
@@ -26,6 +27,11 @@ export const addTruckRequest = (payload) => ({
 
 export const editTruckRequest = (payload) => ({
 	type: EDIT_TRUCK_REQUEST,
+	payload,
+});
+
+export const editTruckSucess = (payload) => ({
+	type: EDIT_TRUCK_SUCCESS,
 	payload,
 });
 

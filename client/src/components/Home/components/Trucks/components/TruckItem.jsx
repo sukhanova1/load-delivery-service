@@ -10,7 +10,6 @@ import {
 	assignTruckRequest,
 	deleteTruckRequest,
 	editTruckRequest,
-	getAllTrucksRequest,
 } from '../../../../../store/trucks/actionCreator';
 import {
 	BUTTON_TYPE_BUTTON,
@@ -56,8 +55,11 @@ const TruckItem = ({ truck, truckType, setTruckType }) => {
 			token: localStorage.getItem('token'),
 			id: truck._id,
 		};
-		dispatch(editTruckRequest(payload));
-		dispatch(getAllTrucksRequest(localStorage.getItem('token')));
+		if (!truck.assigned_to) {
+			dispatch(editTruckRequest(payload));
+		} else {
+			dispalyErrorModal('You can not edit assigned truck info');
+		}
 		setIsEditing(!isEditing);
 	};
 
