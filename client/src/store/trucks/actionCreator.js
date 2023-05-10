@@ -1,5 +1,7 @@
 import {
 	ADD_TRUCK_REQUEST,
+	ASSIGN_TRUCK_REQUEST,
+	ASSIGN_TRUCK_SUCCESS,
 	DELETE_TRUCK_REQUEST,
 	DELETE_TRUCK_SUCCESS,
 	EDIT_TRUCK_REQUEST,
@@ -34,5 +36,15 @@ export const deleteTruckRequest = (payload) => ({
 
 export const deleteTruckSucess = (payload) => ({
 	type: DELETE_TRUCK_SUCCESS,
+	payload,
+});
+
+export const assignTruckRequest = (payload) => ({
+	type: ASSIGN_TRUCK_REQUEST,
+	payload,
+});
+
+export const assignTruckSucess = (payload) => ({
+	type: ASSIGN_TRUCK_SUCCESS,
 	payload,
 });

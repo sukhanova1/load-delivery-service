@@ -56,3 +56,13 @@ export const deleteTruckRequest = async ({ token, id }) => {
 	});
 	return result;
 };
+
+export const assignTruckRequest = async ({ token, id }) => {
+	const headers = { Authorization: `Bearer ${token}` };
+	const result = await axios.post(
+		BASE_URL + `/trucks/${id}/assign`,
+		{ id },
+		{ headers }
+	);
+	return result;
+};

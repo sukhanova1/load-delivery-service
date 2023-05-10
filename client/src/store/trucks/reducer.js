@@ -1,4 +1,8 @@
-import { DELETE_TRUCK_SUCCESS, GET_TRUCKS_SUCCESS } from './actionType';
+import {
+	DELETE_TRUCK_SUCCESS,
+	GET_TRUCKS_SUCCESS,
+	ASSIGN_TRUCK_SUCCESS,
+} from './actionType';
 
 const initState = [];
 
@@ -8,6 +12,12 @@ export default function trucks(state = initState, action) {
 			return action.payload;
 		case DELETE_TRUCK_SUCCESS:
 			return state.filter((truck) => truck._id !== action.payload);
+		case ASSIGN_TRUCK_SUCCESS:
+			return state.map((truck) =>
+				truck._id === action.payload
+					? { ...truck, assigned_to: action.payload }
+					: truck
+			);
 		default:
 			return state;
 	}

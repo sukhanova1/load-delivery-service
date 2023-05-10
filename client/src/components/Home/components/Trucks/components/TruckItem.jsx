@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Button from '../../../../../common/Button/Button';
 import Select from '../../../../../common/Select/Select';
 import { transformCreatedDate } from '../../../../../helpers/transformCreatedDate';
+import { selectTrucksArray } from '../../../../../store/trucks/selectors';
+import { setModalError } from '../../../../../store/app/actionCreator';
 import {
+	assignTruckRequest,
 	deleteTruckRequest,
 	editTruckRequest,
 	getAllTrucksRequest,
@@ -38,9 +41,13 @@ import './TruckItem.css';
 const TruckItem = ({ truck, truckType, setTruckType }) => {
 	const [isEditing, setIsEditing] = useState(false);
 
+	const trucks = useSelector(selectTrucksArray);
+
 	const dispatch = useDispatch();
 
 	const startEditTruck = () => setIsEditing(!isEditing);
+
+	const dispalyErrorModal = (mess) => dispatch(setModalError(mess));
 
 	const handleEditTruck = (e) => {
 		e.preventDefault();
@@ -63,7 +70,16 @@ const TruckItem = ({ truck, truckType, setTruckType }) => {
 	};
 
 	const handleAssignTruck = () => {
-		console.log('sucesssfully assigned');
+		const payload = {
+			token: localStorage.getItem('token'),
+			id: truck._id,
+		};
+		const isAssigned = trucks.every((truck) => !truck.assigned_to);
+		if (isAssigned) {
+			dispatch(assignTruckRequest(payload));
+		} else {
+			return dispalyErrorModal('You can assign only one truck');
+		}
 	};
 
 	return (
