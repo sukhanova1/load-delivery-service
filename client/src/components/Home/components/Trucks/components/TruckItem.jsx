@@ -68,7 +68,11 @@ const TruckItem = ({ truck, truckType, setTruckType }) => {
 			token: localStorage.getItem('token'),
 			id: truck._id,
 		};
-		dispatch(deleteTruckRequest(payload));
+		if (!truck.assigned_to) {
+			dispatch(deleteTruckRequest(payload));
+		} else {
+			dispalyErrorModal('You can not delete assigned truck');
+		}
 	};
 
 	const handleAssignTruck = () => {
