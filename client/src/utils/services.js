@@ -46,3 +46,13 @@ export const editTruckRequest = async ({ token, type, id }) => {
 	);
 	return result;
 };
+
+export const deleteTruckRequest = async ({ token, id }) => {
+	const data = { id: id };
+	const headers = { Authorization: `Bearer ${token}` };
+	const result = await axios.delete(BASE_URL + `/trucks/${id}`, {
+		headers,
+		data,
+	});
+	return result;
+};

@@ -5,6 +5,7 @@ import Button from '../../../../../common/Button/Button';
 import Select from '../../../../../common/Select/Select';
 import { transformCreatedDate } from '../../../../../helpers/transformCreatedDate';
 import {
+	deleteTruckRequest,
 	editTruckRequest,
 	getAllTrucksRequest,
 } from '../../../../../store/trucks/actionCreator';
@@ -54,7 +55,11 @@ const TruckItem = ({ truck, truckType, setTruckType }) => {
 	};
 
 	const handleDeleteTruck = () => {
-		console.log('sucesssfully deleted');
+		const payload = {
+			token: localStorage.getItem('token'),
+			id: truck._id,
+		};
+		dispatch(deleteTruckRequest(payload));
 	};
 
 	const handleAssignTruck = () => {

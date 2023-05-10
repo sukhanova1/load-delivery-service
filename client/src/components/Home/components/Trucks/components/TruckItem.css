@@ -23,18 +23,12 @@
   background-color: var(--background);
 }
 
-.trucks__btn-edit:hover {
-  color: var(--secondary-blue);
+.trucks__btn-edit:hover, .trucks__btn-delete:hover {
+  background-color: white;
 }
 
 .trucks__btn-delete {
   color: var(--red);
-}
-
-.trucks__btn-delete:hover {
-  border: 1px solid var(--red);
-  background-color: var(--red);
-  color: var(--background);
 }
 
 .trucks__btn-assign {
@@ -45,6 +39,7 @@
   border: 1px solid var(--light-yellow);
   background-color: var(--light-yellow);
   color: var(--background);
+  opacity: 0.8;
 }
 
 .trucks__btn-ok {
