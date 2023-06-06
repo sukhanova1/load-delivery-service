@@ -5,12 +5,11 @@ import LoginForm from './components/Auth/components/LoginForm/LoginForm';
 import RegisterForm from './components/Auth/components/RegisterForm/RegisterForm';
 import ForgotPassForm from './components/Auth/components/ForgotPassForm/ForgotPassForm';
 import Home from './components/Home/Home';
-import { AUTH_ROUTE } from './utils/constants';
-
-import './App.css';
 import ProfileInfo from './components/Home/components/ProfileInfo/ProfileInfo';
 import Trucks from './components/Home/components/Trucks/Trucks';
-import AssignedLoad from './components/Home/components/AssignedLoad/AssignedLoad';
+import Loads from './components/Home/components/Loads/Loads';
+
+import './App.css';
 
 const App = () => {
 	return (
@@ -26,7 +25,7 @@ const App = () => {
 					<Route exact path='/home' element={<Home />}>
 						<Route path='profile' element={<ProfileInfo />} />
 						<Route path='my-trucks' element={<Trucks />} />
-						<Route path='assigned-load' element={<AssignedLoad />} />
+						<Route path='my-loads' element={<Loads />} />
 					</Route>
 
 					<Route
