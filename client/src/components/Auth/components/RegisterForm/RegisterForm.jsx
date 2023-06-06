@@ -54,7 +54,7 @@ const RegisterForm = () => {
 		const data = {
 			name: name.value,
 			email: email.value,
-			role: name.value,
+			role: role.value,
 			password: password.value,
 		};
 		dispatch(register(data));
