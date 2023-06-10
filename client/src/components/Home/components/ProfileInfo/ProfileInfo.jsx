@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Button from '../../../../common/Button/Button';
 import { logoutRequest } from '../../../../store/user/actionCreator';
+import { selectUserInfo } from '../../../../store/user/selectors';
+import { transformDate } from '../../../../helpers/transformDate';
 import {
-	BUTTON_LOGOUT_TEXT,
+	BUTTON_TEXT_LOGOUT,
 	BUTTON_TEXT_CHANGE_PASS,
 	BUTTON_TEXT_DELETE_ACC,
 	BUTTON_TYPE_BUTTON,
@@ -13,8 +15,6 @@ import {
 } from '../../../../utils/constants';
 
 import './ProfileInfo.css';
-import { selectUserInfo } from '../../../../store/user/selectors';
-import { transformCreatedDate } from '../../../../helpers/transformCreatedDate';
 
 const ProfileInfo = () => {
 	const userInfo = useSelector(selectUserInfo);
@@ -44,7 +44,7 @@ const ProfileInfo = () => {
 				<p>{'asd12345@gmail.com'}</p>
 				<h4 className='profile__role'>Role: {userInfo.role}</h4>
 				<p className='profile__date'>
-					Since {transformCreatedDate(userInfo.created_date)}
+					Since {transformDate(userInfo.created_date)}
 				</p>
 			</div>
 			<Button
@@ -62,7 +62,7 @@ const ProfileInfo = () => {
 			<Button
 				className='profile__btn profile__btn-logout'
 				type={BUTTON_TYPE_BUTTON}
-				text={BUTTON_LOGOUT_TEXT}
+				text={BUTTON_TEXT_LOGOUT}
 				onClick={handleLogout}
 			/>
 		</div>

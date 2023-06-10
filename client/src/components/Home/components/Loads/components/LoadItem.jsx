@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Button from '../../../../../common/Button/Button';
-import { transformCreatedDateFull } from '../../../../../helpers/transformCreatedDate';
+import { transformDateFull } from '../../../../../helpers/transformDate';
 import {
 	DESTINATION_ICON_ALT_VALUE,
 	DESTINATION_ICON_SRC,
@@ -28,7 +28,7 @@ function LoadItem({ load }) {
 				)}
 			</div>
 			<p className='load-item__date'>
-				Created at {transformCreatedDateFull(load.created_date)}
+				Created at {transformDateFull(load.created_date)}
 			</p>
 			<p className='load-item__state'>{load && load.state}</p>
 			<div className='load-item__content'>
@@ -58,7 +58,7 @@ function LoadItem({ load }) {
 			</div>
 			<div className='load-item__content_al-end'>
 				<p className='load-item__date'>
-					Latest update at {transformCreatedDateFull(load.updatedAt)}
+					Latest update at {transformDateFull(load.updatedAt)}
 				</p>
 				{load.status !== LOAD_STATUS_SHIPPED && (
 					<Button

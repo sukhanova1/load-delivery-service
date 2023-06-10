@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Button from '../../../../../common/Button/Button';
 import Select from '../../../../../common/Select/Select';
-import { transformCreatedDate } from '../../../../../helpers/transformCreatedDate';
+import { transformDate } from '../../../../../helpers/transformDate';
 import { selectTrucksArray } from '../../../../../store/trucks/selectors';
 import { setModalError } from '../../../../../store/app/actionCreator';
 import {
@@ -122,7 +122,7 @@ const TruckItem = ({ truck, truckType, setTruckType }) => {
 				)}
 			</td>
 			<td className='trucks__table-data'>
-				{transformCreatedDate(truck.created_date)}
+				{transformDate(truck.created_date)}
 			</td>
 			<td className='trucks__table-data'>
 				{truck.status === TRUCK_STATUS_IS && 'In Service'}
