@@ -6,7 +6,7 @@ export const FORGOT_PASS_ROUTE = '/auth/forgot-password';
 // export const HOME_ROUTE = '/home';
 export const PROFILE_ROUTE = '/home/profile';
 export const TRUCKS_ROUTE = '/home/my-trucks';
-export const ASSIGNED_LOAD_ROUTE = '/home/assigned-load';
+export const ASSIGNED_LOAD_ROUTE = '/home/my-loads';
 //images
 export const LOGO_SRC = '/assets/logo.jpg';
 export const LOGO_ALT_VALUE = 'company logo';
@@ -35,6 +35,10 @@ export const EDIT_ICON_SRC = '/assets/icons/edit-icon.png';
 export const EDIT_ICON_ALT_VALUE = 'edit icon';
 export const DELETE_ICON_SRC = '/assets/icons/delete-icon.png';
 export const DELETE_ICON_ALT_VALUE = 'delete icon';
+export const DIMENSIONS_ICON_SRC = '/assets/icons/dimensions-icon.png';
+export const DIMENSIONS_ICON_ALT_VALUE = 'dimensions icon';
+export const DESTINATION_ICON_SRC = '/assets/icons/destination-icon.png';
+export const DESTINATION_ICON_ALT_VALUE = 'destination icon';
 //inputs
 export const INPUT_NAME = 'name';
 export const INPUT_NAME_PLACEHOLDER = 'Enter your name';
@@ -72,6 +76,7 @@ export const BUTTON_TEXT_LOGOUT = 'Logout';
 export const BUTTON_TEXT_ADD = 'Add';
 export const BUTTON_TEXT_ASSIGN = 'Assign';
 export const BUTTON_TEXT_OK = 'OK';
+export const BUTTON_TEXT_FINISH_DEL = 'Finish Delivery';
 
 export const TITLE_PROFILE = 'Profile';
 export const TITLE_TRUCKS = 'My Trucks';
@@ -86,3 +91,6 @@ export const MODAL_TYPE_SUCCESS = 'success';
 
 export const TRUCK_STATUS_IS = 'IS';
 export const TRUCK_STATUS_OL = 'OL';
+
+export const LOAD_STATUS_ASSIGNED = 'ASSIGNED';
+export const LOAD_STATUS_SHIPPED = 'SHIPPED';
