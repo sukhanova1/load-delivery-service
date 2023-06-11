@@ -77,6 +77,7 @@ export const BUTTON_TEXT_ADD = 'Add';
 export const BUTTON_TEXT_ASSIGN = 'Assign';
 export const BUTTON_TEXT_OK = 'OK';
 export const BUTTON_TEXT_FINISH_DEL = 'Finish Delivery';
+export const BUTTON_TEXT_POST = 'POST';
 
 export const TITLE_PROFILE = 'Profile';
 export const TITLE_TRUCKS = 'My Trucks';
@@ -92,5 +93,6 @@ export const MODAL_TYPE_SUCCESS = 'success';
 export const TRUCK_STATUS_IS = 'IS';
 export const TRUCK_STATUS_OL = 'OL';
 
+export const LOAD_STATUS_NEW = 'NEW';
 export const LOAD_STATUS_ASSIGNED = 'ASSIGNED';
 export const LOAD_STATUS_SHIPPED = 'SHIPPED';
