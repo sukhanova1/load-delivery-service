@@ -68,6 +68,12 @@ export const assignTruckRequest = async ({ token, id }) => {
 };
 
 //loads
+export const getLoadsRequest = async (token) => {
+	const headers = { Authorization: `Bearer ${token}` };
+	const result = await axios.get(BASE_URL + '/loads', { headers });
+	return result;
+};
+
 export const getActiveLoadsRequest = async (token) => {
 	const headers = { Authorization: `Bearer ${token}` };
 	const result = await axios.get(BASE_URL + '/loads/active', { headers });
