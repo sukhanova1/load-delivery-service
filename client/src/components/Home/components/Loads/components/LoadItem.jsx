@@ -14,11 +14,7 @@ import {
 
 import './LoadItem.css';
 
-function LoadItem({ load }) {
-	const handleFinishDelivery = () => {
-		console.log('delivery finished');
-	};
-
+function LoadItem({ load, handleFinishDelivery }) {
 	return (
 		<div className='load-item'>
 			<div className='load-item__content_al-end'>

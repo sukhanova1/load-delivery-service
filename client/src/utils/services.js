@@ -73,3 +73,11 @@ export const getActiveLoadsRequest = async (token) => {
 	const result = await axios.get(BASE_URL + '/loads/active', { headers });
 	return result;
 };
+
+export const iterateToNextStateRequest = async (token) => {
+	const headers = { Authorization: `Bearer ${token}` };
+	const result = await axios.patch(BASE_URL + '/loads/active/state', null, {
+		headers,
+	});
+	return result;
+};

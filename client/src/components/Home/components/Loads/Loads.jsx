@@ -2,7 +2,10 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import LoadItem from '../Loads/components/LoadItem';
-import { getActiveLoadsRequest } from '../../../../store/loads/actionCreator';
+import {
+	getActiveLoadsRequest,
+	iterateToNextStateRequest,
+} from '../../../../store/loads/actionCreator';
 import {
 	selectActiveLoads,
 	selectShipedLoads,
@@ -16,6 +19,10 @@ const Loads = () => {
 
 	const dispatch = useDispatch();
 
+	const handleFinishDelivery = () => {
+		dispatch(iterateToNextStateRequest(localStorage.getItem('token')));
+	};
+
 	useEffect(() => {
 		dispatch(getActiveLoadsRequest(localStorage.getItem('token')));
 	}, [dispatch]);
@@ -28,7 +35,13 @@ const Loads = () => {
 					<p className='loads__mess'>You do not have any active loads...</p>
 				)}
 				{activeLoads &&
-					activeLoads.map((load) => <LoadItem key={load._id} load={load} />)}
+					activeLoads.map((load) => (
+						<LoadItem
+							key={load._id}
+							load={load}
+							handleFinishDelivery={handleFinishDelivery}
+						/>
+					))}
 			</div>
 			<div className='loads__container'>
 				<h2 className='loads__title'>Shipped</h2>
