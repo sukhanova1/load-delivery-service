@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import LoadItem from '../Loads/components/LoadItem';
 import {
@@ -12,9 +13,15 @@ import {
 	selectShipedLoads,
 } from '../../../../store/loads/selectors';
 import { selectUserRole } from '../../../../store/user/selectors';
-import { DRIVER_ROLE, SHIPPER_ROLE } from '../../../../utils/constants';
+import {
+	BUTTON_TEXT_ADD_LOAD,
+	BUTTON_TYPE_BUTTON,
+	DRIVER_ROLE,
+	SHIPPER_ROLE,
+} from '../../../../utils/constants';
 
 import './Loads.css';
+import Button from '../../../../common/Button/Button';
 
 const Loads = () => {
 	const userRole = useSelector(selectUserRole);
@@ -23,6 +30,9 @@ const Loads = () => {
 	const shippedLoads = useSelector(selectShipedLoads);
 
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
+
+	const handleAddNewLoad = () => navigate('add');
 
 	useEffect(() => {
 		if (userRole === DRIVER_ROLE) {
@@ -37,6 +47,12 @@ const Loads = () => {
 		<div className='loads'>
 			{userRole === SHIPPER_ROLE && (
 				<div className='loads__container'>
+					<Button
+						className='loads__btn'
+						type={BUTTON_TYPE_BUTTON}
+						text={BUTTON_TEXT_ADD_LOAD}
+						onClick={handleAddNewLoad}
+					/>
 					{loads.length === 0 && (
 						<p className='loads__mess'>You do not have any loads...</p>
 					)}

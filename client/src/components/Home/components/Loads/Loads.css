@@ -9,6 +9,21 @@
   gap: 3rem;
 }
 
+.loads__btn {
+  width: 20rem;
+  padding: 0.9rem 1rem;
+  justify-self: center;
+  background-color: var(--background);
+  border: 1px solid var(--background);
+  color: var(--secondary-blue);
+}
+
+.loads__btn:hover {
+  border: 1px solid var(--btn-dark-blue);
+  background-color: var(--btn-dark-blue);
+  color: white;
+}
+
 .loads__title {
   font-size: 1.2rem;
   font-weight: 500;

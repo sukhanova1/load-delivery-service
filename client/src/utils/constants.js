@@ -78,6 +78,7 @@ export const BUTTON_TEXT_ASSIGN = 'Assign';
 export const BUTTON_TEXT_OK = 'OK';
 export const BUTTON_TEXT_FINISH_DEL = 'Finish Delivery';
 export const BUTTON_TEXT_POST = 'POST';
+export const BUTTON_TEXT_ADD_LOAD = 'ADD NEW LOAD';
 
 export const TITLE_PROFILE = 'Profile';
 export const TITLE_TRUCKS = 'My Trucks';
