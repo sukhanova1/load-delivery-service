@@ -45,10 +45,10 @@ const useValidate = (value, validations) => {
 						  );
 					break;
 				case 'isDimensions':
-					value > 0
+					validations.fieldValue > value > 0
 						? setisDimensions('')
 						: setisDimensions(
-								`${validations.fieldName} can not be less than or equal to 0`
+								`${validations.fieldName} can not be less than or equal to 0 or greater than ${validations.fieldValue}`
 						  );
 					break;
 				default:
