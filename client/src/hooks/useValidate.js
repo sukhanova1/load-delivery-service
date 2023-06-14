@@ -6,6 +6,8 @@ const useValidate = (value, validations) => {
 	const [maxLength, setMaxLenngth] = useState('');
 	const [isEmail, setIsEmail] = useState('');
 	const [isPassword, setIsPassword] = useState('');
+	const [isDimensions, setisDimensions] = useState('');
+
 	const [isValidField, setIsValidField] = useState(false);
 
 	useEffect(() => {
@@ -42,20 +44,42 @@ const useValidate = (value, validations) => {
 								'Password length must be minimum 8 characters and must contain at least 1 letter and 1 number'
 						  );
 					break;
+				case 'isDimensions':
+					value > 0
+						? setisDimensions('')
+						: setisDimensions(
+								`${validations.fieldName} can not be less than or equal to 0`
+						  );
+					break;
 				default:
 			}
 		}
 	}, [value]);
 
 	useEffect(() => {
-		if (isEmpty || isEmail || isPassword || minLength || maxLength) {
+		if (
+			isEmpty ||
+			isEmail ||
+			isPassword ||
+			minLength ||
+			maxLength ||
+			isDimensions
+		) {
 			setIsValidField(false);
 		} else {
 			setIsValidField(true);
 		}
-	}, [isEmpty, isEmail, isPassword, minLength, maxLength]);
+	}, [isEmpty, isEmail, isPassword, minLength, maxLength, isDimensions]);
 
-	return { isEmpty, minLength, maxLength, isEmail, isPassword, isValidField };
+	return {
+		isEmpty,
+		minLength,
+		maxLength,
+		isEmail,
+		isPassword,
+		isDimensions,
+		isValidField,
+	};
 };
 
 export default useValidate;
