@@ -80,6 +80,14 @@ export const addLoadRequest = async ({ token, load }) => {
 	return result;
 };
 
+export const editLoadRequest = async ({ token, load, loadId }) => {
+	const headers = { Authorization: `Bearer ${token}` };
+	const result = await axios.put(BASE_URL + `/loads/${loadId}`, load, {
+		headers,
+	});
+	return result;
+};
+
 export const getActiveLoadsRequest = async (token) => {
 	const headers = { Authorization: `Bearer ${token}` };
 	const result = await axios.get(BASE_URL + '/loads/active', { headers });

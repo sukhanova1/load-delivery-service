@@ -5,6 +5,7 @@ import {
 	GET_LOADS_REQUEST,
 	GET_LOADS_SUCCESS,
 	ITERATE_TO_NEXT_STATE_REQUEST,
+	EDIT_LOAD_REQUEST,
 } from './actionTypes';
 
 export const getLoadsRequest = (payload) => ({
@@ -19,6 +20,11 @@ export const getLoadsSuccess = (payload) => ({
 
 export const addLoadRequest = (payload) => ({
 	type: ADD_LOAD_REQUEST,
+	payload,
+});
+
+export const editLoadRequest = (payload) => ({
+	type: EDIT_LOAD_REQUEST,
 	payload,
 });
 

@@ -5,9 +5,11 @@ import {
 	GET_ACTIVE_LOADS_REQUEST,
 	GET_LOADS_REQUEST,
 	ITERATE_TO_NEXT_STATE_REQUEST,
+	EDIT_LOAD_REQUEST,
 } from './actionTypes';
 import {
 	addLoadRequest,
+	editLoadRequest,
 	getActiveLoadsRequest,
 	getLoadsRequest,
 	iterateToNextStateRequest,
@@ -29,6 +31,17 @@ function* getLoads(action) {
 function* addLoad(action) {
 	try {
 		const { status, data } = yield call(addLoadRequest, action.payload);
+		if (status === 200) {
+			yield put(setModalSuccess(data.message));
+		}
+	} catch (e) {
+		yield put(setModalError(e.message));
+	}
+}
+
+function* editLoad(action) {
+	try {
+		const { status, data } = yield call(editLoadRequest, action.payload);
 		if (status === 200) {
 			yield put(setModalSuccess(data.message));
 		}
@@ -62,6 +75,7 @@ function* iterateToNextLoadState(action) {
 export function* loadWatcher() {
 	yield takeLatest(GET_LOADS_REQUEST, getLoads);
 	yield takeLatest(ADD_LOAD_REQUEST, addLoad);
+	yield takeLatest(EDIT_LOAD_REQUEST, editLoad);
 	yield takeLatest(GET_ACTIVE_LOADS_REQUEST, getActiveLoads);
 	yield takeLatest(ITERATE_TO_NEXT_STATE_REQUEST, iterateToNextLoadState);
 }
