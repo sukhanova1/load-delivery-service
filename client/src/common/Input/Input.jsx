@@ -11,7 +11,11 @@ const Input = (props) => {
 	) : (
 		<>
 			<label htmlFor={props.name}></label>
-			<input className='input' id={props.name} {...props} />
+			<input
+				{...props}
+				className={!props.className ? `input` : `input ${props.className}`}
+				id={props.name}
+			/>
 		</>
 	);
 };
