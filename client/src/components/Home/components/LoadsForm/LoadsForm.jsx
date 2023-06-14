@@ -1,10 +1,16 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Input from '../../../../common/Input/Input';
 import Button from '../../../../common/Button/Button';
 import Error from '../../../../common/Error/Error';
 import useInput from '../../../../hooks/useInput';
+import { addLoadRequest } from '../../../../store/loads/actionCreator';
+import {
+	selectModalError,
+	selectModalSuccess,
+} from '../../../../store/app/selectors';
 import {
 	INPUT_TEXT,
 	BUTTON_TYPE_SUBMIT,
@@ -23,9 +29,12 @@ import {
 	BACK_ICON_SRC,
 	BACK_ICON_ALT_VALUE,
 	LOADS_ROUTE,
+	MODAL_TYPE_SUCCESS,
+	MODAL_TYPE_ERROR,
 } from '../../../../utils/constants';
 
 import './LoadsForm.css';
+import Modal from '../../../../common/Modal/Modal';
 
 const LoadsForm = () => {
 	const name = useInput('', {
@@ -41,9 +50,16 @@ const LoadsForm = () => {
 	const width = useInput(0, { isDimensions: true, fieldName: 'Width' });
 	const height = useInput(0, { isDimensions: true, fieldName: 'Height' });
 
+	const serverSuccess = useSelector(selectModalSuccess);
+	const serverError = useSelector(selectModalError);
+
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+
 	const handleSubmitForm = (e) => {
 		e.preventDefault();
-		const data = {
+		const token = localStorage.getItem('token');
+		const load = {
 			name: name.value,
 			pickup_address: pickup_addr.value,
 			delivery_address: delivery_addr.value,
@@ -54,8 +70,14 @@ const LoadsForm = () => {
 				height: height.value,
 			},
 		};
-		console.log(data);
+		dispatch(addLoadRequest({ token, load }));
 	};
+
+	useEffect(() => {
+		if (serverSuccess) {
+			navigate(LOADS_ROUTE);
+		}
+	}, [serverSuccess]);
 
 	return (
 		<form className='loads-form' onSubmit={handleSubmitForm}>
@@ -63,6 +85,10 @@ const LoadsForm = () => {
 				<img src={BACK_ICON_SRC} alt={BACK_ICON_ALT_VALUE} width='20px' /> Back
 				to loads
 			</Link>
+			{serverSuccess && (
+				<Modal type={MODAL_TYPE_SUCCESS} text={serverSuccess} />
+			)}
+			{serverError && <Modal type={MODAL_TYPE_ERROR} text={serverError} />}
 			<div className='loads-form__box'>
 				<p className='loads-form__label'>Load Name</p>
 				<Input

@@ -1,4 +1,5 @@
 import {
+	ADD_LOAD_REQUEST,
 	GET_ACTIVE_LOADS_REQUEST,
 	GET_ACTIVE_LOADS_SUCCESS,
 	GET_LOADS_REQUEST,
@@ -13,6 +14,11 @@ export const getLoadsRequest = (payload) => ({
 
 export const getLoadsSuccess = (payload) => ({
 	type: GET_LOADS_SUCCESS,
+	payload,
+});
+
+export const addLoadRequest = (payload) => ({
+	type: ADD_LOAD_REQUEST,
 	payload,
 });
 
