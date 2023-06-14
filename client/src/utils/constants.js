@@ -6,7 +6,7 @@ export const FORGOT_PASS_ROUTE = '/auth/forgot-password';
 // export const HOME_ROUTE = '/home';
 export const PROFILE_ROUTE = '/home/profile';
 export const TRUCKS_ROUTE = '/home/my-trucks';
-export const ASSIGNED_LOAD_ROUTE = '/home/my-loads';
+export const LOADS_ROUTE = '/home/my-loads';
 //images
 export const LOGO_SRC = '/assets/logo.jpg';
 export const LOGO_ALT_VALUE = 'company logo';
@@ -39,7 +39,11 @@ export const DIMENSIONS_ICON_SRC = '/assets/icons/dimensions-icon.png';
 export const DIMENSIONS_ICON_ALT_VALUE = 'dimensions icon';
 export const DESTINATION_ICON_SRC = '/assets/icons/destination-icon.png';
 export const DESTINATION_ICON_ALT_VALUE = 'destination icon';
+export const BACK_ICON_SRC = '/assets/icons/back-icon.png';
+export const BACK_ICON_ALT_VALUE = 'back icon';
 //inputs
+export const INPUT_TEXT = 'text';
+export const INPUT_NUMBER = 'number';
 export const INPUT_NAME = 'name';
 export const INPUT_NAME_PLACEHOLDER = 'Enter your name';
 export const INPUT_EMAIL = 'email';
@@ -50,8 +54,15 @@ export const INPUT_CONFIRM_PASS = 'confirm password';
 export const INPUT_CONFIRM_PASS_PLACEHOLDER = 'Confirm your password';
 export const INPUT_RADIO = 'radio';
 export const INPUT_RADIO_NAME = 'role';
-export const DRIVER_ROLE = 'DRIVER';
-export const SHIPPER_ROLE = 'SHIPPER';
+export const INPUT_LOAD_NAME_PLACEHOLDER = 'Enter load name';
+export const INPUT_PICKUP_ADDR = 'pickup-address';
+export const INPUT_PICKUP_ADDR_PLACEHOLDER = 'Enter pick-up address';
+export const INPUT_DEL_ADDR = 'delivery-address';
+export const INPUT_DEL_ADDR_PLACEHOLDER = 'Enter delivery address';
+export const INPUT_PAYLOAD = 'payload';
+export const INPUT_LENGTH = 'length';
+export const INPUT_WIDTH = 'width';
+export const INPUT_HEIGHT = 'height';
 //select
 export const SELECT_ID_ADD_TRUCK = 'add-truck-select';
 export const SELECT_ID_EDIT_TRUCK = 'edit-truck-select';
@@ -79,17 +90,19 @@ export const BUTTON_TEXT_OK = 'OK';
 export const BUTTON_TEXT_FINISH_DEL = 'Finish Delivery';
 export const BUTTON_TEXT_POST = 'POST';
 export const BUTTON_TEXT_ADD_LOAD = 'ADD NEW LOAD';
-
+//title
 export const TITLE_PROFILE = 'Profile';
 export const TITLE_TRUCKS = 'My Trucks';
 export const TITLE_ASSIGNED_LOAD = 'Assigned Load';
 export const TITLE_LOGOUT = 'Logout';
-
-export const BASE_URL = 'http://localhost:8080/api';
-
 // modal types
 export const MODAL_TYPE_ERROR = 'error';
 export const MODAL_TYPE_SUCCESS = 'success';
+
+export const BASE_URL = 'http://localhost:8080/api';
+
+export const DRIVER_ROLE = 'DRIVER';
+export const SHIPPER_ROLE = 'SHIPPER';
 
 export const TRUCK_STATUS_IS = 'IS';
 export const TRUCK_STATUS_OL = 'OL';
