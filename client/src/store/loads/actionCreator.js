@@ -6,6 +6,8 @@ import {
 	GET_LOADS_SUCCESS,
 	ITERATE_TO_NEXT_STATE_REQUEST,
 	EDIT_LOAD_REQUEST,
+	DELETE_LOAD_REQUEST,
+	DELETE_LOAD_SUCCESS,
 } from './actionTypes';
 
 export const getLoadsRequest = (payload) => ({
@@ -25,6 +27,16 @@ export const addLoadRequest = (payload) => ({
 
 export const editLoadRequest = (payload) => ({
 	type: EDIT_LOAD_REQUEST,
+	payload,
+});
+
+export const deleteLoadRequest = (payload) => ({
+	type: DELETE_LOAD_REQUEST,
+	payload,
+});
+
+export const deleteLoadSuccess = (payload) => ({
+	type: DELETE_LOAD_SUCCESS,
 	payload,
 });
 

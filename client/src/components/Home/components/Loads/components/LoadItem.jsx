@@ -1,9 +1,13 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import Button from '../../../../../common/Button/Button';
 import { transformDateFull } from '../../../../../helpers/transformDate';
-import { iterateToNextStateRequest } from '../../../../../store/loads/actionCreator';
+import {
+	deleteLoadRequest,
+	iterateToNextStateRequest,
+} from '../../../../../store/loads/actionCreator';
 import { selectUserRole } from '../../../../../store/user/selectors';
 import {
 	DESTINATION_ICON_ALT_VALUE,
@@ -25,17 +29,17 @@ import {
 
 import './LoadItem.css';
 
-function LoadItem({ load }) {
+const LoadItem = ({ load }) => {
 	const userRole = useSelector(selectUserRole);
 
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
-	const handleEditLoad = () => {
-		console.log('load edited');
-	};
+	const handleEditLoad = () => navigate(`update/${load._id}`);
 
 	const handleDeleteLoad = () => {
-		console.log('load deleted');
+		const data = { token: localStorage.getItem('token'), id: load._id };
+		dispatch(deleteLoadRequest(data));
 	};
 
 	const handlePostLoad = () => {
@@ -135,6 +139,6 @@ function LoadItem({ load }) {
 			</div>
 		</div>
 	);
-}
+};
 
 export default LoadItem;

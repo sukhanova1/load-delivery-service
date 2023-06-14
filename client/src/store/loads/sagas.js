@@ -6,16 +6,22 @@ import {
 	GET_LOADS_REQUEST,
 	ITERATE_TO_NEXT_STATE_REQUEST,
 	EDIT_LOAD_REQUEST,
+	DELETE_LOAD_REQUEST,
 } from './actionTypes';
 import {
 	addLoadRequest,
+	deleteLoadRequest,
 	editLoadRequest,
 	getActiveLoadsRequest,
 	getLoadsRequest,
 	iterateToNextStateRequest,
 } from '../../utils/services';
 import { setModalError, setModalSuccess } from '../app/actionCreator';
-import { getActiveLoadsSuccess, getLoadsSuccess } from './actionCreator';
+import {
+	deleteLoadSuccess,
+	getActiveLoadsSuccess,
+	getLoadsSuccess,
+} from './actionCreator';
 
 function* getLoads(action) {
 	try {
@@ -50,6 +56,17 @@ function* editLoad(action) {
 	}
 }
 
+function* deleteLoad(action) {
+	try {
+		const { status } = yield call(deleteLoadRequest, action.payload);
+		if (status === 200) {
+			yield put(deleteLoadSuccess(action.payload.id));
+		}
+	} catch (e) {
+		yield put(setModalError(e.message));
+	}
+}
+
 function* getActiveLoads(action) {
 	try {
 		const { status, data } = yield call(getActiveLoadsRequest, action.payload);
@@ -76,6 +93,7 @@ export function* loadWatcher() {
 	yield takeLatest(GET_LOADS_REQUEST, getLoads);
 	yield takeLatest(ADD_LOAD_REQUEST, addLoad);
 	yield takeLatest(EDIT_LOAD_REQUEST, editLoad);
+	yield takeLatest(DELETE_LOAD_REQUEST, deleteLoad);
 	yield takeLatest(GET_ACTIVE_LOADS_REQUEST, getActiveLoads);
 	yield takeLatest(ITERATE_TO_NEXT_STATE_REQUEST, iterateToNextLoadState);
 }

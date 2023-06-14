@@ -88,6 +88,16 @@ export const editLoadRequest = async ({ token, load, loadId }) => {
 	return result;
 };
 
+export const deleteLoadRequest = async ({ token, id }) => {
+	const data = { id: id };
+	const headers = { Authorization: `Bearer ${token}` };
+	const result = await axios.delete(BASE_URL + `/loads/${id}`, {
+		headers,
+		data,
+	});
+	return result;
+};
+
 export const getActiveLoadsRequest = async (token) => {
 	const headers = { Authorization: `Bearer ${token}` };
 	const result = await axios.get(BASE_URL + '/loads/active', { headers });
