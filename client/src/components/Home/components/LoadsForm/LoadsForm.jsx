@@ -1,12 +1,17 @@
 import React, { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Input from '../../../../common/Input/Input';
 import Button from '../../../../common/Button/Button';
 import Error from '../../../../common/Error/Error';
+import Modal from '../../../../common/Modal/Modal';
 import useInput from '../../../../hooks/useInput';
-import { addLoadRequest } from '../../../../store/loads/actionCreator';
+import { selectLoadItem } from '../../../../store/loads/selectors';
+import {
+	addLoadRequest,
+	editLoadRequest,
+} from '../../../../store/loads/actionCreator';
 import {
 	selectModalError,
 	selectModalSuccess,
@@ -31,30 +36,57 @@ import {
 	LOADS_ROUTE,
 	MODAL_TYPE_SUCCESS,
 	MODAL_TYPE_ERROR,
+	BUTTON_TEXT_UPDATE,
 } from '../../../../utils/constants';
 
 import './LoadsForm.css';
-import Modal from '../../../../common/Modal/Modal';
 
 const LoadsForm = () => {
-	const name = useInput('', {
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	const { loadId } = useParams();
+
+	const loadItem = useSelector(selectLoadItem(loadId));
+	const serverSuccess = useSelector(selectModalSuccess);
+	const serverError = useSelector(selectModalError);
+
+	const name = useInput(loadItem ? loadItem.name : '', {
 		isEmpty: true,
 		fieldName: 'Name',
 		minLength: 2,
 		maxLength: 13,
 	});
-	const pickup_addr = useInput('', { isEmpty: true });
-	const delivery_addr = useInput('', { isEmpty: true });
-	const payload = useInput(0, { isDimensions: true, fieldName: 'Payload' });
-	const length = useInput(0, { isDimensions: true, fieldName: 'Length' });
-	const width = useInput(0, { isDimensions: true, fieldName: 'Width' });
-	const height = useInput(0, { isDimensions: true, fieldName: 'Height' });
 
-	const serverSuccess = useSelector(selectModalSuccess);
-	const serverError = useSelector(selectModalError);
+	const pickup_addr = useInput(loadItem ? loadItem.pickup_address : '', {
+		isEmpty: true,
+	});
 
-	const dispatch = useDispatch();
-	const navigate = useNavigate();
+	const delivery_addr = useInput(loadItem ? loadItem.delivery_address : '', {
+		isEmpty: true,
+	});
+
+	const payload = useInput(loadItem ? loadItem.payload : 0, {
+		isDimensions: true,
+		fieldValue: 4000,
+		fieldName: 'Payload',
+	});
+
+	const length = useInput(loadItem ? loadItem.dimensions.length : 0, {
+		isDimensions: true,
+		fieldValue: 700,
+		fieldName: 'Length',
+	});
+	const width = useInput(loadItem ? loadItem.dimensions.width : 0, {
+		isDimensions: true,
+		fieldValue: 350,
+		fieldName: 'Width',
+	});
+
+	const height = useInput(loadItem ? loadItem.dimensions.height : 0, {
+		isDimensions: true,
+		fieldValue: 270,
+		fieldName: 'Height',
+	});
 
 	const handleSubmitForm = (e) => {
 		e.preventDefault();
@@ -63,14 +95,18 @@ const LoadsForm = () => {
 			name: name.value,
 			pickup_address: pickup_addr.value,
 			delivery_address: delivery_addr.value,
-			payload: payload.value,
+			payload: +payload.value,
 			dimensions: {
-				length: length.value,
-				width: width.value,
-				height: height.value,
+				length: +length.value,
+				width: +width.value,
+				height: +height.value,
 			},
 		};
-		dispatch(addLoadRequest({ token, load }));
+		if (!loadId) {
+			dispatch(addLoadRequest({ token, load }));
+		} else {
+			dispatch(editLoadRequest({ token, load, loadId }));
+		}
 	};
 
 	useEffect(() => {
@@ -78,6 +114,12 @@ const LoadsForm = () => {
 			navigate(LOADS_ROUTE);
 		}
 	}, [serverSuccess]);
+
+	// useEffect(() => {
+	// 	if (loadId) {
+	// 		dispatch(getLoadsRequest(localStorage.getItem('token')));
+	// 	}
+	// }, [dispatch]);
 
 	return (
 		<form className='loads-form' onSubmit={handleSubmitForm}>
@@ -208,7 +250,7 @@ const LoadsForm = () => {
 					!height.isValidField
 				}
 				type={BUTTON_TYPE_SUBMIT}
-				text={BUTTON_TEXT_ADD}
+				text={loadItem ? BUTTON_TEXT_UPDATE : BUTTON_TEXT_ADD}
 				className='loads-form__btn'
 			/>
 		</form>
