@@ -8,6 +8,7 @@ import {
 	EDIT_LOAD_REQUEST,
 	DELETE_LOAD_REQUEST,
 	DELETE_LOAD_SUCCESS,
+	POST_LOAD_REQUEST,
 } from './actionTypes';
 
 export const getLoadsRequest = (payload) => ({
@@ -37,6 +38,11 @@ export const deleteLoadRequest = (payload) => ({
 
 export const deleteLoadSuccess = (payload) => ({
 	type: DELETE_LOAD_SUCCESS,
+	payload,
+});
+
+export const postLoadRequest = (payload) => ({
+	type: POST_LOAD_REQUEST,
 	payload,
 });
 

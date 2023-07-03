@@ -7,6 +7,7 @@ import { transformDateFull } from '../../../../../helpers/transformDate';
 import {
 	deleteLoadRequest,
 	iterateToNextStateRequest,
+	postLoadRequest,
 } from '../../../../../store/loads/actionCreator';
 import { selectUserRole } from '../../../../../store/user/selectors';
 import {
@@ -43,7 +44,8 @@ const LoadItem = ({ load }) => {
 	};
 
 	const handlePostLoad = () => {
-		console.log('load posted');
+		const data = { token: localStorage.getItem('token'), id: load._id };
+		dispatch(postLoadRequest(data));
 	};
 
 	const handleFinishDelivery = () => {

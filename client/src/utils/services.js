@@ -98,6 +98,16 @@ export const deleteLoadRequest = async ({ token, id }) => {
 	return result;
 };
 
+export const postLoadRequest = async ({ token, id }) => {
+	const headers = { Authorization: `Bearer ${token}` };
+	const result = await axios.post(
+		BASE_URL + `/loads/${id}/post`,
+		{ id },
+		{ headers }
+	);
+	return result;
+};
+
 export const getActiveLoadsRequest = async (token) => {
 	const headers = { Authorization: `Bearer ${token}` };
 	const result = await axios.get(BASE_URL + '/loads/active', { headers });
