@@ -3,13 +3,13 @@ import {
 	LOAD_STATUS_SHIPPED,
 } from '../../utils/constants';
 
-export const selectLoads = (state) => state.loads;
+export const selectLoads = (state) => state.loads.loads;
 
 export const selectLoadItem = (id) => (state) =>
-	state.loads.filter((load) => load._id === id)[0];
+	state.loads.loads.filter((load) => load._id === id)[0];
 
 export const selectActiveLoads = (state) =>
-	state.loads.filter((load) => load.status === LOAD_STATUS_ASSIGNED);
+	state.loads.loads.filter((load) => load.status === LOAD_STATUS_ASSIGNED);
 
 export const selectShipedLoads = (state) =>
-	state.loads.filter((load) => load.status === LOAD_STATUS_SHIPPED);
+	state.loads.loads.filter((load) => load.status === LOAD_STATUS_SHIPPED);
