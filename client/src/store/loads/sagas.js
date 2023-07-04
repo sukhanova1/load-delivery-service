@@ -8,6 +8,7 @@ import {
 	EDIT_LOAD_REQUEST,
 	DELETE_LOAD_REQUEST,
 	POST_LOAD_REQUEST,
+	GET_SHIPP_INFO_REQUEST,
 } from './actionTypes';
 import {
 	addLoadRequest,
@@ -15,6 +16,7 @@ import {
 	editLoadRequest,
 	getActiveLoadsRequest,
 	getLoadsRequest,
+	getShippInfoRequest,
 	iterateToNextStateRequest,
 	postLoadRequest,
 } from '../../utils/services';
@@ -23,6 +25,7 @@ import {
 	deleteLoadSuccess,
 	getActiveLoadsSuccess,
 	getLoadsSuccess,
+	getShippInfoSuccess,
 } from './actionCreator';
 
 function* getLoads(action) {
@@ -82,6 +85,17 @@ function* postLoad(action) {
 	}
 }
 
+function* getShippInfo(action) {
+	try {
+		const { status, data } = yield call(getShippInfoRequest, action.payload);
+		if (status === 200) {
+			yield put(getShippInfoSuccess(data));
+		}
+	} catch (e) {
+		yield put(setModalError(e.message));
+	}
+}
+
 function* getActiveLoads(action) {
 	try {
 		const { status, data } = yield call(getActiveLoadsRequest, action.payload);
@@ -110,6 +124,7 @@ export function* loadWatcher() {
 	yield takeLatest(EDIT_LOAD_REQUEST, editLoad);
 	yield takeLatest(DELETE_LOAD_REQUEST, deleteLoad);
 	yield takeLatest(POST_LOAD_REQUEST, postLoad);
+	yield takeLatest(GET_SHIPP_INFO_REQUEST, getShippInfo);
 	yield takeLatest(GET_ACTIVE_LOADS_REQUEST, getActiveLoads);
 	yield takeLatest(ITERATE_TO_NEXT_STATE_REQUEST, iterateToNextLoadState);
 }

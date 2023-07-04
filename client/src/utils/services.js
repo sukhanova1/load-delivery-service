@@ -108,6 +108,16 @@ export const postLoadRequest = async ({ token, id }) => {
 	return result;
 };
 
+export const getShippInfoRequest = async ({ token, id }) => {
+	const headers = { Authorization: `Bearer ${token}` };
+	const result = await axios.get(
+		BASE_URL + `/loads/${id}/shipping_info`,
+		{ headers },
+		{ id }
+	);
+	return result;
+};
+
 export const getActiveLoadsRequest = async (token) => {
 	const headers = { Authorization: `Bearer ${token}` };
 	const result = await axios.get(BASE_URL + '/loads/active', { headers });

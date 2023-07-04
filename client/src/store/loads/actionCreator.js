@@ -9,6 +9,8 @@ import {
 	DELETE_LOAD_REQUEST,
 	DELETE_LOAD_SUCCESS,
 	POST_LOAD_REQUEST,
+	GET_SHIPP_INFO_REQUEST,
+	GET_SHIPP_INFO_SUCCESS,
 } from './actionTypes';
 
 export const getLoadsRequest = (payload) => ({
@@ -43,6 +45,16 @@ export const deleteLoadSuccess = (payload) => ({
 
 export const postLoadRequest = (payload) => ({
 	type: POST_LOAD_REQUEST,
+	payload,
+});
+
+export const getShippInfoRequest = (payload) => ({
+	type: GET_SHIPP_INFO_REQUEST,
+	payload,
+});
+
+export const getShippInfoSuccess = (payload) => ({
+	type: GET_SHIPP_INFO_SUCCESS,
 	payload,
 });
 
