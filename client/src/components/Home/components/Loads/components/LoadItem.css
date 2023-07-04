@@ -19,9 +19,20 @@
   gap: 1rem;
 }
 
+.load-item__link{
+  font-size: 0.9rem;
+  letter-spacing: 0.7px;
+  color: var(--secondary-blue);
+}
+
+.load-item__link:hover {
+  color: var(--text-dark-blue);
+}
+
 .load-item__content_al-end {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .load-item__status {

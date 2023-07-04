@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 import Button from '../../../../../common/Button/Button';
 import { transformDateFull } from '../../../../../helpers/transformDate';
@@ -139,6 +139,11 @@ const LoadItem = ({ load }) => {
 					/>
 				)}
 			</div>
+			{userRole === SHIPPER_ROLE && (
+				<Link to={`shipping-info/${load._id}`} className='load-item__link'>
+					Show more...
+				</Link>
+			)}
 		</div>
 	);
 };
