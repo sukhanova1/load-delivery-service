@@ -1,0 +1,83 @@
+.shipp-info {
+  padding: 3rem 6rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.shipp-info__header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.shipp-info__link {
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  color: var(--secondary-blue);
+}
+
+.shipp-info__link {
+  text-decoration: underline;
+}
+
+.shipp-info__status {
+  padding: 0.4rem 0.8rem;
+  width: fit-content;
+  rotate: 30deg;
+  border-radius: 7px;
+  border: 1px solid  var(--yellow);
+  background-color:  var(--yellow);
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  color: white;
+}
+
+.shipp-info__title {
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.shipp-info__state {
+  text-align: center;
+  font-style: italic;
+  color: var(--yellow);
+}
+
+.shipp-info__content {
+  display: flex;
+  gap: 1rem;
+}
+
+.shipp-info__address {
+  display: grid;
+  align-items: flex-end;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--secondary-blue);
+}
+
+.shipp-info__text_italic {
+  font-style: italic;
+}
+
+.shipp-info__block {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.shipp-info__heading {
+  margin-top: 0.7rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--secondary-blue);
+  font-family: var(--font-secondary);
+  font-weight: 500;
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
+  color: var(--secondary-blue);
+}
+
+.shipp-info__truck {
+  padding: 0.5rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
