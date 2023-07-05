@@ -1,9 +1,7 @@
 //routes
-// export const AUTH_ROUTE = '/auth';
 export const LOGIN_ROUTE = '/auth/login';
 export const REGISTER_ROUTE = '/auth/register';
 export const FORGOT_PASS_ROUTE = '/auth/forgot-password';
-// export const HOME_ROUTE = '/home';
 export const PROFILE_ROUTE = '/home/profile';
 export const TRUCKS_ROUTE = '/home/my-trucks';
 export const LOADS_ROUTE = '/home/my-loads';
@@ -94,7 +92,7 @@ export const BUTTON_TEXT_UPDATE = 'Update';
 //title
 export const TITLE_PROFILE = 'Profile';
 export const TITLE_TRUCKS = 'My Trucks';
-export const TITLE_ASSIGNED_LOAD = 'Assigned Load';
+export const TITLE_LOADS = 'My Loads';
 export const TITLE_LOGOUT = 'Logout';
 // modal types
 export const MODAL_TYPE_ERROR = 'error';

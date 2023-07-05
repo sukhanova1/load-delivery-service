@@ -3,7 +3,8 @@ import { Link, NavLink } from 'react-router-dom';
 
 import Logo from '../../../../common/Logo/Logo';
 import {
-	ASSIGNED_LOAD_ROUTE,
+	DRIVER_ROLE,
+	LOADS_ROUTE,
 	LOAD_ALT_VALUE,
 	LOAD_SRC,
 	LOGOUT_ALT_VALUE,
@@ -13,7 +14,7 @@ import {
 	PROFILE_ALT_VALUE,
 	PROFILE_ROUTE,
 	PROFILE_SRC,
-	TITLE_ASSIGNED_LOAD,
+	TITLE_LOADS,
 	TITLE_PROFILE,
 	TITLE_TRUCKS,
 	TRUCKS_ALT_VALUE,
@@ -31,22 +32,25 @@ const sideBarItems = [
 		path: PROFILE_ROUTE,
 		imgSrc: PROFILE_SRC,
 		imgAltText: PROFILE_ALT_VALUE,
+		role: 'both',
 	},
 	{
 		name: TITLE_TRUCKS,
 		path: TRUCKS_ROUTE,
 		imgSrc: TRUCKS_SRC,
 		imgAltText: TRUCKS_ALT_VALUE,
+		role: DRIVER_ROLE,
 	},
 	{
-		name: TITLE_ASSIGNED_LOAD,
-		path: ASSIGNED_LOAD_ROUTE,
+		name: TITLE_LOADS,
+		path: LOADS_ROUTE,
 		imgSrc: LOAD_SRC,
 		imgAltText: LOAD_ALT_VALUE,
+		role: 'both',
 	},
 ];
 
-const SideBar = ({ toggle, toggleMenu, handleLogout }) => {
+const SideBar = ({ role, toggle, toggleMenu, handleLogout }) => {
 	return (
 		<aside className={toggle ? 'sidebar' : 'sidebar sidebar-small'}>
 			<div className='sidebar__header'>
@@ -70,19 +74,23 @@ const SideBar = ({ toggle, toggleMenu, handleLogout }) => {
 					</Link>
 				</div>
 				<ul>
-					{sideBarItems.map((item) => (
-						<li className={'nav__item'} title={item.name} key={item.name}>
-							<NavLink to={item.path} className='nav__link'>
-								<img
-									src={item.imgSrc}
-									className='nav__icon'
-									alt={item.imgAltText}
-									width='35px'
-								/>
-								{item.name}
-							</NavLink>
-						</li>
-					))}
+					{sideBarItems.map((item) => {
+						if (item.role === 'both' || item.role === role) {
+							return (
+								<li className='nav__item' title={item.name} key={item.name}>
+									<NavLink to={item.path} className='nav__link'>
+										<img
+											src={item.imgSrc}
+											className='nav__icon'
+											alt={item.imgAltText}
+											width='35px'
+										/>
+										{item.name}
+									</NavLink>
+								</li>
+							);
+						}
+					})}
 				</ul>
 				<div className='nav__item' onClick={handleLogout}>
 					<div className='nav__link'>
