@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import LoadItem from '../Loads/components/LoadItem';
+import Button from '../../../../common/Button/Button';
+import Modal from '../../../../common/Modal/Modal';
 import {
 	getActiveLoadsRequest,
 	getLoadsRequest,
@@ -14,20 +16,27 @@ import {
 } from '../../../../store/loads/selectors';
 import { selectUserRole } from '../../../../store/user/selectors';
 import {
+	selectModalError,
+	selectModalSuccess,
+} from '../../../../store/app/selectors';
+import {
 	BUTTON_TEXT_ADD_LOAD,
 	BUTTON_TYPE_BUTTON,
 	DRIVER_ROLE,
+	MODAL_TYPE_ERROR,
+	MODAL_TYPE_SUCCESS,
 	SHIPPER_ROLE,
 } from '../../../../utils/constants';
 
 import './Loads.css';
-import Button from '../../../../common/Button/Button';
 
 const Loads = () => {
 	const userRole = useSelector(selectUserRole);
 	const loads = useSelector(selectLoads);
 	const activeLoads = useSelector(selectActiveLoads);
 	const shippedLoads = useSelector(selectShipedLoads);
+	const serverError = useSelector(selectModalError);
+	const serverSuccess = useSelector(selectModalSuccess);
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -45,6 +54,10 @@ const Loads = () => {
 
 	return (
 		<div className='loads'>
+			{serverSuccess && (
+				<Modal type={MODAL_TYPE_SUCCESS} text={serverSuccess} />
+			)}
+			{serverError && <Modal type={MODAL_TYPE_ERROR} text={serverError} />}
 			{userRole === SHIPPER_ROLE && (
 				<div className='loads__container'>
 					<Button
