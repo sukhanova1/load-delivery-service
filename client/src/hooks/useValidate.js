@@ -45,7 +45,7 @@ const useValidate = (value, validations) => {
 						  );
 					break;
 				case 'isDimensions':
-					validations.fieldValue > value > 0
+					0 < +value && +value <= validations.fieldValue
 						? setisDimensions('')
 						: setisDimensions(
 								`${validations.fieldName} can not be less than or equal to 0 or greater than ${validations.fieldValue}`
