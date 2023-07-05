@@ -5,6 +5,8 @@ import {
 
 export const selectLoads = (state) => state.loads.loads;
 
+export const selectShippInfo = (state) => state.loads.shipp_info;
+
 export const selectLoadItem = (id) => (state) =>
 	state.loads.loads.filter((load) => load._id === id)[0];
 
