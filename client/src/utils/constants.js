@@ -39,6 +39,8 @@ export const DESTINATION_ICON_SRC = '/assets/icons/destination-icon.png';
 export const DESTINATION_ICON_ALT_VALUE = 'destination icon';
 export const BACK_ICON_SRC = '/assets/icons/back-icon.png';
 export const BACK_ICON_ALT_VALUE = 'back icon';
+export const CLOSE_ICON_SRC = '/assets/icons/close-icon.png';
+export const CLOSE_ICON_ALT_VALUE = 'close icon';
 //inputs
 export const INPUT_TEXT = 'text';
 export const INPUT_NUMBER = 'number';
@@ -50,6 +52,8 @@ export const INPUT_PASS = 'password';
 export const INPUT_PASS_PLACEHOLDER = 'Enter your password';
 export const INPUT_CONFIRM_PASS = 'confirm password';
 export const INPUT_CONFIRM_PASS_PLACEHOLDER = 'Confirm your password';
+export const INPUT_NEW_PASS = 'new password';
+export const INPUT_NEW_PASS_PLACEHOLDER = 'Enter new password';
 export const INPUT_RADIO = 'radio';
 export const INPUT_RADIO_NAME = 'role';
 export const INPUT_LOAD_NAME_PLACEHOLDER = 'Enter load name';
@@ -89,6 +93,9 @@ export const BUTTON_TEXT_FINISH_DEL = 'Finish Delivery';
 export const BUTTON_TEXT_POST = 'POST';
 export const BUTTON_TEXT_ADD_LOAD = 'ADD NEW LOAD';
 export const BUTTON_TEXT_UPDATE = 'Update';
+export const BUTTON_TEXT_CHANGE = 'Change';
+export const BUTTON_TEXT_CANCEL = 'Cancel';
+export const BUTTON_TEXT_DELETE = 'Delete';
 //title
 export const TITLE_PROFILE = 'Profile';
 export const TITLE_TRUCKS = 'My Trucks';

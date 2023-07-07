@@ -1,0 +1,73 @@
+.profile-modal{
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.profile-modal__box {
+  margin: 10rem auto;
+  width: 35rem;
+  display: grid;
+  grid-template-rows: 3rem auto;
+  border: 1px solid var(--light-grey);
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.profile-modal__closemark { 
+  justify-self: end;
+}
+
+.profile-modal__form {
+  padding: 1rem 1rem 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1rem;
+}
+
+.profile-modal__form-btn {
+  padding: 1rem 7rem;  
+  border: 1px solid var(--btn-dark-blue);
+  background-color: var(--btn-dark-blue);
+  color: white;
+}
+
+.profile-modal__form-btn:hover {
+  background-color: white;
+  border: 1px solid var(--secondary-blue);
+  color: var(--secondary-blue);
+}
+
+.profile-modal__delete {
+  padding: 2rem 3rem;
+  display: grid;
+  gap: 2rem;
+  text-align: center;
+}
+
+.profile-modal__btn {
+  padding: 0.2rem 0.7rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  border-radius: 4px;
+  background-color: white;
+}
+
+
+.profile-modal__btn-cancel {
+  margin-right: 3rem;
+  border: 1px solid var(--secondary-blue);
+  color: var(--secondary-blue);
+}
+
+.profile-modal__btn-delete {
+  border: 1px solid var(--red);
+  color: var(--red);
+}
