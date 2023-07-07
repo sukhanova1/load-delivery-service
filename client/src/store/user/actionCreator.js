@@ -1,4 +1,5 @@
 import {
+	CHANGE_PASS_REQUEST,
 	FORGOT_PASS_REQUEST,
 	GET_USER_INFO_REQUEST,
 	GET_USER_INFO_SUCCESS,
@@ -35,6 +36,11 @@ export const logoutRequest = () => ({
 
 export const logoutSuccess = () => ({
 	type: LOGOUT_SUCCESS,
+});
+
+export const changePassRequest = (payload) => ({
+	type: CHANGE_PASS_REQUEST,
+	payload,
 });
 
 export const getUserInfoRequest = (payload) => ({

@@ -24,6 +24,14 @@ export const getUserInfoRequest = async (token) => {
 	return result;
 };
 
+export const changePassRequest = async ({ token, data }) => {
+	const headers = { Authorization: `Bearer ${token}` };
+	const result = await axios.patch(BASE_URL + '/users/me/password', data, {
+		headers,
+	});
+	return result;
+};
+
 //trucks
 export const getTrucksRequest = async (token) => {
 	const headers = { Authorization: `Bearer ${token}` };

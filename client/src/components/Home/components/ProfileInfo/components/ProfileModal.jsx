@@ -1,9 +1,11 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
 import Input from '../../../../../common/Input/Input';
 import Error from '../../../../../common/Error/Error';
 import Button from '../../../../../common/Button/Button';
 import useInput from '../../../../../hooks/useInput';
+import { changePassRequest } from '../../../../../store/user/actionCreator';
 import {
 	INPUT_PASS,
 	INPUT_PASS_PLACEHOLDER,
@@ -28,8 +30,16 @@ const ProfileModal = ({
 	const oldPassword = useInput('', { isEmpty: true, isPassword: true });
 	const newPassword = useInput('', { isEmpty: true, isPassword: true });
 
+	const dispatch = useDispatch();
+
 	const handleChangePass = (e) => {
 		e.preventDefault();
+		const payload = {
+			token: localStorage.getItem('token'),
+			data: { oldPassword: oldPassword.value, newPassword: newPassword.value },
+		};
+		dispatch(changePassRequest(payload));
+		handleCloseModal();
 	};
 
 	const handleDeleteAcc = (e) => {
