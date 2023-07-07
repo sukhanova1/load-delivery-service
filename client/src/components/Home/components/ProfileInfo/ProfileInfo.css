@@ -11,12 +11,12 @@
 }
 
 .profile__role {
-  font-family: var(--font-secondaty);
+  font-family: var(--font-secondary);
   margin: 1rem 0 0.2rem 0;
 }
 
 .profile__date{
-  font-family: var(--font-secondaty);
+  font-family: var(--font-secondary);
   font-style: italic;
 }
 
