@@ -1,5 +1,6 @@
 import {
 	CHANGE_PASS_REQUEST,
+	DELETE_ACC_REQUEST,
 	FORGOT_PASS_REQUEST,
 	GET_USER_INFO_REQUEST,
 	GET_USER_INFO_SUCCESS,
@@ -40,6 +41,11 @@ export const logoutSuccess = () => ({
 
 export const changePassRequest = (payload) => ({
 	type: CHANGE_PASS_REQUEST,
+	payload,
+});
+
+export const deleteAccRequest = (payload) => ({
+	type: DELETE_ACC_REQUEST,
 	payload,
 });
 

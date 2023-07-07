@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Button from '../../../../common/Button/Button';
@@ -52,6 +52,12 @@ const ProfileInfo = () => {
 	};
 
 	const handleLogout = () => dispatch(logoutRequest());
+
+	useEffect(() => {
+		if (serverSuccess.includes('deleted successfully')) {
+			handleLogout();
+		}
+	}, [serverSuccess]);
 
 	return (
 		<div className='profile'>

@@ -5,7 +5,10 @@ import Input from '../../../../../common/Input/Input';
 import Error from '../../../../../common/Error/Error';
 import Button from '../../../../../common/Button/Button';
 import useInput from '../../../../../hooks/useInput';
-import { changePassRequest } from '../../../../../store/user/actionCreator';
+import {
+	changePassRequest,
+	deleteAccRequest,
+} from '../../../../../store/user/actionCreator';
 import {
 	INPUT_PASS,
 	INPUT_PASS_PLACEHOLDER,
@@ -42,8 +45,9 @@ const ProfileModal = ({
 		handleCloseModal();
 	};
 
-	const handleDeleteAcc = (e) => {
-		e.preventDefault();
+	const handleDeleteAcc = () => {
+		dispatch(deleteAccRequest({ token: localStorage.getItem('token') }));
+		handleCloseModal();
 	};
 
 	return (

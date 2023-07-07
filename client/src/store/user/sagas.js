@@ -8,6 +8,7 @@ import {
 import { setModalError, setModalSuccess } from '../app/actionCreator';
 import {
 	CHANGE_PASS_REQUEST,
+	DELETE_ACC_REQUEST,
 	FORGOT_PASS_REQUEST,
 	GET_USER_INFO_REQUEST,
 	LOGIN_REQUEST,
@@ -16,6 +17,7 @@ import {
 } from './actionTypes';
 import {
 	changePassRequest,
+	deleteAccRequest,
 	forgotPassRequest,
 	getUserInfoRequest,
 	loginRequest,
@@ -80,6 +82,18 @@ function* changePass(action) {
 	}
 }
 
+function* deleteAccount(action) {
+	try {
+		const { status, data } = yield call(deleteAccRequest, action.payload);
+		if (status === 200) {
+			yield put(setModalSuccess(data.message));
+		}
+	} catch (e) {
+		const { message } = e.response.data;
+		yield put(setModalError(message));
+	}
+}
+
 function* getUserInfo(action) {
 	try {
 		const { status, data } = yield call(getUserInfoRequest, action.payload);
@@ -95,6 +109,7 @@ export function* userWatcher() {
 	yield takeLatest(FORGOT_PASS_REQUEST, forgotPass);
 	yield takeLatest(LOGOUT_REQUEST, logout);
 	yield takeLatest(CHANGE_PASS_REQUEST, changePass);
+	yield takeLatest(DELETE_ACC_REQUEST, deleteAccount);
 	yield takeLatest(GET_USER_INFO_REQUEST, getUserInfo);
 }
 

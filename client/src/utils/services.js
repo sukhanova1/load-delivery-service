@@ -32,6 +32,12 @@ export const changePassRequest = async ({ token, data }) => {
 	return result;
 };
 
+export const deleteAccRequest = async ({ token }) => {
+	const headers = { Authorization: `Bearer ${token}` };
+	const result = await axios.delete(BASE_URL + '/users/me', { headers });
+	return result;
+};
+
 //trucks
 export const getTrucksRequest = async (token) => {
 	const headers = { Authorization: `Bearer ${token}` };
