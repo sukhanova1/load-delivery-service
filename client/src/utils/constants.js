@@ -71,20 +71,33 @@ export const SELECT_ID_EDIT_TRUCK = 'edit-truck-select';
 export const SPRINTER_TYPE = 'SPRINTER';
 export const SMALL_STRAIGHT_TYPE = 'SMALL STRAIGHT';
 export const LARGE_STRAIGHT_TYPE = 'LARGE STRAIGHT';
-export const SELECT_DEFAULT_VALUE = 'TRUCK TYPE';
+export const SELECT_TRUCK_DEFAULT_VALUE = 'TRUCK TYPE';
 export const SELECT_TRUCK_OPTIONS = [
 	SPRINTER_TYPE,
 	SMALL_STRAIGHT_TYPE,
 	LARGE_STRAIGHT_TYPE,
 ];
+export const SELECT_ID_LOAD_STATUS = 'load-status-select';
+export const LOAD_STATUS_NEW = 'NEW';
+export const LOAD_STATUS_ASSIGNED = 'ASSIGNED';
+export const LOAD_STATUS_SHIPPED = 'SHIPPED';
+export const SELECT_LOAD_DEFAULT_VALUE = 'SORT LOADS';
+export const SELECT_ALL_LOADS = 'ALL LOADS';
+export const SELECT_LOAD_OPTIONS = [
+	SELECT_ALL_LOADS,
+	LOAD_STATUS_NEW,
+	LOAD_STATUS_ASSIGNED,
+	LOAD_STATUS_SHIPPED,
+];
 //buttons
-export const BUTTON_TYPE_SUBMIT = 'submit';
 export const BUTTON_TYPE_BUTTON = 'button';
+export const BUTTON_TYPE_SUBMIT = 'submit';
+
 export const BUTTON_TEXT_LOGIN = 'Login';
 export const BUTTON_TEXT_SIGNUP = 'Sign up';
 export const BUTTON_TEXT_SEND = 'Send';
 export const BUTTON_TEXT_DELETE_ACC = 'Delete Account';
-export const BUTTON_TEXT_CHANGE_PASS = 'Change password';
+export const BUTTON_TEXT_CHANGE_PASS = 'Change Password';
 export const BUTTON_TEXT_LOGOUT = 'Logout';
 export const BUTTON_TEXT_ADD = 'Add';
 export const BUTTON_TEXT_ASSIGN = 'Assign';
@@ -112,7 +125,3 @@ export const SHIPPER_ROLE = 'SHIPPER';
 
 export const TRUCK_STATUS_IS = 'IS';
 export const TRUCK_STATUS_OL = 'OL';
-
-export const LOAD_STATUS_NEW = 'NEW';
-export const LOAD_STATUS_ASSIGNED = 'ASSIGNED';
-export const LOAD_STATUS_SHIPPED = 'SHIPPED';
