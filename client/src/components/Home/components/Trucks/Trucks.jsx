@@ -22,6 +22,7 @@ import {
 	SELECT_ID_ADD_TRUCK,
 	SPRINTER_TYPE,
 	SELECT_TRUCK_OPTIONS,
+	SELECT_TRUCK_DEFAULT_VALUE,
 } from '../../../../utils/constants';
 
 import './Trucks.css';
@@ -30,11 +31,14 @@ const Trucks = () => {
 	const [truckType, setTruckType] = useState(SPRINTER_TYPE);
 
 	const trucks = useSelector(selectTrucksArray);
-	const modalSucess = useSelector(selectModalSuccess);
+	const modalSuccess = useSelector(selectModalSuccess);
 	const modalError = useSelector(selectModalError);
 
 	const dispatch = useDispatch();
 
+	const handleSelectChange = (value) => {
+		setTruckType(value);
+	};
 	const handleAddTruck = (e) => {
 		e.preventDefault();
 		const payload = { type: truckType, token: localStorage.getItem('token') };
@@ -49,15 +53,18 @@ const Trucks = () => {
 	return (
 		<div className='trucks'>
 			<div className='trucks__header'>
-				{modalSucess && <Modal type={MODAL_TYPE_SUCCESS} text={modalSucess} />}
+				{modalSuccess && (
+					<Modal type={MODAL_TYPE_SUCCESS} text={modalSuccess} />
+				)}
 				{modalError && <Modal type={MODAL_TYPE_ERROR} text={modalError} />}
 				<form onSubmit={handleAddTruck} className='trucks__form-box'>
-					<p>Choose truck type:</p>
+					<p className='trucks__header-title'>Choose truck type:</p>
 					<div>
 						<Select
 							id={SELECT_ID_ADD_TRUCK}
 							options={SELECT_TRUCK_OPTIONS}
-							setTruckType={setTruckType}
+							handleSelectChange={handleSelectChange}
+							defaultValue={SELECT_TRUCK_DEFAULT_VALUE}
 						/>
 						<Button
 							className='trucks__form-btn'
@@ -67,7 +74,7 @@ const Trucks = () => {
 					</div>
 				</form>
 				<div className='trucks__header-box'>
-					<p>TRUCK DIMENTIONS</p>
+					<p className='trucks__header-title'>TRUCK DIMENSIONS</p>
 					<table className='trucks__header-table'>
 						<thead>
 							<tr>

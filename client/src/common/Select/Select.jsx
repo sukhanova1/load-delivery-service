@@ -1,11 +1,9 @@
 import React from 'react';
 
-import { SELECT_DEFAULT_VALUE } from '../../utils/constants';
-
 import './Select.css';
 
-const Select = ({ id, options, setTruckType }) => {
-	const handleChange = (e) => setTruckType(e.target.value);
+const Select = ({ id, options, handleSelectChange, defaultValue }) => {
+	const handleChange = (e) => handleSelectChange(e.target.value);
 
 	return (
 		<>
@@ -15,10 +13,10 @@ const Select = ({ id, options, setTruckType }) => {
 				name={id}
 				className='select'
 				onChange={handleChange}
-				defaultValue={SELECT_DEFAULT_VALUE}
+				defaultValue={defaultValue}
 			>
-				<option value={SELECT_DEFAULT_VALUE} disabled>
-					{SELECT_DEFAULT_VALUE}
+				<option value={defaultValue} disabled>
+					{defaultValue}
 				</option>
 				{options.map((value) => (
 					<option value={value} key={value}>
