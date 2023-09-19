@@ -2,8 +2,8 @@ import React from 'react';
 
 import './Input.css';
 
-const Input = (props) => {
-	return props.type === 'radio' ? (
+const Input = (props) =>
+	props.type === 'radio' ? (
 		<label htmlFor={props.id} className='input_radio'>
 			<input id={props.id} {...props} />
 			{props.id.toUpperCase()}{' '}
@@ -18,6 +18,5 @@ const Input = (props) => {
 			/>
 		</>
 	);
-};
 
 export default Input;

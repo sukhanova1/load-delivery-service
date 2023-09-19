@@ -1,5 +1,5 @@
 .modal{
-  position: absolute;
+  position: fixed;
   top: auto;
   right: 0rem;
   width: 22rem;

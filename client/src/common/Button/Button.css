@@ -1,7 +1,7 @@
 .button{
   border-radius: 40px;
   box-shadow: 1px 10px 16px var(--box-shadow);
-  font-family: var(--font-secondaty);
+  font-family: var(--font-secondary);
   font-weight: 700;
   font-size: 0.8rem;
   letter-spacing: 1.5px;
