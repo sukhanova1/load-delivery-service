@@ -4,12 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import SideBar from './components/SideBar/SideBar';
 import Header from './components/Header/Header';
-import {
-	getUserInfoRequest,
-	logoutRequest,
-} from '../../store/user/actionCreator';
-import { selectUserToken, selectUserisAuth } from '../../store/user/selectors';
-import { LOGIN_ROUTE } from '../../utils/constants';
+import { getUserInfoRequest, logoutRequest } from 'store/user/actionCreator';
+import { selectUserRole, selectUserisAuth } from 'store/user/selectors';
+import constants from 'utils/constants';
 
 import './Home.css';
 
@@ -17,6 +14,7 @@ const Home = () => {
 	const [toggle, setToggle] = useState(true);
 
 	const isAuth = useSelector(selectUserisAuth);
+	const userRole = useSelector(selectUserRole);
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -27,7 +25,7 @@ const Home = () => {
 
 	useEffect(() => {
 		if (!isAuth) {
-			navigate(LOGIN_ROUTE);
+			navigate(constants.LOGIN_ROUTE);
 		}
 	}, [isAuth]);
 
@@ -39,6 +37,7 @@ const Home = () => {
 		<>
 			<Header toggle={toggle} handleLogout={handleLogout} />
 			<SideBar
+				role={userRole}
 				toggle={toggle}
 				toggleMenu={toggleMenu}
 				handleLogout={handleLogout}

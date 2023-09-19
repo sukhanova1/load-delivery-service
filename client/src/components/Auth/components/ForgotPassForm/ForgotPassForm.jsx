@@ -7,13 +7,7 @@ import Button from '../../../../common/Button/Button';
 import Error from '../../../../common/Error/Error';
 import useInput from '../../../../hooks/useInput';
 import { forgotPass } from '../../../../store/user/actionCreator';
-import {
-	BUTTON_TEXT_SEND,
-	BUTTON_TYPE_SUBMIT,
-	INPUT_EMAIL,
-	INPUT_EMAIL_PLACEHOLDER,
-	LOGIN_ROUTE,
-} from '../../../../utils/constants';
+import constants from '../../../../utils/constants';
 
 import '../form.css';
 
@@ -32,9 +26,9 @@ const ForgotPassForm = () => {
 		<form className='form__content' onSubmit={handleSubmit}>
 			<p>New password will be sent to your email address</p>
 			<Input
-				type={INPUT_EMAIL}
-				name={INPUT_EMAIL}
-				placeholder={INPUT_EMAIL_PLACEHOLDER}
+				type={constants.INPUT_EMAIL}
+				name={constants.INPUT_EMAIL}
+				placeholder={constants.INPUT_EMAIL_PLACEHOLDER}
 				value={email.value}
 				onChange={email.onChange}
 				onBlur={email.onBlur}
@@ -45,13 +39,13 @@ const ForgotPassForm = () => {
 			)}
 			<Button
 				disabled={!email.isValidField}
-				type={BUTTON_TYPE_SUBMIT}
-				text={BUTTON_TEXT_SEND}
+				type={constants.BUTTON_TYPE_SUBMIT}
+				text={constants.BUTTON_TEXT_SEND}
 				className='form__btn'
 			/>
 			<p>
 				Click here to{' '}
-				<Link to={LOGIN_ROUTE} className='form__link'>
+				<Link to={constants.LOGIN_ROUTE} className='form__link'>
 					login
 				</Link>
 			</p>

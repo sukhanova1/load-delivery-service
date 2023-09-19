@@ -2,42 +2,15 @@ import React, { useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Input from '../../../../common/Input/Input';
-import Button from '../../../../common/Button/Button';
-import Error from '../../../../common/Error/Error';
-import Modal from '../../../../common/Modal/Modal';
-import useInput from '../../../../hooks/useInput';
-import { selectLoadItem } from '../../../../store/loads/selectors';
-import {
-	addLoadRequest,
-	editLoadRequest,
-} from '../../../../store/loads/actionCreator';
-import {
-	selectModalError,
-	selectModalSuccess,
-} from '../../../../store/app/selectors';
-import {
-	INPUT_TEXT,
-	BUTTON_TYPE_SUBMIT,
-	INPUT_NUMBER,
-	BUTTON_TEXT_ADD,
-	INPUT_NAME,
-	INPUT_LOAD_NAME_PLACEHOLDER,
-	INPUT_PICKUP_ADDR,
-	INPUT_PICKUP_ADDR_PLACEHOLDER,
-	INPUT_DEL_ADDR,
-	INPUT_DEL_ADDR_PLACEHOLDER,
-	INPUT_PAYLOAD,
-	INPUT_LENGTH,
-	INPUT_WIDTH,
-	INPUT_HEIGHT,
-	BACK_ICON_SRC,
-	BACK_ICON_ALT_VALUE,
-	LOADS_ROUTE,
-	MODAL_TYPE_SUCCESS,
-	MODAL_TYPE_ERROR,
-	BUTTON_TEXT_UPDATE,
-} from '../../../../utils/constants';
+import Input from 'common/Input/Input';
+import Button from 'common/Button/Button';
+import Error from 'common/Error/Error';
+import Modal from 'common/Modal/Modal';
+import useInput from 'hooks/useInput';
+import { selectLoadItem } from 'store/loads/selectors';
+import { addLoadRequest, editLoadRequest } from 'store/loads/actionCreator';
+import { selectModalError, selectModalSuccess } from 'store/app/selectors';
+import constants from 'utils/constants';
 
 import './LoadsForm.css';
 
@@ -111,7 +84,7 @@ const LoadsForm = () => {
 
 	useEffect(() => {
 		if (serverSuccess) {
-			navigate(LOADS_ROUTE);
+			navigate(constants.LOADS_ROUTE);
 		}
 	}, [serverSuccess]);
 
@@ -123,21 +96,27 @@ const LoadsForm = () => {
 
 	return (
 		<form className='loads-form' onSubmit={handleSubmitForm}>
-			<Link to={LOADS_ROUTE} className='loads-form__link'>
-				<img src={BACK_ICON_SRC} alt={BACK_ICON_ALT_VALUE} width='20px' /> Back
-				to loads
+			<Link to={constants.LOADS_ROUTE} className='loads-form__link'>
+				<img
+					src={constants.BACK_ICON_SRC}
+					alt={constants.BACK_ICON_ALT_VALUE}
+					width='20px'
+				/>{' '}
+				Back to loads
 			</Link>
 			{serverSuccess && (
-				<Modal type={MODAL_TYPE_SUCCESS} text={serverSuccess} />
+				<Modal type={constants.MODAL_TYPE_SUCCESS} text={serverSuccess} />
 			)}
-			{serverError && <Modal type={MODAL_TYPE_ERROR} text={serverError} />}
+			{serverError && (
+				<Modal type={constants.MODAL_TYPE_ERROR} text={serverError} />
+			)}
 			<div className='loads-form__box'>
 				<p className='loads-form__label'>Load Name</p>
 				<Input
 					className='loads-form__input'
-					type={INPUT_TEXT}
-					name={INPUT_NAME}
-					placeholder={INPUT_LOAD_NAME_PLACEHOLDER}
+					type={constants.INPUT_TEXT}
+					name={constants.INPUT_NAME}
+					placeholder={constants.INPUT_LOAD_NAME_PLACEHOLDER}
 					value={name.value}
 					onChange={name.onChange}
 					onBlur={name.onBlur}
@@ -154,9 +133,9 @@ const LoadsForm = () => {
 				<p className='loads-form__label'>Pick-up Address</p>
 				<Input
 					className='loads-form__input'
-					type={INPUT_TEXT}
-					name={INPUT_PICKUP_ADDR}
-					placeholder={INPUT_PICKUP_ADDR_PLACEHOLDER}
+					type={constants.INPUT_TEXT}
+					name={constants.INPUT_PICKUP_ADDR}
+					placeholder={constants.INPUT_PICKUP_ADDR_PLACEHOLDER}
 					value={pickup_addr.value}
 					onChange={pickup_addr.onChange}
 					onBlur={pickup_addr.onBlur}
@@ -169,9 +148,9 @@ const LoadsForm = () => {
 				<p className='loads-form__label'>Delivery Address</p>
 				<Input
 					className='loads-form__input'
-					type={INPUT_TEXT}
-					name={INPUT_DEL_ADDR}
-					placeholder={INPUT_DEL_ADDR_PLACEHOLDER}
+					type={constants.INPUT_TEXT}
+					name={constants.INPUT_DEL_ADDR}
+					placeholder={constants.INPUT_DEL_ADDR_PLACEHOLDER}
 					value={delivery_addr.value}
 					onChange={delivery_addr.onChange}
 					onBlur={delivery_addr.onBlur}
@@ -186,8 +165,8 @@ const LoadsForm = () => {
 					<p className='loads-form__label'>Payload</p>
 					<Input
 						className='loads-form__input'
-						type={INPUT_NUMBER}
-						name={INPUT_PAYLOAD}
+						type={constants.INPUT_NUMBER}
+						name={constants.INPUT_PAYLOAD}
 						value={payload.value}
 						onChange={payload.onChange}
 						onBlur={payload.onBlur}
@@ -200,8 +179,8 @@ const LoadsForm = () => {
 					<p className='loads-form__label'>Length</p>
 					<Input
 						className='loads-form__input'
-						type={INPUT_NUMBER}
-						name={INPUT_LENGTH}
+						type={constants.INPUT_NUMBER}
+						name={constants.INPUT_LENGTH}
 						value={length.value}
 						onChange={length.onChange}
 						onBlur={length.onBlur}
@@ -214,8 +193,8 @@ const LoadsForm = () => {
 					<p className='loads-form__label'>Width</p>
 					<Input
 						className='loads-form__input'
-						type={INPUT_NUMBER}
-						name={INPUT_WIDTH}
+						type={constants.INPUT_NUMBER}
+						name={constants.INPUT_WIDTH}
 						value={width.value}
 						onChange={width.onChange}
 						onBlur={width.onBlur}
@@ -228,8 +207,8 @@ const LoadsForm = () => {
 					<p className='loads-form__label'>Height</p>
 					<Input
 						className='loads-form__input'
-						type={INPUT_NUMBER}
-						name={INPUT_HEIGHT}
+						type={constants.INPUT_NUMBER}
+						name={constants.INPUT_HEIGHT}
 						value={height.value}
 						onChange={height.onChange}
 						onBlur={height.onBlur}
@@ -249,8 +228,10 @@ const LoadsForm = () => {
 					!length.isValidField ||
 					!height.isValidField
 				}
-				type={BUTTON_TYPE_SUBMIT}
-				text={loadItem ? BUTTON_TEXT_UPDATE : BUTTON_TEXT_ADD}
+				type={constants.BUTTON_TYPE_SUBMIT}
+				text={
+					loadItem ? constants.BUTTON_TEXT_UPDATE : constants.BUTTON_TEXT_ADD
+				}
 				className='loads-form__btn'
 			/>
 		</form>

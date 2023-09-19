@@ -1,39 +1,17 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Button from '../../../../../common/Button/Button';
-import Select from '../../../../../common/Select/Select';
-import { transformDate } from '../../../../../helpers/transformDate';
-import { selectTrucksArray } from '../../../../../store/trucks/selectors';
-import { setModalError } from '../../../../../store/app/actionCreator';
+import Button from 'common/Button/Button';
+import Select from 'common/Select/Select';
+import { transformDate } from 'helpers/transformDate';
+import { selectTrucksArray } from 'store/trucks/selectors';
+import { setModalError } from 'store/app/actionCreator';
 import {
 	assignTruckRequest,
 	deleteTruckRequest,
 	editTruckRequest,
-} from '../../../../../store/trucks/actionCreator';
-import {
-	BUTTON_TYPE_BUTTON,
-	BUTTON_TYPE_SUBMIT,
-	BUTTON_TEXT_ASSIGN,
-	SELECT_ID_EDIT_TRUCK,
-	BUTTON_TEXT_OK,
-	SELECT_TRUCK_OPTIONS,
-	SPRINTER_TYPE,
-	TRUCKS_ALT_VALUE,
-	SMALL_STRAIGHT_SRC,
-	SPRINTER_SRC,
-	SMALL_STRAIGHT_TYPE,
-	LARGE_STRAIGHT_TYPE,
-	LARGE_STRAIGHT_SRC,
-	TRUCK_STATUS_IS,
-	TRUCK_STATUS_OL,
-	EDIT_ICON_SRC,
-	EDIT_ICON_ALT_VALUE,
-	DELETE_ICON_SRC,
-	DELETE_ICON_ALT_VALUE,
-	DOUBLE_TICK_SRC,
-	DOUBLE_TICK_ALT_VALUE,
-} from '../../../../../utils/constants';
+} from 'store/trucks/actionCreator';
+import constants from 'utils/constants';
 
 import './TruckItem.css';
 
@@ -46,7 +24,7 @@ const TruckItem = ({ truck, truckType, setTruckType }) => {
 
 	const startEditTruck = () => setIsEditing(!isEditing);
 
-	const dispalyErrorModal = (mess) => dispatch(setModalError(mess));
+	const displayErrorModal = (mess) => dispatch(setModalError(mess));
 
 	const handleEditTruck = (e) => {
 		e.preventDefault();
@@ -58,7 +36,7 @@ const TruckItem = ({ truck, truckType, setTruckType }) => {
 		if (!truck.assigned_to) {
 			dispatch(editTruckRequest(payload));
 		} else {
-			dispalyErrorModal('You can not edit assigned truck info');
+			displayErrorModal('You can not edit assigned truck info');
 		}
 		setIsEditing(!isEditing);
 	};
@@ -71,7 +49,7 @@ const TruckItem = ({ truck, truckType, setTruckType }) => {
 		if (!truck.assigned_to) {
 			dispatch(deleteTruckRequest(payload));
 		} else {
-			dispalyErrorModal('You can not delete assigned truck');
+			displayErrorModal('You can not delete assigned truck');
 		}
 	};
 
@@ -84,7 +62,7 @@ const TruckItem = ({ truck, truckType, setTruckType }) => {
 		if (isAssigned) {
 			dispatch(assignTruckRequest(payload));
 		} else {
-			return dispalyErrorModal('You can assign only one truck');
+			return displayErrorModal('You can assign only one truck');
 		}
 	};
 
@@ -92,14 +70,26 @@ const TruckItem = ({ truck, truckType, setTruckType }) => {
 		<tr className='trucks__table-row'>
 			<td className='trucks__table-data'>
 				<div className='trucks__table-content'>
-					{truck.type === SPRINTER_TYPE && (
-						<img src={SPRINTER_SRC} alt={TRUCKS_ALT_VALUE} width='45px' />
+					{truck.type === constants.SPRINTER_TYPE && (
+						<img
+							src={constants.SPRINTER_SRC}
+							alt={constants.TRUCKS_ALT_VALUE}
+							width='45px'
+						/>
 					)}
-					{truck.type === SMALL_STRAIGHT_TYPE && (
-						<img src={SMALL_STRAIGHT_SRC} alt={TRUCKS_ALT_VALUE} width='55px' />
+					{truck.type === constants.SMALL_STRAIGHT_TYPE && (
+						<img
+							src={constants.SMALL_STRAIGHT_SRC}
+							alt={constants.TRUCKS_ALT_VALUE}
+							width='55px'
+						/>
 					)}
-					{truck.type === LARGE_STRAIGHT_TYPE && (
-						<img src={LARGE_STRAIGHT_SRC} alt={TRUCKS_ALT_VALUE} width='60px' />
+					{truck.type === constants.LARGE_STRAIGHT_TYPE && (
+						<img
+							src={constants.LARGE_STRAIGHT_SRC}
+							alt={constants.TRUCKS_ALT_VALUE}
+							width='60px'
+						/>
 					)}
 					<div>
 						{truck.type}
@@ -109,14 +99,14 @@ const TruckItem = ({ truck, truckType, setTruckType }) => {
 				{isEditing && (
 					<form onSubmit={handleEditTruck}>
 						<Select
-							id={SELECT_ID_EDIT_TRUCK}
-							options={SELECT_TRUCK_OPTIONS}
+							id={constants.SELECT_ID_EDIT_TRUCK}
+							options={constants.SELECT_TRUCK_OPTIONS}
 							setTruckType={setTruckType}
 						/>
 						<Button
 							className='trucks__table-btn trucks__btn-ok'
-							type={BUTTON_TYPE_SUBMIT}
-							text={BUTTON_TEXT_OK}
+							type={constants.BUTTON_TYPE_SUBMIT}
+							text={constants.BUTTON_TEXT_OK}
 						/>
 					</form>
 				)}
@@ -125,15 +115,15 @@ const TruckItem = ({ truck, truckType, setTruckType }) => {
 				{transformDate(truck.created_date)}
 			</td>
 			<td className='trucks__table-data'>
-				{truck.status === TRUCK_STATUS_IS && 'In Service'}
-				{truck.status === TRUCK_STATUS_OL && 'On Load'}
+				{truck.status === constants.TRUCK_STATUS_IS && 'In Service'}
+				{truck.status === constants.TRUCK_STATUS_OL && 'On Load'}
 			</td>
 			<td className='trucks__table-data'>
 				{truck.assigned_to ? (
 					<div className='trucks__table-content'>
 						<img
-							src={DOUBLE_TICK_SRC}
-							alt={DOUBLE_TICK_ALT_VALUE}
+							src={constants.DOUBLE_TICK_SRC}
+							alt={constants.DOUBLE_TICK_ALT_VALUE}
 							width='30px'
 						/>
 						{truck.assigned_to}
@@ -144,19 +134,23 @@ const TruckItem = ({ truck, truckType, setTruckType }) => {
 				<div className='trucks__table-btns'>
 					<Button
 						className='trucks__table-btn trucks__btn-edit'
-						type={BUTTON_TYPE_BUTTON}
+						type={constants.BUTTON_TYPE_BUTTON}
 						text={
-							<img src={EDIT_ICON_SRC} alt={EDIT_ICON_ALT_VALUE} width='25px' />
+							<img
+								src={constants.EDIT_ICON_SRC}
+								alt={constants.EDIT_ICON_ALT_VALUE}
+								width='25px'
+							/>
 						}
 						onClick={startEditTruck}
 					/>
 					<Button
 						className='trucks__table-btn trucks__btn-delete'
-						type={BUTTON_TYPE_BUTTON}
+						type={constants.BUTTON_TYPE_BUTTON}
 						text={
 							<img
-								src={DELETE_ICON_SRC}
-								alt={DELETE_ICON_ALT_VALUE}
+								src={constants.DELETE_ICON_SRC}
+								alt={constants.DELETE_ICON_ALT_VALUE}
 								width='25px'
 							/>
 						}
@@ -164,8 +158,8 @@ const TruckItem = ({ truck, truckType, setTruckType }) => {
 					/>
 					<Button
 						className='trucks__table-btn trucks__btn-assign'
-						type={BUTTON_TYPE_BUTTON}
-						text={BUTTON_TEXT_ASSIGN}
+						type={constants.BUTTON_TYPE_BUTTON}
+						text={constants.BUTTON_TEXT_ASSIGN}
 						onClick={handleAssignTruck}
 					/>
 				</div>

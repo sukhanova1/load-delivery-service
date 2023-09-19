@@ -3,38 +3,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import LoadItem from '../Loads/components/LoadItem';
-import Button from '../../../../common/Button/Button';
-import Modal from '../../../../common/Modal/Modal';
-import Select from '../../../../common/Select/Select';
+import Button from 'common/Button/Button';
+import Modal from 'common/Modal/Modal';
+import Select from 'common/Select/Select';
 import {
 	getActiveLoadsRequest,
 	getLoadsRequest,
-} from '../../../../store/loads/actionCreator';
+} from 'store/loads/actionCreator';
 import {
 	selectActiveLoads,
 	selectLoads,
-	selectShipedLoads,
-} from '../../../../store/loads/selectors';
-import { selectUserRole } from '../../../../store/user/selectors';
-import {
-	selectModalError,
-	selectModalSuccess,
-} from '../../../../store/app/selectors';
-import {
-	BUTTON_TEXT_ADD_LOAD,
-	BUTTON_TYPE_BUTTON,
-	DRIVER_ROLE,
-	MODAL_TYPE_ERROR,
-	MODAL_TYPE_SUCCESS,
-	SELECT_ID_LOAD_STATUS,
-	SELECT_LOAD_DEFAULT_VALUE,
-	SELECT_LOAD_OPTIONS,
-	SHIPPER_ROLE,
-	SELECT_ALL_LOADS,
-	LOAD_STATUS_NEW,
-	LOAD_STATUS_ASSIGNED,
-	LOAD_STATUS_SHIPPED,
-} from '../../../../utils/constants';
+	selectShippedLoads,
+} from 'store/loads/selectors';
+import { selectUserRole } from 'store/user/selectors';
+import { selectModalError, selectModalSuccess } from 'store/app/selectors';
+import constants from 'utils/constants';
 
 import './Loads.css';
 
@@ -42,7 +25,7 @@ const Loads = () => {
 	const userRole = useSelector(selectUserRole);
 	const loads = useSelector(selectLoads);
 	const activeLoads = useSelector(selectActiveLoads);
-	const shippedLoads = useSelector(selectShipedLoads);
+	const shippedLoads = useSelector(selectShippedLoads);
 	const serverError = useSelector(selectModalError);
 	const serverSuccess = useSelector(selectModalSuccess);
 
@@ -54,26 +37,26 @@ const Loads = () => {
 
 	const handleSelectChange = (value) => {
 		switch (value) {
-			case SELECT_ALL_LOADS:
+			case constants.SELECT_ALL_LOADS:
 				setFilteredLoads(loads);
 				break;
-			case LOAD_STATUS_NEW:
+			case constants.LOAD_STATUS_NEW:
 				const newLoads = loads.filter(
-					(load) => load.status === LOAD_STATUS_NEW
+					(load) => load.status === constants.LOAD_STATUS_NEW
 				);
 				setFilteredLoads(newLoads);
 				setLoadType('new');
 				break;
-			case LOAD_STATUS_ASSIGNED:
+			case constants.LOAD_STATUS_ASSIGNED:
 				const assignedLoads = loads.filter(
-					(load) => load.status === LOAD_STATUS_ASSIGNED
+					(load) => load.status === constants.LOAD_STATUS_ASSIGNED
 				);
 				setFilteredLoads(assignedLoads);
 				setLoadType('assigned');
 				break;
-			case LOAD_STATUS_SHIPPED:
+			case constants.LOAD_STATUS_SHIPPED:
 				const shippedLoads = loads.filter(
-					(load) => load.status === LOAD_STATUS_SHIPPED
+					(load) => load.status === constants.LOAD_STATUS_SHIPPED
 				);
 				setFilteredLoads(shippedLoads);
 				setLoadType('shipped');
@@ -87,10 +70,10 @@ const Loads = () => {
 	useEffect(() => setFilteredLoads(loads), [loads]);
 
 	useEffect(() => {
-		if (userRole === DRIVER_ROLE) {
+		if (userRole === constants.DRIVER_ROLE) {
 			dispatch(getActiveLoadsRequest(localStorage.getItem('token')));
 		}
-		if (userRole === SHIPPER_ROLE) {
+		if (userRole === constants.SHIPPER_ROLE) {
 			dispatch(getLoadsRequest(localStorage.getItem('token')));
 		}
 	}, [dispatch]);
@@ -98,23 +81,25 @@ const Loads = () => {
 	return (
 		<div className='loads'>
 			{serverSuccess && (
-				<Modal type={MODAL_TYPE_SUCCESS} text={serverSuccess} />
+				<Modal type={constants.MODAL_TYPE_SUCCESS} text={serverSuccess} />
 			)}
-			{serverError && <Modal type={MODAL_TYPE_ERROR} text={serverError} />}
-			{userRole === SHIPPER_ROLE && (
+			{serverError && (
+				<Modal type={constants.MODAL_TYPE_ERROR} text={serverError} />
+			)}
+			{userRole === constants.SHIPPER_ROLE && (
 				<div className='loads__container'>
 					<div className='loads__header'>
 						<Button
 							className='loads__btn'
-							type={BUTTON_TYPE_BUTTON}
-							text={BUTTON_TEXT_ADD_LOAD}
+							type={constants.BUTTON_TYPE_BUTTON}
+							text={constants.BUTTON_TEXT_ADD_LOAD}
 							onClick={handleAddNewLoad}
 						/>
 						<Select
-							id={SELECT_ID_LOAD_STATUS}
-							options={SELECT_LOAD_OPTIONS}
+							id={constants.SELECT_ID_LOAD_STATUS}
+							options={constants.SELECT_LOAD_OPTIONS}
 							handleSelectChange={handleSelectChange}
-							defaultValue={SELECT_LOAD_DEFAULT_VALUE}
+							defaultValue={constants.SELECT_LOAD_DEFAULT_VALUE}
 						/>
 					</div>
 
@@ -129,7 +114,7 @@ const Loads = () => {
 						))}
 				</div>
 			)}
-			{userRole === DRIVER_ROLE && (
+			{userRole === constants.DRIVER_ROLE && (
 				<>
 					<div className='loads__container'>
 						<h2 className='loads__title'>Active</h2>

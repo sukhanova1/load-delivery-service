@@ -1,51 +1,31 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
-import Logo from '../../../../common/Logo/Logo';
-import {
-	DRIVER_ROLE,
-	LOADS_ROUTE,
-	LOAD_ALT_VALUE,
-	LOAD_SRC,
-	LOGOUT_ALT_VALUE,
-	LOGOUT_SRC,
-	MENU_BURGER_ALT_VALUE,
-	MENU_BURGER_SRC,
-	PROFILE_ALT_VALUE,
-	PROFILE_ROUTE,
-	PROFILE_SRC,
-	TITLE_LOADS,
-	TITLE_PROFILE,
-	TITLE_TRUCKS,
-	TRUCKS_ALT_VALUE,
-	TRUCKS_ROUTE,
-	TRUCKS_SRC,
-	USER_PHOTO_ALT_VALUE,
-	USER_PHOTO_SRC,
-} from '../../../../utils/constants';
+import Logo from 'common/Logo/Logo';
+import constants from 'utils/constants';
 
 import './SideBar.css';
 
 const sideBarItems = [
 	{
-		name: TITLE_PROFILE,
-		path: PROFILE_ROUTE,
-		imgSrc: PROFILE_SRC,
-		imgAltText: PROFILE_ALT_VALUE,
+		name: constants.TITLE_PROFILE,
+		path: constants.PROFILE_ROUTE,
+		imgSrc: constants.PROFILE_SRC,
+		imgAltText: constants.PROFILE_ALT_VALUE,
 		role: 'both',
 	},
 	{
-		name: TITLE_TRUCKS,
-		path: TRUCKS_ROUTE,
-		imgSrc: TRUCKS_SRC,
-		imgAltText: TRUCKS_ALT_VALUE,
-		role: DRIVER_ROLE,
+		name: constants.TITLE_TRUCKS,
+		path: constants.TRUCKS_ROUTE,
+		imgSrc: constants.TRUCKS_SRC,
+		imgAltText: constants.TRUCKS_ALT_VALUE,
+		role: constants.DRIVER_ROLE,
 	},
 	{
-		name: TITLE_LOADS,
-		path: LOADS_ROUTE,
-		imgSrc: LOAD_SRC,
-		imgAltText: LOAD_ALT_VALUE,
+		name: constants.TITLE_LOADS,
+		path: constants.LOADS_ROUTE,
+		imgSrc: constants.LOAD_SRC,
+		imgAltText: constants.LOAD_ALT_VALUE,
 		role: 'both',
 	},
 ];
@@ -55,9 +35,9 @@ const SideBar = ({ role, toggle, toggleMenu, handleLogout }) => {
 		<aside className={toggle ? 'sidebar' : 'sidebar sidebar-small'}>
 			<div className='sidebar__header'>
 				<img
-					src={MENU_BURGER_SRC}
+					src={constants.MENU_BURGER_SRC}
 					className='sidebar__icon'
-					alt={MENU_BURGER_ALT_VALUE}
+					alt={constants.MENU_BURGER_ALT_VALUE}
 					width='40px'
 					onClick={toggleMenu}
 				/>
@@ -65,11 +45,11 @@ const SideBar = ({ role, toggle, toggleMenu, handleLogout }) => {
 			</div>
 			<nav className='nav'>
 				<div className='nav__user'>
-					<Link to={PROFILE_ROUTE} className='nav__link user-photo'>
+					<Link to={constants.PROFILE_ROUTE} className='nav__link user-photo'>
 						<img
-							src={USER_PHOTO_SRC}
-							alt={USER_PHOTO_ALT_VALUE}
-							title={TITLE_PROFILE}
+							src={constants.USER_PHOTO_SRC}
+							alt={constants.USER_PHOTO_ALT_VALUE}
+							title={constants.TITLE_PROFILE}
 						/>
 					</Link>
 				</div>
@@ -95,9 +75,9 @@ const SideBar = ({ role, toggle, toggleMenu, handleLogout }) => {
 				<div className='nav__item' onClick={handleLogout}>
 					<div className='nav__link'>
 						<img
-							src={LOGOUT_SRC}
+							src={constants.LOGOUT_SRC}
 							className='nav__icon'
-							alt={LOGOUT_ALT_VALUE}
+							alt={constants.LOGOUT_ALT_VALUE}
 							width='35px'
 						/>
 						Logout

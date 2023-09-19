@@ -1,28 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Button from '../../../../common/Button/Button';
-import Modal from '../../../../common/Modal/Modal';
-import { logoutRequest } from '../../../../store/user/actionCreator';
-import { selectUserInfo } from '../../../../store/user/selectors';
-import { transformDate } from '../../../../helpers/transformDate';
-import {
-	selectModalError,
-	selectModalSuccess,
-} from '../../../../store/app/selectors';
-import {
-	BUTTON_TEXT_LOGOUT,
-	BUTTON_TEXT_CHANGE_PASS,
-	BUTTON_TEXT_DELETE_ACC,
-	BUTTON_TYPE_BUTTON,
-	USER_PHOTO_ALT_VALUE,
-	USER_PHOTO_SRC,
-	MODAL_TYPE_SUCCESS,
-	MODAL_TYPE_ERROR,
-} from '../../../../utils/constants';
+import Button from 'common/Button/Button';
+import Modal from 'common/Modal/Modal';
+import ProfileModal from './components/ProfileModal';
+import { logoutRequest } from 'store/user/actionCreator';
+import { selectUserInfo } from 'store/user/selectors';
+import { transformDate } from 'helpers/transformDate';
+import { selectModalError, selectModalSuccess } from 'store/app/selectors';
+import constants from 'utils/constants';
 
 import './ProfileInfo.css';
-import ProfileModal from './components/ProfileModal';
 
 const ProfileInfo = () => {
 	const [modal, setModal] = useState(false);
@@ -54,7 +42,7 @@ const ProfileInfo = () => {
 	const handleLogout = () => dispatch(logoutRequest());
 
 	useEffect(() => {
-		if (serverSuccess.includes('deleted successfully')) {
+		if (serverSuccess && serverSuccess.includes('deleted successfully')) {
 			handleLogout();
 		}
 	}, [serverSuccess]);
@@ -62,13 +50,15 @@ const ProfileInfo = () => {
 	return (
 		<div className='profile'>
 			{serverSuccess && (
-				<Modal type={MODAL_TYPE_SUCCESS} text={serverSuccess} />
+				<Modal type={constants.MODAL_TYPE_SUCCESS} text={serverSuccess} />
 			)}
-			{serverError && <Modal type={MODAL_TYPE_ERROR} text={serverError} />}
+			{serverError && (
+				<Modal type={constants.MODAL_TYPE_ERROR} text={serverError} />
+			)}
 			<img
-				src={USER_PHOTO_SRC}
+				src={constants.USER_PHOTO_SRC}
 				className='user-photo'
-				alt={USER_PHOTO_ALT_VALUE}
+				alt={constants.USER_PHOTO_ALT_VALUE}
 				width='200px'
 			/>
 			<div className='profile__content'>
@@ -81,20 +71,20 @@ const ProfileInfo = () => {
 			</div>
 			<Button
 				className='profile__btn'
-				type={BUTTON_TYPE_BUTTON}
-				text={BUTTON_TEXT_CHANGE_PASS}
+				type={constants.BUTTON_TYPE_BUTTON}
+				text={constants.BUTTON_TEXT_CHANGE_PASS}
 				onClick={changePassword}
 			/>
 			<Button
 				className='profile__btn profile__btn-delete'
-				type={BUTTON_TYPE_BUTTON}
-				text={BUTTON_TEXT_DELETE_ACC}
+				type={constants.BUTTON_TYPE_BUTTON}
+				text={constants.BUTTON_TEXT_DELETE_ACC}
 				onClick={deleteAccount}
 			/>
 			<Button
 				className='profile__btn profile__btn-logout'
-				type={BUTTON_TYPE_BUTTON}
-				text={BUTTON_TEXT_LOGOUT}
+				type={constants.BUTTON_TYPE_BUTTON}
+				text={constants.BUTTON_TEXT_LOGOUT}
 				onClick={handleLogout}
 			/>
 			{modal && (

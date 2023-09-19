@@ -1,27 +1,12 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import Input from '../../../../../common/Input/Input';
-import Error from '../../../../../common/Error/Error';
-import Button from '../../../../../common/Button/Button';
-import useInput from '../../../../../hooks/useInput';
-import {
-	changePassRequest,
-	deleteAccRequest,
-} from '../../../../../store/user/actionCreator';
-import {
-	INPUT_PASS,
-	INPUT_PASS_PLACEHOLDER,
-	INPUT_NEW_PASS,
-	INPUT_NEW_PASS_PLACEHOLDER,
-	BUTTON_TYPE_SUBMIT,
-	BUTTON_TEXT_CHANGE,
-	CLOSE_ICON_SRC,
-	CLOSE_ICON_ALT_VALUE,
-	BUTTON_TYPE_BUTTON,
-	BUTTON_TEXT_CANCEL,
-	BUTTON_TEXT_DELETE,
-} from '../../../../../utils/constants';
+import Input from 'common/Input/Input';
+import Error from 'common/Error/Error';
+import Button from 'common/Button/Button';
+import useInput from 'hooks/useInput';
+import { changePassRequest, deleteAccRequest } from 'store/user/actionCreator';
+import constants from 'utils/constants';
 
 import './ProfileModal.css';
 
@@ -54,17 +39,17 @@ const ProfileModal = ({
 		<div className='profile-modal'>
 			<div className='profile-modal__box'>
 				<img
-					src={CLOSE_ICON_SRC}
-					alt={CLOSE_ICON_ALT_VALUE}
+					src={constants.CLOSE_ICON_SRC}
+					alt={constants.CLOSE_ICON_ALT_VALUE}
 					className='profile-modal__closemark'
 					onClick={handleCloseModal}
 				/>
 				{changePassModal && (
 					<form className='profile-modal__form' onSubmit={handleChangePass}>
 						<Input
-							type={INPUT_PASS}
-							name={INPUT_PASS}
-							placeholder={INPUT_PASS_PLACEHOLDER}
+							type={constants.INPUT_PASS}
+							name={constants.INPUT_PASS}
+							placeholder={constants.INPUT_PASS_PLACEHOLDER}
 							value={oldPassword.value}
 							onChange={oldPassword.onChange}
 							onBlur={oldPassword.onBlur}
@@ -76,9 +61,9 @@ const ProfileModal = ({
 							oldPassword.value &&
 							oldPassword.isPassword && <Error text={oldPassword.isPassword} />}
 						<Input
-							type={INPUT_PASS}
-							name={INPUT_NEW_PASS}
-							placeholder={INPUT_NEW_PASS_PLACEHOLDER}
+							type={constants.INPUT_PASS}
+							name={constants.INPUT_NEW_PASS}
+							placeholder={constants.INPUT_NEW_PASS_PLACEHOLDER}
 							value={newPassword.value}
 							onChange={newPassword.onChange}
 							onBlur={newPassword.onBlur}
@@ -91,8 +76,8 @@ const ProfileModal = ({
 							newPassword.isPassword && <Error text={newPassword.isPassword} />}
 						<Button
 							disabled={!oldPassword.isValidField || !newPassword.isValidField}
-							type={BUTTON_TYPE_SUBMIT}
-							text={BUTTON_TEXT_CHANGE}
+							type={constants.BUTTON_TYPE_SUBMIT}
+							text={constants.BUTTON_TEXT_CHANGE}
 							className='profile-modal__form-btn'
 						/>
 					</form>
@@ -106,14 +91,14 @@ const ProfileModal = ({
 						</p>
 						<div>
 							<Button
-								type={BUTTON_TYPE_BUTTON}
-								text={BUTTON_TEXT_CANCEL}
+								type={constants.BUTTON_TYPE_BUTTON}
+								text={constants.BUTTON_TEXT_CANCEL}
 								onClick={handleCloseModal}
 								className='profile-modal__btn-cancel profile-modal__btn'
 							/>
 							<Button
-								type={BUTTON_TYPE_BUTTON}
-								text={BUTTON_TEXT_DELETE}
+								type={constants.BUTTON_TYPE_BUTTON}
+								text={constants.BUTTON_TEXT_DELETE}
 								onClick={handleDeleteAcc}
 								className='profile-modal__btn-delete profile-modal__btn'
 							/>

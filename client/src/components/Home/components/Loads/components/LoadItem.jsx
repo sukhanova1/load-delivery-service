@@ -2,31 +2,15 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 
-import Button from '../../../../../common/Button/Button';
-import { transformDateFull } from '../../../../../helpers/transformDate';
+import Button from 'common/Button/Button';
+import { transformDateFull } from 'helpers/transformDate';
 import {
 	deleteLoadRequest,
 	iterateToNextStateRequest,
 	postLoadRequest,
-} from '../../../../../store/loads/actionCreator';
-import { selectUserRole } from '../../../../../store/user/selectors';
-import {
-	DESTINATION_ICON_ALT_VALUE,
-	DESTINATION_ICON_SRC,
-	DIMENSIONS_ICON_ALT_VALUE,
-	DIMENSIONS_ICON_SRC,
-	BUTTON_TYPE_BUTTON,
-	BUTTON_TEXT_FINISH_DEL,
-	LOAD_STATUS_SHIPPED,
-	DRIVER_ROLE,
-	SHIPPER_ROLE,
-	LOAD_STATUS_NEW,
-	BUTTON_TEXT_POST,
-	EDIT_ICON_SRC,
-	EDIT_ICON_ALT_VALUE,
-	DELETE_ICON_SRC,
-	DELETE_ICON_ALT_VALUE,
-} from '../../../../../utils/constants';
+} from 'store/loads/actionCreator';
+import { selectUserRole } from 'store/user/selectors';
+import constants from 'utils/constants';
 
 import './LoadItem.css';
 
@@ -56,10 +40,11 @@ const LoadItem = ({ load }) => {
 		<div className='load-item'>
 			<div className='load-item__content_al-end'>
 				<h3 className='load-item__name'>{load && load.name}</h3>
-				{userRole === DRIVER_ROLE && load.status !== LOAD_STATUS_SHIPPED && (
-					<div className='load-item__status'>{load && load.status}</div>
-				)}
-				{userRole === SHIPPER_ROLE && (
+				{userRole === constants.DRIVER_ROLE &&
+					load.status !== constants.LOAD_STATUS_SHIPPED && (
+						<div className='load-item__status'>{load && load.status}</div>
+					)}
+				{userRole === constants.SHIPPER_ROLE && (
 					<div className='load-item__status'>{load && load.status}</div>
 				)}
 			</div>
@@ -69,8 +54,8 @@ const LoadItem = ({ load }) => {
 			<p className='load-item__state'>{load && load.state}</p>
 			<div className='load-item__content'>
 				<img
-					src={DIMENSIONS_ICON_SRC}
-					alt={DIMENSIONS_ICON_ALT_VALUE}
+					src={constants.DIMENSIONS_ICON_SRC}
+					alt={constants.DIMENSIONS_ICON_ALT_VALUE}
 					width='45px'
 				/>
 				<div>
@@ -83,8 +68,8 @@ const LoadItem = ({ load }) => {
 			</div>
 			<div className='load-item__content'>
 				<img
-					src={DESTINATION_ICON_SRC}
-					alt={DESTINATION_ICON_ALT_VALUE}
+					src={constants.DESTINATION_ICON_SRC}
+					alt={constants.DESTINATION_ICON_ALT_VALUE}
 					width='45px'
 				/>
 				<div className='load-item__address'>
@@ -96,54 +81,57 @@ const LoadItem = ({ load }) => {
 				<p className='load-item__date'>
 					Latest update at {transformDateFull(load.updatedAt)}
 				</p>
-				{userRole === SHIPPER_ROLE && load.status === LOAD_STATUS_NEW && (
-					<div className='load-item__btns-box'>
-						<Button
-							className='load-item__img-btn'
-							type={BUTTON_TYPE_BUTTON}
-							text={
-								<img
-									src={EDIT_ICON_SRC}
-									alt={EDIT_ICON_ALT_VALUE}
-									width='20px'
-								/>
-							}
-							onClick={handleEditLoad}
-						/>
-						<Button
-							className='load-item__img-btn'
-							type={BUTTON_TYPE_BUTTON}
-							text={
-								<img
-									src={DELETE_ICON_SRC}
-									alt={DELETE_ICON_ALT_VALUE}
-									width='20px'
-								/>
-							}
-							onClick={handleDeleteLoad}
-						/>
+				{userRole === constants.SHIPPER_ROLE &&
+					load.status === constants.LOAD_STATUS_NEW && (
+						<div className='load-item__btns-box'>
+							<Button
+								className='load-item__img-btn'
+								type={constants.BUTTON_TYPE_BUTTON}
+								text={
+									<img
+										src={constants.EDIT_ICON_SRC}
+										alt={constants.EDIT_ICON_ALT_VALUE}
+										width='20px'
+									/>
+								}
+								onClick={handleEditLoad}
+							/>
+							<Button
+								className='load-item__img-btn'
+								type={constants.BUTTON_TYPE_BUTTON}
+								text={
+									<img
+										src={constants.DELETE_ICON_SRC}
+										alt={constants.DELETE_ICON_ALT_VALUE}
+										width='20px'
+									/>
+								}
+								onClick={handleDeleteLoad}
+							/>
+							<Button
+								className='load-item__btn'
+								type={constants.BUTTON_TYPE_BUTTON}
+								text={constants.BUTTON_TEXT_POST}
+								onClick={handlePostLoad}
+							/>
+						</div>
+					)}
+				{userRole === constants.DRIVER_ROLE &&
+					load.status !== constants.LOAD_STATUS_SHIPPED && (
 						<Button
 							className='load-item__btn'
-							type={BUTTON_TYPE_BUTTON}
-							text={BUTTON_TEXT_POST}
-							onClick={handlePostLoad}
+							type={constants.BUTTON_TYPE_BUTTON}
+							text={constants.BUTTON_TEXT_FINISH_DEL}
+							onClick={handleFinishDelivery}
 						/>
-					</div>
-				)}
-				{userRole === DRIVER_ROLE && load.status !== LOAD_STATUS_SHIPPED && (
-					<Button
-						className='load-item__btn'
-						type={BUTTON_TYPE_BUTTON}
-						text={BUTTON_TEXT_FINISH_DEL}
-						onClick={handleFinishDelivery}
-					/>
-				)}
+					)}
 			</div>
-			{userRole === SHIPPER_ROLE && (
-				<Link to={`shipping-info/${load._id}`} className='load-item__link'>
-					Show more...
-				</Link>
-			)}
+			{userRole === constants.SHIPPER_ROLE &&
+				load.status === constants.LOAD_STATUS_ASSIGNED && (
+					<Link to={`shipping-info/${load._id}`} className='load-item__link'>
+						Show more...
+					</Link>
+				)}
 		</div>
 	);
 };

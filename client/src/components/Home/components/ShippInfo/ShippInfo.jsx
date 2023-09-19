@@ -2,25 +2,10 @@ import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getShippInfoRequest } from '../../../../store/loads/actionCreator';
-import { selectShippInfo } from '../../../../store/loads/selectors';
-import { transformDateFull } from '../../../../helpers/transformDate';
-import {
-	LOADS_ROUTE,
-	BACK_ICON_SRC,
-	BACK_ICON_ALT_VALUE,
-	DESTINATION_ICON_SRC,
-	DESTINATION_ICON_ALT_VALUE,
-	SPRINTER_SRC,
-	SMALL_STRAIGHT_SRC,
-	LARGE_STRAIGHT_SRC,
-	TRUCKS_ALT_VALUE,
-	DIMENSIONS_ICON_SRC,
-	DIMENSIONS_ICON_ALT_VALUE,
-	SPRINTER_TYPE,
-	LARGE_STRAIGHT_TYPE,
-	SMALL_STRAIGHT_TYPE,
-} from '../../../../utils/constants';
+import { getShippInfoRequest } from 'store/loads/actionCreator';
+import { selectShippInfo } from 'store/loads/selectors';
+import { transformDateFull } from 'helpers/transformDate';
+import constants from 'utils/constants';
 
 import './ShippInfo.css';
 
@@ -38,8 +23,12 @@ const ShippInfo = () => {
 	return (
 		<div className='shipp-info'>
 			<div className='shipp-info__header'>
-				<Link to={LOADS_ROUTE} className='loads-form__link'>
-					<img src={BACK_ICON_SRC} alt={BACK_ICON_ALT_VALUE} width='20px' />{' '}
+				<Link to={constants.LOADS_ROUTE} className='loads-form__link'>
+					<img
+						src={constants.BACK_ICON_SRC}
+						alt={constants.BACK_ICON_ALT_VALUE}
+						width='20px'
+					/>
 					Back to loads
 				</Link>
 				<div className='shipp-info__status'>
@@ -50,8 +39,8 @@ const ShippInfo = () => {
 			<p className='shipp-info__state'>{shippInfo && shippInfo.load.state}</p>
 			<div className='shipp-info__content'>
 				<img
-					src={DESTINATION_ICON_SRC}
-					alt={DESTINATION_ICON_ALT_VALUE}
+					src={constants.DESTINATION_ICON_SRC}
+					alt={constants.DESTINATION_ICON_ALT_VALUE}
 					width='50px'
 				/>
 				<div className='shipp-info__address'>
@@ -78,23 +67,29 @@ const ShippInfo = () => {
 			<div>
 				<h4 className='shipp-info__heading'>Truck</h4>
 				<div className='shipp-info__truck'>
-					{shippInfo && shippInfo.truck.type === SPRINTER_TYPE && (
-						<img src={SPRINTER_SRC} alt={TRUCKS_ALT_VALUE} width='110px' />
-					)}
-					{shippInfo && shippInfo.truck.type === SMALL_STRAIGHT_TYPE && (
+					{shippInfo && shippInfo.truck.type === constants.SPRINTER_TYPE && (
 						<img
-							src={SMALL_STRAIGHT_SRC}
-							alt={TRUCKS_ALT_VALUE}
-							width='140px'
+							src={constants.SPRINTER_SRC}
+							alt={constants.TRUCKS_ALT_VALUE}
+							width='110px'
 						/>
 					)}
-					{shippInfo && shippInfo.truck.type === LARGE_STRAIGHT_TYPE && (
-						<img
-							src={LARGE_STRAIGHT_SRC}
-							alt={TRUCKS_ALT_VALUE}
-							width='140px'
-						/>
-					)}
+					{shippInfo &&
+						shippInfo.truck.type === constants.MALL_STRAIGHT_TYPE && (
+							<img
+								src={constants.SMALL_STRAIGHT_SRC}
+								alt={constants.TRUCKS_ALT_VALUE}
+								width='140px'
+							/>
+						)}
+					{shippInfo &&
+						shippInfo.truck.type === constants.LARGE_STRAIGHT_TYPE && (
+							<img
+								src={constants.LARGE_STRAIGHT_SRC}
+								alt={constants.TRUCKS_ALT_VALUE}
+								width='140px'
+							/>
+						)}
 					<div className='shipp-info__truck-cont'>
 						<p>
 							Load assigned to driver with id{' '}
@@ -114,8 +109,8 @@ const ShippInfo = () => {
 				<h4 className='shipp-info__heading'>Dimensions</h4>
 				<div className='shipp-info__truck shipp-info__block'>
 					<img
-						src={DIMENSIONS_ICON_SRC}
-						alt={DIMENSIONS_ICON_ALT_VALUE}
+						src={constants.DIMENSIONS_ICON_SRC}
+						alt={constants.DIMENSIONS_ICON_ALT_VALUE}
 						width='75px'
 					/>
 					<table className='shipp-info__table'>

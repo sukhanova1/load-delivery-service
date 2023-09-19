@@ -2,24 +2,14 @@ import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Input from '../../../../common/Input/Input';
-import Button from '../../../../common/Button/Button';
-import Error from '../../../../common/Error/Error';
-import useInput from '../../../../hooks/useInput';
-import { login } from '../../../../store/user/actionCreator';
-import { selectUserisAuth } from '../../../../store/user/selectors';
-import { selectModalError } from '../../../../store/app/selectors';
-import {
-	BUTTON_TEXT_LOGIN,
-	BUTTON_TYPE_SUBMIT,
-	FORGOT_PASS_ROUTE,
-	INPUT_EMAIL,
-	INPUT_EMAIL_PLACEHOLDER,
-	INPUT_PASS,
-	INPUT_PASS_PLACEHOLDER,
-	REGISTER_ROUTE,
-	TRUCKS_ROUTE,
-} from '../../../../utils/constants';
+import Input from 'common/Input/Input';
+import Button from 'common/Button/Button';
+import Error from 'common/Error/Error';
+import useInput from 'hooks/useInput';
+import { login } from 'store/user/actionCreator';
+import { selectUserisAuth } from 'store/user/selectors';
+import { selectModalError } from 'store/app/selectors';
+import constants from 'utils/constants';
 
 import '../form.css';
 
@@ -41,16 +31,16 @@ const LoginForm = () => {
 
 	useEffect(() => {
 		if (isAuth) {
-			navigate(TRUCKS_ROUTE);
+			navigate(constants.LOADS_ROUTE);
 		}
 	}, [isAuth]);
 
 	return (
 		<form className='form__content' onSubmit={handleLogin}>
 			<Input
-				type={INPUT_EMAIL}
-				name={INPUT_EMAIL}
-				placeholder={INPUT_EMAIL_PLACEHOLDER}
+				type={constants.INPUT_EMAIL}
+				name={constants.INPUT_EMAIL}
+				placeholder={constants.INPUT_EMAIL_PLACEHOLDER}
 				value={email.value}
 				onChange={email.onChange}
 				onBlur={email.onBlur}
@@ -60,9 +50,9 @@ const LoginForm = () => {
 				<Error text={email.isEmail} />
 			)}
 			<Input
-				type={INPUT_PASS}
-				name={INPUT_PASS}
-				placeholder={INPUT_PASS_PLACEHOLDER}
+				type={constants.INPUT_PASS}
+				name={constants.INPUT_PASS}
+				placeholder={constants.INPUT_PASS_PLACEHOLDER}
 				value={password.value}
 				onChange={password.onChange}
 				onBlur={password.onBlur}
@@ -75,19 +65,19 @@ const LoginForm = () => {
 			)}
 			{serverError && <Error text={serverError} />}
 			<p>
-				<Link to={FORGOT_PASS_ROUTE} className='form__link'>
+				<Link to={constants.FORGOT_PASS_ROUTE} className='form__link'>
 					Forgot your password?
 				</Link>
 			</p>
 			<Button
 				disabled={!email.isValidField || !password.isValidField}
-				type={BUTTON_TYPE_SUBMIT}
-				text={BUTTON_TEXT_LOGIN}
+				type={constants.BUTTON_TYPE_SUBMIT}
+				text={constants.BUTTON_TEXT_LOGIN}
 				className='form__btn'
 			/>
 			<p>
 				Don't have an account?
-				<Link to={REGISTER_ROUTE} className='form__link'>
+				<Link to={constants.REGISTER_ROUTE} className='form__link'>
 					Create account
 				</Link>
 			</p>

@@ -1,34 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import Button from '../../../../common/Button/Button';
-import Modal from '../../../../common/Modal/Modal';
-import Select from '../../../../common/Select/Select';
+import Button from 'common/Button/Button';
+import Modal from 'common/Modal/Modal';
+import Select from 'common/Select/Select';
 import TruckItem from './components/TruckItem';
 import {
 	addTruckRequest,
 	getAllTrucksRequest,
-} from '../../../../store/trucks/actionCreator';
-import {
-	selectModalSuccess,
-	selectModalError,
-} from '../../../../store/app/selectors';
-import { selectTrucksArray } from '../../../../store/trucks/selectors';
-import {
-	BUTTON_TEXT_ADD,
-	BUTTON_TYPE_SUBMIT,
-	MODAL_TYPE_ERROR,
-	MODAL_TYPE_SUCCESS,
-	SELECT_ID_ADD_TRUCK,
-	SPRINTER_TYPE,
-	SELECT_TRUCK_OPTIONS,
-	SELECT_TRUCK_DEFAULT_VALUE,
-} from '../../../../utils/constants';
+} from 'store/trucks/actionCreator';
+import { selectModalSuccess, selectModalError } from 'store/app/selectors';
+import { selectTrucksArray } from 'store/trucks/selectors';
+import constants from 'utils/constants';
 
 import './Trucks.css';
 
 const Trucks = () => {
-	const [truckType, setTruckType] = useState(SPRINTER_TYPE);
+	const [truckType, setTruckType] = useState(constants.SPRINTER_TYPE);
 
 	const trucks = useSelector(selectTrucksArray);
 	const modalSuccess = useSelector(selectModalSuccess);
@@ -54,22 +42,24 @@ const Trucks = () => {
 		<div className='trucks'>
 			<div className='trucks__header'>
 				{modalSuccess && (
-					<Modal type={MODAL_TYPE_SUCCESS} text={modalSuccess} />
+					<Modal type={constants.MODAL_TYPE_SUCCESS} text={modalSuccess} />
 				)}
-				{modalError && <Modal type={MODAL_TYPE_ERROR} text={modalError} />}
+				{modalError && (
+					<Modal type={constants.MODAL_TYPE_ERROR} text={modalError} />
+				)}
 				<form onSubmit={handleAddTruck} className='trucks__form-box'>
 					<p className='trucks__header-title'>Choose truck type:</p>
 					<div>
 						<Select
-							id={SELECT_ID_ADD_TRUCK}
-							options={SELECT_TRUCK_OPTIONS}
+							id={constants.SELECT_ID_ADD_TRUCK}
+							options={constants.SELECT_TRUCK_OPTIONS}
 							handleSelectChange={handleSelectChange}
-							defaultValue={SELECT_TRUCK_DEFAULT_VALUE}
+							defaultValue={constants.SELECT_TRUCK_DEFAULT_VALUE}
 						/>
 						<Button
 							className='trucks__form-btn'
-							type={BUTTON_TYPE_SUBMIT}
-							text={BUTTON_TEXT_ADD}
+							type={constants.BUTTON_TYPE_SUBMIT}
+							text={constants.BUTTON_TEXT_ADD}
 						/>
 					</div>
 				</form>
