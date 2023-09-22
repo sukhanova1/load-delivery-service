@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Button from 'common/Button/Button';
 import Modal from 'common/Modal/Modal';
-import ProfileModal from './components/ProfileModal';
+import ProfileModal from './components/ProfileModal/ProfileModal';
 import { logoutRequest } from 'store/user/actionCreator';
 import { selectUserInfo } from 'store/user/selectors';
 import { transformDate } from 'helpers/transformDate';
