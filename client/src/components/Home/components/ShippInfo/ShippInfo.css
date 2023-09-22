@@ -59,11 +59,6 @@
   font-style: italic;
 }
 
-.shipp-info__truck-cont {
-  display: grid;
-  gap: 0.3rem;
-}
-
 .shipp-info__heading {
   margin-top: 0.7rem;
   padding-bottom: 0.3rem;
@@ -73,13 +68,6 @@
   font-size: 1.2rem;
   letter-spacing: 0.5px;
   color: var(--secondary-blue);
-}
-
-.shipp-info__truck {
-  padding: 0.5rem 2rem;
-  display: flex;
-  align-items: center;
-  gap: 4rem;
 }
 
 .shipp-info__block {

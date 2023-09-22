@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
+import TruckInfo from './components/TruckInfo/TruckInfo';
 import { getShippInfoRequest } from 'store/loads/actionCreator';
 import { selectShippInfo } from 'store/loads/selectors';
 import { transformDateFull } from 'helpers/transformDate';
@@ -66,44 +67,7 @@ const ShippInfo = () => {
 			</div>
 			<div>
 				<h4 className='shipp-info__heading'>Truck</h4>
-				<div className='shipp-info__truck'>
-					{shippInfo && shippInfo.truck.type === constants.SPRINTER_TYPE && (
-						<img
-							src={constants.SPRINTER_SRC}
-							alt={constants.TRUCKS_ALT_VALUE}
-							width='110px'
-						/>
-					)}
-					{shippInfo &&
-						shippInfo.truck.type === constants.MALL_STRAIGHT_TYPE && (
-							<img
-								src={constants.SMALL_STRAIGHT_SRC}
-								alt={constants.TRUCKS_ALT_VALUE}
-								width='140px'
-							/>
-						)}
-					{shippInfo &&
-						shippInfo.truck.type === constants.LARGE_STRAIGHT_TYPE && (
-							<img
-								src={constants.LARGE_STRAIGHT_SRC}
-								alt={constants.TRUCKS_ALT_VALUE}
-								width='140px'
-							/>
-						)}
-					<div className='shipp-info__truck-cont'>
-						<p>
-							Load assigned to driver with id{' '}
-							{shippInfo && shippInfo.truck.assigned_to}.
-						</p>
-						<p>Truck type: {shippInfo && shippInfo.truck.type}</p>
-						<p>
-							Assigned at{' '}
-							<span className='shipp-info__text_italic'>
-								{shippInfo && transformDateFull(shippInfo.load.logs[0].time)}
-							</span>
-						</p>
-					</div>
-				</div>
+				<TruckInfo shippInfo={shippInfo} />
 			</div>
 			<div>
 				<h4 className='shipp-info__heading'>Dimensions</h4>

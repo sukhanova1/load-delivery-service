@@ -1,0 +1,15 @@
+.truck-info {
+    padding: 0.5rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+}
+
+.truck-info__content {
+    display: grid;
+    gap: 0.3rem;
+}
+
+.truck-info__text_italic {
+    font-style: italic;
+}
