@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import Button from 'common/Button/Button';
 import Modal from 'common/Modal/Modal';
-import Select from 'common/Select/Select';
 import TruckItem from './components/TruckItem/TruckItem';
 import TrucksTable from './components/TrucksTable/TrucksTable';
-import {
-	addTruckRequest,
-	getAllTrucksRequest,
-} from 'store/trucks/actionCreator';
+import AddTruckForm from './components/AddTruckForm/AddTruckForm';
+import { getAllTrucksRequest } from 'store/trucks/actionCreator';
 import { selectModalSuccess, selectModalError } from 'store/app/selectors';
 import { selectTrucksArray } from 'store/trucks/selectors';
 import constants from 'utils/constants';
@@ -25,16 +21,6 @@ const Trucks = () => {
 
 	const dispatch = useDispatch();
 
-	const handleSelectChange = (value) => {
-		setTruckType(value);
-	};
-	const handleAddTruck = (e) => {
-		e.preventDefault();
-		const payload = { type: truckType, token: localStorage.getItem('token') };
-		dispatch(addTruckRequest(payload));
-		dispatch(getAllTrucksRequest(localStorage.getItem('token')));
-	};
-
 	useEffect(() => {
 		dispatch(getAllTrucksRequest(localStorage.getItem('token')));
 	}, [dispatch]);
@@ -48,22 +34,7 @@ const Trucks = () => {
 				{modalError && (
 					<Modal type={constants.MODAL_TYPE_ERROR} text={modalError} />
 				)}
-				<form onSubmit={handleAddTruck} className='trucks__form-box'>
-					<p className='trucks__header-title'>Choose truck type:</p>
-					<div>
-						<Select
-							id={constants.SELECT_ID_ADD_TRUCK}
-							options={constants.SELECT_TRUCK_OPTIONS}
-							handleSelectChange={handleSelectChange}
-							defaultValue={constants.SELECT_TRUCK_DEFAULT_VALUE}
-						/>
-						<Button
-							className='trucks__form-btn'
-							type={constants.BUTTON_TYPE_SUBMIT}
-							text={constants.BUTTON_TEXT_ADD}
-						/>
-					</div>
-				</form>
+				<AddTruckForm truckType={truckType} setTruckType={setTruckType} />
 				<div className='trucks__header-box'>
 					<p className='trucks__header-title'>TRUCK DIMENSIONS</p>
 					<TrucksTable />

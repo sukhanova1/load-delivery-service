@@ -1,0 +1,22 @@
+.trucks__form-box {
+    display: grid;
+    gap: 1.5rem;
+    text-align: center;
+}
+
+.trucks__header-title {
+    letter-spacing: 1px;
+}
+
+.trucks__form-btn{
+    margin-left: 2rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    border: 1px solid var(--background);
+    background-color: var(--background);
+    color: var(--text-dark-blue);
+}
+
+.trucks__form-btn:hover{
+    color: var(--secondary-blue);
+}
