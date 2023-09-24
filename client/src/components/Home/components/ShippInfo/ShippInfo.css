@@ -73,29 +73,3 @@
 .shipp-info__block {
   margin-top: 1.5rem;
 }
-
-.shipp-info__table {
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.shipp-info__td {
-  padding: 0.3rem 2rem;
-  margin-bottom: 1rem;
-  border-radius: 5px;
-  font-size: 0.9rem;
-}
-
-.shipp-info__th {
-  padding: 0.2rem 2rem;
-  font-family: var(--font-secondary);
-  font-size: 0.7rem;
-  font-weight: 500;
-  border-radius: 5px;
-  color: var(--third-blue);
-}
-
-.shipp-info__tr {
-  box-shadow: 1px 10px 16px var(--box-shadow);
-}
