@@ -1,0 +1,11 @@
+.trucks__header-table {
+    box-shadow: 1px 10px 16px var(--box-shadow);
+}
+
+.trucks__header-td{
+    padding: 0.1rem 0.3rem;
+    text-align: center;
+    letter-spacing: 0.7px;
+    font-size: 0.9rem;
+    background-color: white;
+}
