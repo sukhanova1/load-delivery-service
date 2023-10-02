@@ -1,31 +1,18 @@
 import React from 'react';
 
+import TruckImage from 'common/TruckImage/TruckImage';
 import { transformDateFull } from 'helpers/transformDate';
-import constants from 'utils/constants';
 
 import './TruckInfo.css';
 
 const TruckInfo = ({ shippInfo }) => (
 	<div className='truck-info'>
-		{shippInfo && shippInfo.truck.type === constants.SPRINTER_TYPE && (
-			<img
-				src={constants.SPRINTER_SRC}
-				alt={constants.TRUCKS_ALT_VALUE}
-				width='110px'
-			/>
-		)}
-		{shippInfo && shippInfo.truck.type === constants.SMALL_STRAIGHT_TYPE && (
-			<img
-				src={constants.SMALL_STRAIGHT_SRC}
-				alt={constants.TRUCKS_ALT_VALUE}
-				width='140px'
-			/>
-		)}
-		{shippInfo && shippInfo.truck.type === constants.LARGE_STRAIGHT_TYPE && (
-			<img
-				src={constants.LARGE_STRAIGHT_SRC}
-				alt={constants.TRUCKS_ALT_VALUE}
-				width='140px'
+		{shippInfo && (
+			<TruckImage
+				type={shippInfo.truck.type}
+				sprinterWidth={'110px'}
+				smallStWidth={'130px'}
+				largeStWidth={'130px'}
 			/>
 		)}
 		<div className='truck-info__content'>

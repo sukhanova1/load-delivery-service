@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import EditTruckForm from '../EditTruckForm/EditTruckForm';
+import TruckImage from 'common/TruckImage/TruckImage';
 import Button from 'common/Button/Button';
 import { transformDate } from 'helpers/transformDate';
 import { selectTrucksArray } from 'store/trucks/selectors';
@@ -54,27 +55,12 @@ const TruckItem = ({ truck, truckType, setTruckType }) => {
 		<tr className='trucks__table-row'>
 			<td className='trucks__table-data'>
 				<div className='trucks__table-content'>
-					{truck.type === constants.SPRINTER_TYPE && (
-						<img
-							src={constants.SPRINTER_SRC}
-							alt={constants.TRUCKS_ALT_VALUE}
-							width='45px'
-						/>
-					)}
-					{truck.type === constants.SMALL_STRAIGHT_TYPE && (
-						<img
-							src={constants.SMALL_STRAIGHT_SRC}
-							alt={constants.TRUCKS_ALT_VALUE}
-							width='55px'
-						/>
-					)}
-					{truck.type === constants.LARGE_STRAIGHT_TYPE && (
-						<img
-							src={constants.LARGE_STRAIGHT_SRC}
-							alt={constants.TRUCKS_ALT_VALUE}
-							width='60px'
-						/>
-					)}
+					<TruckImage
+						type={truck.type}
+						sprinterWidth={'45px'}
+						smallStWidth={'55px'}
+						largeStWidth={'60px'}
+					/>
 					<div>
 						{truck.type}
 						<p className='trucks__table-text'>Id: {truck._id}</p>
