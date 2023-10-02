@@ -1,0 +1,32 @@
+.trucks__table-btns {
+    margin-top: 1.4rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.trucks__table-btn {
+    padding: 0.2rem 0.5rem;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    background-color: var(--background);
+}
+
+.trucks__btn-edit:hover, .trucks__btn-delete:hover {
+    background-color: white;
+}
+
+.trucks__btn-delete {
+    color: var(--red);
+}
+
+.trucks__btn-assign {
+    color: var(--yellow);
+}
+
+.trucks__btn-assign:hover {
+    border: 1px solid var(--light-yellow);
+    background-color: var(--light-yellow);
+    color: var(--background);
+    opacity: 0.8;
+}

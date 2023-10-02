@@ -1,55 +1,23 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import EditTruckForm from '../EditTruckForm/EditTruckForm';
 import TruckImage from 'common/TruckImage/TruckImage';
-import Button from 'common/Button/Button';
 import { transformDate } from 'helpers/transformDate';
-import { selectTrucksArray } from 'store/trucks/selectors';
 import { setModalError } from 'store/app/actionCreator';
-import {
-	assignTruckRequest,
-	deleteTruckRequest,
-} from 'store/trucks/actionCreator';
 import constants from 'utils/constants';
 
 import './TruckItem.css';
+import TruckTableButtons from '../TruckTableButtons/TruckTableButtons';
 
 const TruckItem = ({ truck, truckType, setTruckType }) => {
 	const [isEditing, setIsEditing] = useState(false);
-
-	const trucks = useSelector(selectTrucksArray);
 
 	const dispatch = useDispatch();
 
 	const startEditTruck = () => setIsEditing(!isEditing);
 
 	const displayErrorModal = (mess) => dispatch(setModalError(mess));
-
-	const handleDeleteTruck = () => {
-		const payload = {
-			token: localStorage.getItem('token'),
-			id: truck._id,
-		};
-		if (!truck.assigned_to) {
-			dispatch(deleteTruckRequest(payload));
-		} else {
-			displayErrorModal('You can not delete assigned truck');
-		}
-	};
-
-	const handleAssignTruck = () => {
-		const payload = {
-			token: localStorage.getItem('token'),
-			id: truck._id,
-		};
-		const isAssigned = trucks.every((truck) => !truck.assigned_to);
-		if (isAssigned) {
-			dispatch(assignTruckRequest(payload));
-		} else {
-			return displayErrorModal('You can assign only one truck');
-		}
-	};
 
 	return (
 		<tr className='trucks__table-row'>
@@ -97,38 +65,11 @@ const TruckItem = ({ truck, truckType, setTruckType }) => {
 				) : (
 					<p>Not assigned</p>
 				)}
-				<div className='trucks__table-btns'>
-					<Button
-						className='trucks__table-btn trucks__btn-edit'
-						type={constants.BUTTON_TYPE_BUTTON}
-						text={
-							<img
-								src={constants.EDIT_ICON_SRC}
-								alt={constants.EDIT_ICON_ALT_VALUE}
-								width='25px'
-							/>
-						}
-						onClick={startEditTruck}
-					/>
-					<Button
-						className='trucks__table-btn trucks__btn-delete'
-						type={constants.BUTTON_TYPE_BUTTON}
-						text={
-							<img
-								src={constants.DELETE_ICON_SRC}
-								alt={constants.DELETE_ICON_ALT_VALUE}
-								width='25px'
-							/>
-						}
-						onClick={handleDeleteTruck}
-					/>
-					<Button
-						className='trucks__table-btn trucks__btn-assign'
-						type={constants.BUTTON_TYPE_BUTTON}
-						text={constants.BUTTON_TEXT_ASSIGN}
-						onClick={handleAssignTruck}
-					/>
-				</div>
+				<TruckTableButtons
+					truck={truck}
+					displayErrorModal={displayErrorModal}
+					startEditTruck={startEditTruck}
+				/>
 			</td>
 		</tr>
 	);
