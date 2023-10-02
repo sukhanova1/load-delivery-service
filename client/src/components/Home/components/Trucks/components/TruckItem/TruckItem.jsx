@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import EditTruckForm from '../EditTruckForm/EditTruckForm';
 import Button from 'common/Button/Button';
-import Select from 'common/Select/Select';
 import { transformDate } from 'helpers/transformDate';
 import { selectTrucksArray } from 'store/trucks/selectors';
 import { setModalError } from 'store/app/actionCreator';
 import {
 	assignTruckRequest,
 	deleteTruckRequest,
-	editTruckRequest,
 } from 'store/trucks/actionCreator';
 import constants from 'utils/constants';
 
@@ -25,21 +24,6 @@ const TruckItem = ({ truck, truckType, setTruckType }) => {
 	const startEditTruck = () => setIsEditing(!isEditing);
 
 	const displayErrorModal = (mess) => dispatch(setModalError(mess));
-
-	const handleEditTruck = (e) => {
-		e.preventDefault();
-		const payload = {
-			type: truckType,
-			token: localStorage.getItem('token'),
-			id: truck._id,
-		};
-		if (!truck.assigned_to) {
-			dispatch(editTruckRequest(payload));
-		} else {
-			displayErrorModal('You can not edit assigned truck info');
-		}
-		setIsEditing(!isEditing);
-	};
 
 	const handleDeleteTruck = () => {
 		const payload = {
@@ -97,18 +81,14 @@ const TruckItem = ({ truck, truckType, setTruckType }) => {
 					</div>
 				</div>
 				{isEditing && (
-					<form onSubmit={handleEditTruck}>
-						<Select
-							id={constants.SELECT_ID_EDIT_TRUCK}
-							options={constants.SELECT_TRUCK_OPTIONS}
-							setTruckType={setTruckType}
-						/>
-						<Button
-							className='trucks__table-btn trucks__btn-ok'
-							type={constants.BUTTON_TYPE_SUBMIT}
-							text={constants.BUTTON_TEXT_OK}
-						/>
-					</form>
+					<EditTruckForm
+						truckType={truckType}
+						setTruckType={setTruckType}
+						truck={truck}
+						isEditing={isEditing}
+						setIsEditing={setIsEditing}
+						displayErrorModal={displayErrorModal}
+					/>
 				)}
 			</td>
 			<td className='trucks__table-data'>
