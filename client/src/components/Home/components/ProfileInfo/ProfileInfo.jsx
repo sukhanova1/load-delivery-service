@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Button from 'common/Button/Button';
 import Modal from 'common/Modal/Modal';
 import ProfileModal from './components/ProfileModal/ProfileModal';
+import ProfileInfoButtons from './components/ProfileInfoButtons/ProfileInfoButtons';
 import { logoutRequest } from 'store/user/actionCreator';
 import { selectUserInfo } from 'store/user/selectors';
 import { transformDate } from 'helpers/transformDate';
@@ -69,23 +69,10 @@ const ProfileInfo = () => {
 					Since {transformDate(userInfo.created_date)}
 				</p>
 			</div>
-			<Button
-				className='profile__btn'
-				type={constants.BUTTON_TYPE_BUTTON}
-				text={constants.BUTTON_TEXT_CHANGE_PASS}
-				onClick={changePassword}
-			/>
-			<Button
-				className='profile__btn profile__btn-delete'
-				type={constants.BUTTON_TYPE_BUTTON}
-				text={constants.BUTTON_TEXT_DELETE_ACC}
-				onClick={deleteAccount}
-			/>
-			<Button
-				className='profile__btn profile__btn-logout'
-				type={constants.BUTTON_TYPE_BUTTON}
-				text={constants.BUTTON_TEXT_LOGOUT}
-				onClick={handleLogout}
+			<ProfileInfoButtons
+				changePassword={changePassword}
+				deleteAccount={deleteAccount}
+				handleLogout={handleLogout}
 			/>
 			{modal && (
 				<ProfileModal
