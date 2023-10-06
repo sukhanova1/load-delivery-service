@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
-import LoadItem from '../Loads/components/LoadItem';
-import Button from 'common/Button/Button';
+import LoadItem from './components/LoadItem/LoadItem';
+import LoadsHeader from './components/LoadsHeader/LoadsHeader';
 import Modal from 'common/Modal/Modal';
-import Select from 'common/Select/Select';
 import {
 	getActiveLoadsRequest,
 	getLoadsRequest,
@@ -30,42 +28,9 @@ const Loads = () => {
 	const serverSuccess = useSelector(selectModalSuccess);
 
 	const dispatch = useDispatch();
-	const navigate = useNavigate();
 
 	const [filteredLoads, setFilteredLoads] = useState(useSelector(selectLoads));
 	const [loadType, setLoadType] = useState('');
-
-	const handleSelectChange = (value) => {
-		switch (value) {
-			case constants.SELECT_ALL_LOADS:
-				setFilteredLoads(loads);
-				break;
-			case constants.LOAD_STATUS_NEW:
-				const newLoads = loads.filter(
-					(load) => load.status === constants.LOAD_STATUS_NEW
-				);
-				setFilteredLoads(newLoads);
-				setLoadType('new');
-				break;
-			case constants.LOAD_STATUS_ASSIGNED:
-				const assignedLoads = loads.filter(
-					(load) => load.status === constants.LOAD_STATUS_ASSIGNED
-				);
-				setFilteredLoads(assignedLoads);
-				setLoadType('assigned');
-				break;
-			case constants.LOAD_STATUS_SHIPPED:
-				const shippedLoads = loads.filter(
-					(load) => load.status === constants.LOAD_STATUS_SHIPPED
-				);
-				setFilteredLoads(shippedLoads);
-				setLoadType('shipped');
-				break;
-			default:
-				setFilteredLoads(loads);
-		}
-	};
-	const handleAddNewLoad = () => navigate('add');
 
 	useEffect(() => setFilteredLoads(loads), [loads]);
 
@@ -88,21 +53,11 @@ const Loads = () => {
 			)}
 			{userRole === constants.SHIPPER_ROLE && (
 				<div className='loads__container'>
-					<div className='loads__header'>
-						<Button
-							className='loads__btn'
-							type={constants.BUTTON_TYPE_BUTTON}
-							text={constants.BUTTON_TEXT_ADD_LOAD}
-							onClick={handleAddNewLoad}
-						/>
-						<Select
-							id={constants.SELECT_ID_LOAD_STATUS}
-							options={constants.SELECT_LOAD_OPTIONS}
-							handleSelectChange={handleSelectChange}
-							defaultValue={constants.SELECT_LOAD_DEFAULT_VALUE}
-						/>
-					</div>
-
+					<LoadsHeader
+						loads={loads}
+						setFilteredLoads={setFilteredLoads}
+						setLoadType={setLoadType}
+					/>
 					{filteredLoads.length === 0 && (
 						<p className='loads__mess'>
 							You do not have any {loadType} loads...

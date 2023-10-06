@@ -9,25 +9,6 @@
   gap: 3rem;
 }
 
-.loads__header {
-  justify-self: flex-end;
-}
-
-.loads__btn {
-  margin-right: 1.5rem;
-  padding: 0.6rem 1rem;
-  border-radius: 4px;
-  font-size: 0.75rem;
-  letter-spacing: 1px;
-  border: 1px solid var(--background);
-  background-color: var(--background);
-  color: var(--secondary-blue);
-}
-
-.loads__btn:hover {
-  color: var(--text-dark-blue);
-}
-
 .loads__title {
   font-size: 1.2rem;
   font-weight: 500;
