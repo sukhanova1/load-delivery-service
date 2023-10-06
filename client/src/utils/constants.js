@@ -1,4 +1,4 @@
-export default {
+const constants = {
 	//routes
 	LOGIN_ROUTE: '/auth/login',
 	REGISTER_ROUTE: '/auth/register',
@@ -25,7 +25,7 @@ export default {
 	CHECK_MARK_ALT_VALUE: 'check mark icon',
 	ERROR_ICON_SRC: '/assets/icons/error-icon.png',
 	ERROR_ICON_ALT_VALUE: 'error icon',
-	SPRINTER_SRC: '/assets/iconon.png',
+	SPRINTER_SRC: '/assets//icons/sprinter-icon.png',
 	SMALL_STRAIGHT_SRC: '/assets/icons/small-straight-icon.png',
 	LARGE_STRAIGHT_SRC: '/assets/icons/large-straight-icon.png',
 	DOUBLE_TICK_SRC: '/assets/icons/double-tick-icon.png',
@@ -106,9 +106,6 @@ export default {
 	TITLE_TRUCKS: 'My Trucks',
 	TITLE_LOADS: 'My Loads',
 	TITLE_LOGOUT: 'Logout',
-	// modal types
-	MODAL_TYPE_ERROR: 'error',
-	MODAL_TYPE_SUCCESS: 'success',
 
 	BASE_URL: 'http://localhost:8080/api',
 
@@ -118,3 +115,5 @@ export default {
 	TRUCK_STATUS_IS: 'IS',
 	TRUCK_STATUS_OL: 'OL',
 };
+
+export default constants;

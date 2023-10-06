@@ -5,11 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import Input from 'common/Input/Input';
 import Button from 'common/Button/Button';
 import Error from 'common/Error/Error';
-import Modal from 'common/Modal/Modal';
+import Notification from 'common/Notification/Notification';
 import useInput from 'hooks/useInput';
 import { selectLoadItem } from 'store/loads/selectors';
 import { addLoadRequest, editLoadRequest } from 'store/loads/actionCreator';
-import { selectModalError, selectModalSuccess } from 'store/app/selectors';
+import { selectServerSuccess } from 'store/app/selectors';
 import constants from 'utils/constants';
 
 import './LoadsForm.css';
@@ -20,8 +20,7 @@ const LoadsForm = () => {
 	const { loadId } = useParams();
 
 	const loadItem = useSelector(selectLoadItem(loadId));
-	const serverSuccess = useSelector(selectModalSuccess);
-	const serverError = useSelector(selectModalError);
+	const serverSuccess = useSelector(selectServerSuccess);
 
 	const name = useInput(loadItem ? loadItem.name : '', {
 		isEmpty: true,
@@ -104,12 +103,7 @@ const LoadsForm = () => {
 				/>{' '}
 				Back to loads
 			</Link>
-			{serverSuccess && (
-				<Modal type={constants.MODAL_TYPE_SUCCESS} text={serverSuccess} />
-			)}
-			{serverError && (
-				<Modal type={constants.MODAL_TYPE_ERROR} text={serverError} />
-			)}
+			<Notification />
 			<div className='loads-form__box'>
 				<p className='loads-form__label'>Load Name</p>
 				<Input

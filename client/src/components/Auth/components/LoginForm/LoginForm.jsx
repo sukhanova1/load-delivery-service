@@ -8,7 +8,7 @@ import Error from 'common/Error/Error';
 import useInput from 'hooks/useInput';
 import { login } from 'store/user/actionCreator';
 import { selectUserisAuth } from 'store/user/selectors';
-import { selectModalError } from 'store/app/selectors';
+import { selectServerError } from 'store/app/selectors';
 import constants from 'utils/constants';
 
 import '../form.css';
@@ -18,7 +18,7 @@ const LoginForm = () => {
 	const password = useInput('', { isEmpty: true, isPassword: true });
 
 	const isAuth = useSelector(selectUserisAuth);
-	const serverError = useSelector(selectModalError);
+	const serverError = useSelector(selectServerError);
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();

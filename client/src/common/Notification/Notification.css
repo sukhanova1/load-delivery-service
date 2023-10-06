@@ -3,6 +3,7 @@
   top: auto;
   right: 0rem;
   width: 22rem;
+  z-index: 1000;
   height: 10rem;
   padding: 1rem;
   border: 1px solid var(--light-grey);

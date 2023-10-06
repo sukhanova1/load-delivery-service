@@ -7,7 +7,7 @@ import Error from 'common/Error/Error';
 import Button from 'common/Button/Button';
 import useInput from 'hooks/useInput';
 import { register } from 'store/user/actionCreator';
-import { selectModalError, selectModalSuccess } from 'store/app/selectors';
+import { selectServerError, selectServerSuccess } from 'store/app/selectors';
 import constants from 'utils/constants';
 
 import '../form.css';
@@ -24,8 +24,8 @@ const RegisterForm = () => {
 	const password = useInput('', { isEmpty: true, isPassword: true });
 	const confirmPassword = useInput('', { isEmpty: true });
 
-	const serverError = useSelector(selectModalError);
-	const serverSuccess = useSelector(selectModalSuccess);
+	const serverError = useSelector(selectServerError);
+	const serverSuccess = useSelector(selectServerSuccess);
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();

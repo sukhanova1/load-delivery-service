@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Modal from 'common/Modal/Modal';
+import Notification from 'common/Notification/Notification';
 import ProfileModal from './components/ProfileModal/ProfileModal';
 import ProfileInfoButtons from './components/ProfileInfoButtons/ProfileInfoButtons';
 import { logoutRequest } from 'store/user/actionCreator';
 import { selectUserInfo } from 'store/user/selectors';
 import { transformDate } from 'helpers/transformDate';
-import { selectModalError, selectModalSuccess } from 'store/app/selectors';
+import { selectServerSuccess } from 'store/app/selectors';
 import constants from 'utils/constants';
 
 import './ProfileInfo.css';
@@ -18,8 +18,7 @@ const ProfileInfo = () => {
 	const [deleteAccModal, setDeleteAccModal] = useState(false);
 
 	const userInfo = useSelector(selectUserInfo);
-	const serverSuccess = useSelector(selectModalSuccess);
-	const serverError = useSelector(selectModalError);
+	const serverSuccess = useSelector(selectServerSuccess);
 
 	const dispatch = useDispatch();
 
@@ -49,12 +48,7 @@ const ProfileInfo = () => {
 
 	return (
 		<div className='profile'>
-			{serverSuccess && (
-				<Modal type={constants.MODAL_TYPE_SUCCESS} text={serverSuccess} />
-			)}
-			{serverError && (
-				<Modal type={constants.MODAL_TYPE_ERROR} text={serverError} />
-			)}
+			<Notification />
 			<img
 				src={constants.USER_PHOTO_SRC}
 				className='user-photo'

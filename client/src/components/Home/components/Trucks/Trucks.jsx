@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import Modal from 'common/Modal/Modal';
+import Notification from 'common/Notification/Notification';
 import TruckItem from './components/TruckItem/TruckItem';
 import TrucksTable from './components/TrucksTable/TrucksTable';
 import AddTruckForm from './components/AddTruckForm/AddTruckForm';
 import { getAllTrucksRequest } from 'store/trucks/actionCreator';
-import { selectModalSuccess, selectModalError } from 'store/app/selectors';
 import { selectTrucksArray } from 'store/trucks/selectors';
 import constants from 'utils/constants';
 
@@ -16,8 +15,6 @@ const Trucks = () => {
 	const [truckType, setTruckType] = useState(constants.SPRINTER_TYPE);
 
 	const trucks = useSelector(selectTrucksArray);
-	const modalSuccess = useSelector(selectModalSuccess);
-	const modalError = useSelector(selectModalError);
 
 	const dispatch = useDispatch();
 
@@ -28,12 +25,7 @@ const Trucks = () => {
 	return (
 		<div className='trucks'>
 			<div className='trucks__header'>
-				{modalSuccess && (
-					<Modal type={constants.MODAL_TYPE_SUCCESS} text={modalSuccess} />
-				)}
-				{modalError && (
-					<Modal type={constants.MODAL_TYPE_ERROR} text={modalError} />
-				)}
+				<Notification />
 				<AddTruckForm truckType={truckType} setTruckType={setTruckType} />
 				<div className='trucks__header-box'>
 					<p className='trucks__header-title'>TRUCK DIMENSIONS</p>

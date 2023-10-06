@@ -30,62 +30,60 @@ const sideBarItems = [
 	},
 ];
 
-const SideBar = ({ role, toggle, toggleMenu, handleLogout }) => {
-	return (
-		<aside className={toggle ? 'sidebar' : 'sidebar sidebar-small'}>
-			<div className='sidebar__header'>
-				<img
-					src={constants.MENU_BURGER_SRC}
-					className='sidebar__icon'
-					alt={constants.MENU_BURGER_ALT_VALUE}
-					width='40px'
-					onClick={toggleMenu}
-				/>
-				<Logo width='150px' />
+const SideBar = ({ role, toggle, toggleMenu, handleLogout }) => (
+	<aside className={toggle ? 'sidebar' : 'sidebar sidebar-small'}>
+		<div className='sidebar__header'>
+			<img
+				src={constants.MENU_BURGER_SRC}
+				className='sidebar__icon'
+				alt={constants.MENU_BURGER_ALT_VALUE}
+				width='40px'
+				onClick={toggleMenu}
+			/>
+			<Logo width='150px' />
+		</div>
+		<nav className='nav'>
+			<div className='nav__user'>
+				<Link to={constants.PROFILE_ROUTE} className='nav__link user-photo'>
+					<img
+						src={constants.USER_PHOTO_SRC}
+						alt={constants.USER_PHOTO_ALT_VALUE}
+						title={constants.TITLE_PROFILE}
+					/>
+				</Link>
 			</div>
-			<nav className='nav'>
-				<div className='nav__user'>
-					<Link to={constants.PROFILE_ROUTE} className='nav__link user-photo'>
-						<img
-							src={constants.USER_PHOTO_SRC}
-							alt={constants.USER_PHOTO_ALT_VALUE}
-							title={constants.TITLE_PROFILE}
-						/>
-					</Link>
+			<ul>
+				{sideBarItems.map((item) => {
+					if (item.role === 'both' || item.role === role) {
+						return (
+							<li className='nav__item' title={item.name} key={item.name}>
+								<NavLink to={item.path} className='nav__link'>
+									<img
+										src={item.imgSrc}
+										className='nav__icon'
+										alt={item.imgAltText}
+										width='35px'
+									/>
+									{item.name}
+								</NavLink>
+							</li>
+						);
+					}
+				})}
+			</ul>
+			<div className='nav__item' onClick={handleLogout}>
+				<div className='nav__link'>
+					<img
+						src={constants.LOGOUT_SRC}
+						className='nav__icon'
+						alt={constants.LOGOUT_ALT_VALUE}
+						width='35px'
+					/>
+					Logout
 				</div>
-				<ul>
-					{sideBarItems.map((item) => {
-						if (item.role === 'both' || item.role === role) {
-							return (
-								<li className='nav__item' title={item.name} key={item.name}>
-									<NavLink to={item.path} className='nav__link'>
-										<img
-											src={item.imgSrc}
-											className='nav__icon'
-											alt={item.imgAltText}
-											width='35px'
-										/>
-										{item.name}
-									</NavLink>
-								</li>
-							);
-						}
-					})}
-				</ul>
-				<div className='nav__item' onClick={handleLogout}>
-					<div className='nav__link'>
-						<img
-							src={constants.LOGOUT_SRC}
-							className='nav__icon'
-							alt={constants.LOGOUT_ALT_VALUE}
-							width='35px'
-						/>
-						Logout
-					</div>
-				</div>
-			</nav>
-		</aside>
-	);
-};
+			</div>
+		</nav>
+	</aside>
+);
 
 export default SideBar;

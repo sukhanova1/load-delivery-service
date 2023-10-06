@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import LoadItem from './components/LoadItem/LoadItem';
 import LoadsHeader from './components/LoadsHeader/LoadsHeader';
-import Modal from 'common/Modal/Modal';
+import Notification from 'common/Notification/Notification';
 import {
 	getActiveLoadsRequest,
 	getLoadsRequest,
@@ -14,7 +14,6 @@ import {
 	selectShippedLoads,
 } from 'store/loads/selectors';
 import { selectUserRole } from 'store/user/selectors';
-import { selectModalError, selectModalSuccess } from 'store/app/selectors';
 import constants from 'utils/constants';
 
 import './Loads.css';
@@ -24,8 +23,6 @@ const Loads = () => {
 	const loads = useSelector(selectLoads);
 	const activeLoads = useSelector(selectActiveLoads);
 	const shippedLoads = useSelector(selectShippedLoads);
-	const serverError = useSelector(selectModalError);
-	const serverSuccess = useSelector(selectModalSuccess);
 
 	const dispatch = useDispatch();
 
@@ -45,12 +42,7 @@ const Loads = () => {
 
 	return (
 		<div className='loads'>
-			{serverSuccess && (
-				<Modal type={constants.MODAL_TYPE_SUCCESS} text={serverSuccess} />
-			)}
-			{serverError && (
-				<Modal type={constants.MODAL_TYPE_ERROR} text={serverError} />
-			)}
+			<Notification />
 			{userRole === constants.SHIPPER_ROLE && (
 				<div className='loads__container'>
 					<LoadsHeader

@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { selectModalSuccess, selectModalError } from 'store/app/selectors';
+import { selectServerSuccess, selectServerError } from 'store/app/selectors';
 import { closeModal } from 'store/app/actionCreator';
 import constants from 'utils/constants';
 
-import './Modal.css';
+import './Notification.css';
 
-const Modal = ({ type, text }) => {
-	const modalSuccess = useSelector(selectModalSuccess);
-	const modalError = useSelector(selectModalError);
+const Notification = ({ type, text }) => {
+	const modalSuccess = useSelector(selectServerSuccess);
+	const modalError = useSelector(selectServerError);
 
 	const dispatch = useDispatch();
 
@@ -21,27 +21,29 @@ const Modal = ({ type, text }) => {
 		}
 	}, [modalSuccess, modalError]);
 
-	return (
+	return modalSuccess || modalError ? (
 		<div className='modal'>
 			<div className='modal__content'>
-				{type === constants.MODAL_TYPE_SUCCESS && (
+				{modalSuccess && (
 					<img
 						src={constants.CHECK_MARK_SRC}
 						alt={constants.CHECK_MARK_ALT_VALUE}
 						width='60px'
 					/>
 				)}
-				{type === constants.MODAL_TYPE_ERROR && (
+				{modalError && (
 					<img
 						src={constants.ERROR_ICON_SRC}
 						alt={constants.ERROR_ICON_ALT_VALUE}
 						width='45px'
 					/>
 				)}
-				<p className='modal__text'>{text}</p>
+				<p className='modal__text'>
+					{modalSuccess ? modalSuccess : modalError}
+				</p>
 			</div>
 		</div>
-	);
+	) : null;
 };
 
-export default Modal;
+export default Notification;

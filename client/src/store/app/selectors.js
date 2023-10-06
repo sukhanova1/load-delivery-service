@@ -1,2 +1,2 @@
-export const selectModalSuccess = (state) => state.app.serverSucces;
-export const selectModalError = (state) => state.app.serverError;
+export const selectServerSuccess = (state) => state.app.serverSuccess;
+export const selectServerError = (state) => state.app.serverError;
