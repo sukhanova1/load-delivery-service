@@ -1,14 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import Button from 'common/Button/Button';
+import LoadItemButtons from '../LoadItemButtons/LoadItemButtons';
 import { transformDateFull } from 'helpers/transformDate';
-import {
-	deleteLoadRequest,
-	iterateToNextStateRequest,
-	postLoadRequest,
-} from 'store/loads/actionCreator';
+import { iterateToNextStateRequest } from 'store/loads/actionCreator';
 import { selectUserRole } from 'store/user/selectors';
 import constants from 'utils/constants';
 
@@ -18,19 +15,6 @@ const LoadItem = ({ load }) => {
 	const userRole = useSelector(selectUserRole);
 
 	const dispatch = useDispatch();
-	const navigate = useNavigate();
-
-	const handleEditLoad = () => navigate(`update/${load._id}`);
-
-	const handleDeleteLoad = () => {
-		const data = { token: localStorage.getItem('token'), id: load._id };
-		dispatch(deleteLoadRequest(data));
-	};
-
-	const handlePostLoad = () => {
-		const data = { token: localStorage.getItem('token'), id: load._id };
-		dispatch(postLoadRequest(data));
-	};
 
 	const handleFinishDelivery = () => {
 		dispatch(iterateToNextStateRequest(localStorage.getItem('token')));
@@ -83,38 +67,7 @@ const LoadItem = ({ load }) => {
 				</p>
 				{userRole === constants.SHIPPER_ROLE &&
 					load.status === constants.LOAD_STATUS_NEW && (
-						<div className='load-item__btns-box'>
-							<Button
-								className='load-item__img-btn'
-								type={constants.BUTTON_TYPE_BUTTON}
-								text={
-									<img
-										src={constants.EDIT_ICON_SRC}
-										alt={constants.EDIT_ICON_ALT_VALUE}
-										width='20px'
-									/>
-								}
-								onClick={handleEditLoad}
-							/>
-							<Button
-								className='load-item__img-btn'
-								type={constants.BUTTON_TYPE_BUTTON}
-								text={
-									<img
-										src={constants.DELETE_ICON_SRC}
-										alt={constants.DELETE_ICON_ALT_VALUE}
-										width='20px'
-									/>
-								}
-								onClick={handleDeleteLoad}
-							/>
-							<Button
-								className='load-item__btn'
-								type={constants.BUTTON_TYPE_BUTTON}
-								text={constants.BUTTON_TEXT_POST}
-								onClick={handlePostLoad}
-							/>
-						</div>
+						<LoadItemButtons load={load} />
 					)}
 				{userRole === constants.DRIVER_ROLE &&
 					load.status !== constants.LOAD_STATUS_SHIPPED && (

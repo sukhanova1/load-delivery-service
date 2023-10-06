@@ -1,0 +1,15 @@
+.load-item__btns-box {
+    display: flex;
+    gap: 1rem;
+}
+
+.load-item__img-btn {
+    padding: 0.2rem 0.5rem;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    background-color: var(--background);
+}
+
+.load-item__img-btn:hover {
+    background-color: white;
+}
