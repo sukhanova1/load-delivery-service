@@ -1,4 +1,5 @@
 .load-item {
+  min-height: 350px;
   padding: 3rem 4rem;
   border-radius: 5px;
   background-color: white;

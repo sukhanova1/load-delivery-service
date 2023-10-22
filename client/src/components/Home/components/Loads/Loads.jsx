@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { pdf } from '@react-pdf/renderer';
+import { saveAs } from 'file-saver';
 
 import LoadItem from './components/LoadItem/LoadItem';
 import LoadsHeader from './components/LoadsHeader/LoadsHeader';
+import LoadsReport from './components/LoadsReport/LoadsReport';
 import Notification from 'common/Notification/Notification';
+import Button from 'common/Button/Button';
 import {
 	getActiveLoadsRequest,
 	getLoadsRequest,
@@ -28,6 +32,13 @@ const Loads = () => {
 
 	const [filteredLoads, setFilteredLoads] = useState(useSelector(selectLoads));
 	const [loadType, setLoadType] = useState('');
+
+	const generatePdfDocument = async (documentData) => {
+		const blob = await pdf(
+			<LoadsReport shippedLoads={shippedLoads} />
+		).toBlob();
+		saveAs(blob, 'shipped-loads-report');
+	};
 
 	useEffect(() => setFilteredLoads(loads), [loads]);
 
@@ -75,6 +86,14 @@ const Loads = () => {
 					</div>
 					<div className='loads__container'>
 						<h2 className='loads__title'>Shipped</h2>
+						{shippedLoads && (
+							<Button
+								className='loads__download-btn'
+								type={constants.BUTTON_TYPE_BUTTON}
+								text={constants.BUTTON_DOWNLOAD_PDF}
+								onClick={() => generatePdfDocument(shippedLoads)}
+							/>
+						)}
 						{shippedLoads.length === 0 && (
 							<p className='loads__mess'>
 								You do not have any shipped loads...

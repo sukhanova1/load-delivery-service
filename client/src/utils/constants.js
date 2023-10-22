@@ -101,6 +101,7 @@ const constants = {
 	BUTTON_TEXT_CHANGE: 'Change',
 	BUTTON_TEXT_CANCEL: 'Cancel',
 	BUTTON_TEXT_DELETE: 'Delete',
+	BUTTON_DOWNLOAD_PDF: 'Download in PDF',
 	//title
 	TITLE_PROFILE: 'Profile',
 	TITLE_TRUCKS: 'My Trucks',
