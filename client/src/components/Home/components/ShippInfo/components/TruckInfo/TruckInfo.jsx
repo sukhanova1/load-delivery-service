@@ -18,7 +18,7 @@ const TruckInfo = ({ shippInfo }) => (
 		<div className='truck-info__content'>
 			<p>
 				Load assigned to driver with id{' '}
-				{shippInfo && shippInfo.truck.assigned_to}.
+				{shippInfo && shippInfo.truck.assigned_to}
 			</p>
 			<p>Truck type: {shippInfo && shippInfo.truck.type}</p>
 			<p>

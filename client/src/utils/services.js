@@ -1,5 +1,7 @@
 import axios from 'axios';
-import { BASE_URL } from './constants';
+import constants from './constants';
+
+const { BASE_URL } = constants;
 
 //auth
 export const loginRequest = async (data) => {

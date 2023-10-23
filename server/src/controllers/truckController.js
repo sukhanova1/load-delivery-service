@@ -82,7 +82,7 @@ const deleteUserTruckById = async (req, res, next) => {
   await Truck.findByIdAndDelete(
     { _id: mongoose.Types.ObjectId(id), assigned_to: null },
   )
-    .then(() => res.status(200).json({ message: 'Track deleted successfully' }))
+    .then(() => res.status(200).json({ message: 'Truck deleted successfully' }))
     .catch((err) => next(err));
 };
 

@@ -39,14 +39,3 @@
   color: var(--third-blue);
   opacity: 0.4;
 }
-
-.trucks__table-data {
-  padding: 1rem 1.2rem;
-  margin-bottom: 0.2rem;
-  display: grid;
-  align-items: center;
-  gap: 0.8rem;
-  text-align: center;
-  border-radius: 10px;
-  background-color: white;
-}

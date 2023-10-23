@@ -29,7 +29,7 @@ const loadJoiSchema = Joi.object({
   dimensions: {
     width: Joi.number().integer().positive().max(700),
     length: Joi.number().integer().positive().max(350),
-    height: Joi.number().integer().positive().max(200),
+    height: Joi.number().integer().positive().max(270),
   },
 });
 

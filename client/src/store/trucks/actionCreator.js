@@ -15,7 +15,7 @@ export const getAllTrucksRequest = (payload) => ({
 	payload,
 });
 
-export const getAllTrucksSucess = (payload) => ({
+export const getAllTrucksSuccess = (payload) => ({
 	type: GET_TRUCKS_SUCCESS,
 	payload,
 });

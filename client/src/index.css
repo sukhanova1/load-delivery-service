@@ -5,6 +5,7 @@
   --text-dark-blue: #201945;
   --secondary-blue: #8595c9;
   --third-blue: #CBD2EB;
+  --border: #e2e8fd;
   --box-shadow: #e8e8e8;
   --btn-dark-blue: #363867;
   --light-grey: #f6f6f8;
@@ -12,7 +13,7 @@
   --light-yellow: #F9DD89;
   --red: #ff3232;
   --font-primary: "Merriweather", serif;
-  --font-secondaty: 'Open Sans', sans-serif;
+  --font-secondary: 'Open Sans', sans-serif;
 }
 
 * {

@@ -3,11 +3,10 @@ import { useEffect, useState } from 'react';
 const useValidate = (value, validations) => {
 	const [isEmpty, setIsEmpty] = useState('');
 	const [minLength, setMinLength] = useState('');
-	const [maxLength, setMaxLenngth] = useState('');
+	const [maxLength, setMaxLength] = useState('');
 	const [isEmail, setIsEmail] = useState('');
 	const [isPassword, setIsPassword] = useState('');
-	const [isDimensions, setisDimensions] = useState('');
-
+	const [isDimensions, setIsDimensions] = useState('');
 	const [isValidField, setIsValidField] = useState(false);
 
 	useEffect(() => {
@@ -25,10 +24,10 @@ const useValidate = (value, validations) => {
 					break;
 				case 'maxLength':
 					value.length > validations[elem]
-						? setMaxLenngth(
+						? setMaxLength(
 								`${validations.fieldName} length must be less than ${validations[elem]} characters`
 						  )
-						: setMaxLenngth('');
+						: setMaxLength('');
 					break;
 				case 'isEmail':
 					const email = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g;
@@ -46,8 +45,8 @@ const useValidate = (value, validations) => {
 					break;
 				case 'isDimensions':
 					0 < +value && +value <= validations.fieldValue
-						? setisDimensions('')
-						: setisDimensions(
+						? setIsDimensions('')
+						: setIsDimensions(
 								`${validations.fieldName} can not be less than or equal to 0 or greater than ${validations.fieldValue}`
 						  );
 					break;

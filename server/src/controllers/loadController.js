@@ -2,19 +2,13 @@ const mongoose = require('mongoose');
 const { Load, loadJoiSchema } = require('../models/Load');
 const { Truck } = require('../models/Truck');
 
-// await truckJoiSchema.validateAsync({ _id });
-//  await Truck.aggregate([
-//     { $match: { _id: mongoose.Types.ObjectId(id), assigned_to: null } },
-//     { $set: { "type": truckType } },
-//   ]);
-
 const getUserLoads = async (req, res, next) => {
   if (req.user.role !== 'SHIPPER') {
     return res.status(400).send({ message: 'You are not allowed to get Load' });
   }
   const offset = req.query.offset || 0;
   const limit = req.query.limit || 10;
-  await Load.find({ created_by: req.user.userId, status: req.query.status }, '-__v')
+  await Load.find({ created_by: req.user.userId }, '-__v')
     .skip(offset)
     .limit(limit)
     .then((loads) => res.status(200).send({ loads }))
@@ -29,7 +23,7 @@ const addUserLoad = async (req, res, next) => {
   const {
     name, payload, pickup_address, delivery_address, dimensions,
   } = req.body;
-  const truck = new Load({
+  const load = new Load({
     created_by: req.user.userId,
     name,
     payload,
@@ -41,7 +35,7 @@ const addUserLoad = async (req, res, next) => {
       height: dimensions.height,
     },
   });
-  return truck.save()
+  return load.save()
     .then(() => res.status(200).send({ message: 'Load was created successfully' }))
     .catch((err) => next(err));
 };
@@ -50,7 +44,7 @@ const getUserActiveLoad = async (req, res, next) => {
   if (req.user.role !== 'DRIVER') {
     return res.status(400).send({ message: 'You are not allowed to get active Load' });
   }
-  await Load.findOne({ assigned_to: req.user.userId })
+  await Load.find({ assigned_to: req.user.userId }, '-__v')
     .then((load) => res.status(200).send({ load }))
     .catch((err) => next(err));
 };
@@ -61,13 +55,14 @@ const iterateToNextLoadState = async (req, res, next) => {
   }
   const truck = await Truck.findOne({ assigned_to: req.user.userId });
   await Load.findOneAndUpdate(
-    { assigned_to: req.user.userId },
+    { assigned_to: req.user.userId, status: 'ASSIGNED' },
     { $set: { state: 'Arrived to delivery', status: 'SHIPPED' } },
   )
     .then(() => {
       truck.status = 'IS';
+      truck.assigned_to = null;
       truck.save();
-      res.status(200).send({ message: 'Load state changed to \'En route to Delivery\'' });
+      res.status(200).send({ message: 'Load state changed to \'Arrived to delivery\'' });
     })
     .catch((err) => next(err));
 };
@@ -116,7 +111,7 @@ const deleteUserLoadById = async (req, res, next) => {
   }
   const { id } = req.params;
   await Load.findByIdAndDelete({ _id: mongoose.Types.ObjectId(id), status: 'NEW' })
-    .then(() => res.status(200).json({ message: 'Track deleted successfully' }))
+    .then(() => res.status(200).json({ message: 'Load deleted successfully' }))
     .catch((err) => next(err));
 };
 
@@ -137,10 +132,12 @@ const postUserLoadById = async (req, res, next) => {
     'dimensions.height': { $gt: load.dimensions.height },
     'dimensions.payload': { $gt: load.payload },
   })
-    .then((truck) => {
+    .then(async (truck) => {
       if (truck === null) {
-        load.status = 'NEW';
-        load.save();
+        await Load.findByIdAndUpdate(
+          { _id: mongoose.Types.ObjectId(id), status: 'POSTED' },
+          { $set: { status: 'NEW' } },
+        );
         return res.status(400).send({ message: 'Driver was not found', driver_found: false });
       }
       truck.status = 'OL';

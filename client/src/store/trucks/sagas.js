@@ -18,7 +18,7 @@ import {
 	assignTruckSucess,
 	deleteTruckSucess,
 	editTruckSucess,
-	getAllTrucksSucess,
+	getAllTrucksSuccess,
 } from './actionCreator';
 import { setModalError, setModalSuccess } from '../app/actionCreator';
 
@@ -26,7 +26,7 @@ function* getAllTrucks(action) {
 	try {
 		const { status, data } = yield call(getTrucksRequest, action.payload);
 		if (status === 200) {
-			yield put(getAllTrucksSucess(data.trucks));
+			yield put(getAllTrucksSuccess(data.trucks));
 		}
 	} catch (e) {
 		yield put(setModalError(e.message));

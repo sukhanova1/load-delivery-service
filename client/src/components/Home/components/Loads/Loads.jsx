@@ -86,7 +86,7 @@ const Loads = () => {
 					</div>
 					<div className='loads__container'>
 						<h2 className='loads__title'>Shipped</h2>
-						{shippedLoads && (
+						{shippedLoads.length > 0 && (
 							<Button
 								className='loads__download-btn'
 								type={constants.BUTTON_TYPE_BUTTON}

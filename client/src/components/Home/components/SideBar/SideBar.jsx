@@ -77,6 +77,7 @@ const SideBar = ({ role, toggle, toggleMenu, handleLogout }) => (
 						src={constants.LOGOUT_SRC}
 						className='nav__icon'
 						alt={constants.LOGOUT_ALT_VALUE}
+						title={constants.TITLE_LOGOUT}
 						width='35px'
 					/>
 					Logout

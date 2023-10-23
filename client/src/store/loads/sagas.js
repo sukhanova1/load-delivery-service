@@ -63,9 +63,10 @@ function* editLoad(action) {
 
 function* deleteLoad(action) {
 	try {
-		const { status } = yield call(deleteLoadRequest, action.payload);
+		const { status, data } = yield call(deleteLoadRequest, action.payload);
 		if (status === 200) {
 			yield put(deleteLoadSuccess(action.payload.id));
+			yield put(setModalSuccess(data.message));
 		}
 	} catch (e) {
 		yield put(setModalError(e.message));
