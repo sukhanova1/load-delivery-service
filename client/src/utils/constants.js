@@ -108,7 +108,7 @@ const constants = {
 	TITLE_LOADS: 'My Loads',
 	TITLE_LOGOUT: 'Logout',
 
-	BASE_URL: 'https://delivery-service-api.onrender.com',
+	BASE_URL: 'http://localhost:8080/api',
 
 	DRIVER_ROLE: 'DRIVER',
 	SHIPPER_ROLE: 'SHIPPER',
